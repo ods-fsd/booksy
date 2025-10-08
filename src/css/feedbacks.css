@@ -1,0 +1,128 @@
+/* Base tokens (приклад) */
+:root {
+  --fb-bg: #fff3ec; /* світлий беж секції */
+  --card-bg: #ffffff;
+  --text-main: #0f0f0f;
+  --text-muted: #6b6b6b;
+  --border: #e9ddd6;
+  --shadow: 0 1px 2px rgba(15, 15, 15, 0.04), 0 6px 24px rgba(15, 15, 15, 0.06);
+  --gap: 16px;
+}
+
+.feedbacks-section {
+  background: var(--fb-bg);
+  padding: 64px 0; /* mobile */
+}
+
+.feedbacks-eyebrow {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.feedbacks-title {
+  margin: 0 0 24px;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+/* Swiper area */
+.feedbacks-swiper {
+  position: relative;
+}
+
+/* Card */
+.feedbacks-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.feedbacks-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  height: auto; /* let content define height */
+}
+
+.feedbacks-text {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.feedbacks-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feedbacks-avatar {
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.feedbacks-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.feedbacks-role {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Nav + pagination */
+.feedbacks-nav {
+  position: absolute;
+  right: 0;
+  bottom: -40px; /* під картками, як на макеті */
+  display: flex;
+  gap: 8px;
+}
+
+.feedbacks-nav__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.feedbacks-nav__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.feedbacks-nav__btn:active {
+  transform: translateY(0);
+}
+
+.feedbacks-pagination {
+  position: absolute;
+  left: 0;
+  bottom: -28px;
+}
+
+/* Стиль неактивної кнопки: Swiper сам додає клас */
+.feedbacks-nav__btn.swiper-button-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  pointer-events: none;
+}
+
+/* dev-only helpers — прибрати перед комітом у main */
+.header,
+.footer {
+  display: none !important;
+}
