@@ -1,151 +1,120 @@
 const API_BASE = 'https://books-backend.p.goit.global/books';
-const listEl = document.getElementById('books-list');
-const showMoreBtn = document.getElementById('show-more-btn');
-const counterShown = document.getElementById('books-shown');
-const counterTotal = document.getElementById('books-total');
-const categorySelect = document.getElementById('books-category-select');
 
-let allBooks = [];
-let filteredBooks = [];
-let loadedCount = 0;
-const itemsPerPage = window.innerWidth >= 1440 ? 24 : 10;
+const refs = {
+  filters: document.getElementById('books-filters'),
+  list: document.getElementById('books-list'),
+  showMore: document.getElementById('show-more-btn'),
+  shownCount: document.getElementById('books-shown'),
+  totalCount: document.getElementById('books-total'),
+};
 
-// =====  INIT =====
-async function initBooks() {
-  await loadCategories();
-  await loadTopBooks();
-  renderBooks();
-  showMoreBtn.addEventListener('click', loadMoreBooks);
-  categorySelect.addEventListener('change', onCategoryChange);
+let books = [];
+let visibleCount = 0;
+const PAGE_SIZE = 8;
+let selectedCategory = 'top-books';
+
+// ----------- Fetch helpers -----------
+async function fetchCategories() {
+  const res = await fetch(`${API_BASE}/category-list`);
+  if (!res.ok) throw new Error('Failed to fetch categories');
+  return await res.json();
 }
 
-// =====  API HELPERS =====
-async function fetchData(url) {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('Network error');
-    return await res.json();
-  } catch (error) {
-    console.error('API fetch failed:', error);
-    return null;
-  }
+async function fetchTopBooks() {
+  const res = await fetch(`${API_BASE}/top-books`);
+  if (!res.ok) throw new Error('Failed to fetch top books');
+  return await res.json();
 }
 
-// =====  LOAD CATEGORIES =====
-async function loadCategories() {
-  const data = await fetchData(`${API_BASE}/category-list`);
-  if (!data) {
-    console.warn('Using fallback categories');
-    categorySelect.innerHTML = `<option value="all">All Categories</option>`;
-    return;
-  }
+async function fetchBooksByCategory(category) {
+  const res = await fetch(`${API_BASE}/category?category=${encodeURIComponent(category)}`);
+  if (!res.ok) throw new Error('Failed to fetch books by category');
+  return await res.json();
+}
 
-  categorySelect.innerHTML = `<option value="all">All Categories</option>`;
-  data.forEach(cat => {
-    const option = document.createElement('option');
-    option.value = cat.list_name;
-    option.textContent = cat.list_name;
-    categorySelect.appendChild(option);
+// ----------- Renderers -----------
+function renderCategories(categories) {
+  const buttons = [
+    '<button class="active" data-category="top-books">All categories</button>',
+    ...categories.map(cat => `<button data-category="${cat.list_name}">${cat.list_name}</button>`),
+  ];
+  refs.filters.innerHTML = buttons.join('');
+
+  refs.filters.addEventListener('click', async e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    document.querySelectorAll('.books-filters button').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+
+    selectedCategory = e.target.dataset.category;
+    books = [];
+    visibleCount = 0;
+    refs.list.innerHTML = '';
+    await loadBooks();
   });
 }
 
-// =====  LOAD TOP BOOKS =====
-async function loadTopBooks() {
-  const data = await fetchData(`${API_BASE}/top-books`);
-  if (!data) {
-    console.warn('Using fallback books');
-    filteredBooks = [];
-    updateCounters();
-    return;
-  }
-
-  // API повертає масив категорій з їх книгами, треба розпакувати
-  const books = data.flatMap(cat => cat.books);
-  allBooks = books;
-  filteredBooks = [...books];
-  updateCounters();
-}
-
-// =====  LOAD BOOKS BY CATEGORY =====
-async function loadBooksByCategory(category) {
-  const data = await fetchData(`${API_BASE}/category?category=${encodeURIComponent(category)}`);
-  if (!data) {
-    console.warn('Fallback books for category');
-    filteredBooks = [];
-    updateCounters();
-    renderBooks();
-    return;
-  }
-  filteredBooks = data;
-  updateCounters();
-  renderBooks();
-}
-
-// =====  RENDER BOOKS =====
-function renderBooks() {
-  const booksToShow = filteredBooks.slice(0, loadedCount + itemsPerPage);
-  loadedCount = booksToShow.length;
-  listEl.innerHTML = booksToShow
+function renderBooks(booksToRender) {
+  const markup = booksToRender
     .map(
-      book => `
-      <li class="book-card" data-id="${book._id}">
-        <picture>
-          <source srcset="${book.book_image} 1x, ${book.book_image} 2x" />
-          <img class="book-image" src="${book.book_image}" alt="${book.title}" loading="lazy" />
-        </picture>
-        <div class="book-info">
-          <h4 class="book-title">${book.title}</h4>
-          <p class="book-author">${book.author}</p>
-          <button class="book-btn" data-id="${book._id}">Learn More</button>
-        </div>
-      </li>`
+      ({ title, author, book_image, price }) => `
+    <li class="books-item">
+      <div class="books-cover">
+        <img src="${book_image}" alt="${title}" loading="lazy" />
+      </div>
+      <div class="books-info">
+        <h4>${title}</h4>
+        <p>${author}</p>
+        <p class="books-price">$${price ?? 10}</p>
+        <button class="books-learn-more">Learn More</button>
+      </div>
+    </li>
+  `
     )
     .join('');
-
-  updateCounters();
-  toggleShowMoreButton();
-
-  listEl.querySelectorAll('.book-btn').forEach(btn =>
-    btn.addEventListener('click', e => {
-      const id = e.target.dataset.id;
-      const book = filteredBooks.find(b => b._id === id);
-      if (typeof openBookModal === 'function') {
-        openBookModal(book);
-      } else {
-        console.log('Book modal not implemented yet:', book);
-      }
-    })
-  );
+  refs.list.insertAdjacentHTML('beforeend', markup);
 }
 
-function updateCounters() {
-  counterShown.textContent = loadedCount;
-  counterTotal.textContent = filteredBooks.length;
+function updateCounter() {
+  refs.shownCount.textContent = visibleCount;
+  refs.totalCount.textContent = books.length;
 }
 
-function toggleShowMoreButton() {
-  if (loadedCount >= filteredBooks.length) {
-    showMoreBtn.style.display = 'none';
+// ----------- Loaders -----------
+async function loadBooks() {
+  let data;
+  if (selectedCategory === 'top-books') {
+    const top = await fetchTopBooks();
+    data = top.flatMap(c => c.books);
   } else {
-    showMoreBtn.style.display = 'block';
+    data = await fetchBooksByCategory(selectedCategory);
+  }
+
+  books = data;
+  visibleCount = Math.min(PAGE_SIZE, books.length);
+  renderBooks(books.slice(0, visibleCount));
+  updateCounter();
+
+  refs.showMore.style.display = books.length > visibleCount ? 'block' : 'none';
+}
+
+refs.showMore.addEventListener('click', () => {
+  const nextCount = visibleCount + PAGE_SIZE;
+  renderBooks(books.slice(visibleCount, nextCount));
+  visibleCount = Math.min(nextCount, books.length);
+  updateCounter();
+
+  if (visibleCount >= books.length) refs.showMore.style.display = 'none';
+});
+
+// ----------- Init -----------
+async function init() {
+  try {
+    const categories = await fetchCategories();
+    renderCategories(categories);
+    await loadBooks();
+  } catch (err) {
+    console.error('Error loading books section:', err);
   }
 }
 
-// =====  EVENT HANDLERS =====
-function loadMoreBooks() {
-  renderBooks();
-}
-
-function onCategoryChange(e) {
-  const selected = e.target.value;
-  loadedCount = 0;
-  if (selected === 'all') {
-    filteredBooks = [...allBooks];
-    renderBooks();
-  } else {
-    loadBooksByCategory(selected);
-  }
-}
-
-// =====  START =====
-initBooks();
+init();
