@@ -1,0 +1,67 @@
+.hero {
+  padding-bottom: 32px;
+  background-color: #fceee6;
+}
+
+.hero-subtitle {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 20px;
+  max-width: 392px;
+}
+
+.hero-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid #e15d05;
+  border-radius: 4px;
+  padding-block: 8px;
+  padding-inline: 20px;
+  width: 227px;
+  height: 40px;
+  background-color: #e15d05;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #0b0500;
+}
+
+.hero-slider {
+  display: flex;
+  gap: 24px;
+}
+
+.slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid rgba(11, 5, 0, 0.15);
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  background-color: #e15d05;
+}
+
+.btn-sparrow {
+  /* display: none;
+  color: #0b0500; */
+}
