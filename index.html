@@ -59,32 +59,30 @@
   </div>
 </section>
 
-    <section class="books-section section">
+    <section id="books" class="books-section">
   <h2 class="visually-hidden">Trending books</h2>
-
-  <div class="books-header container">
+  <div class="books-header">
     <h3 class="books-title">Books</h3>
-    <div class="books-controls">
-      <p class="books-counter">
-        Showing <span id="books-shown">0</span> of
-        <span id="books-total">0</span>
-      </p>
-      <select
-        id="books-category-select"
-        class="books-select"
-        aria-label="Book categories"
-      >
-        <option value="all">All Categories</option>
-      </select>
-    </div>
+    <p class="books-counter">
+      Showing <span id="books-shown">0</span> of <span id="books-total">0</span>
+    </p>
   </div>
 
-  <div class="container">
-    <ul class="books-list" id="books-list"></ul>
-    <button type="button" id="show-more-btn" class="books-show-more">
-      Show More
-    </button>
+  <div class="books-filters" id="books-filters">
+    <!-- Categories will be dynamically inserted here -->
   </div>
+
+  <div class="books-spinner" id="books-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <ul class="books-list" id="books-list">
+    <!-- Books will be rendered here dynamically -->
+  </ul>
+
+  <button type="button" class="books-show-more" id="show-more-btn">
+    Show More
+  </button>
 </section>
 
     <h2>Feedback</h2>
