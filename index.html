@@ -3,32 +3,92 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vanilla-app-template/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/booksy/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vanilla App Template</title>
-  <script type="module" crossorigin src="/vanilla-app-template/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/vanilla-app-template/assets/index-DdFGUFkB.css">
+  <title>Booksy</title>
+  <script type="module" crossorigin src="/booksy/index.js"></script>
+  <link rel="stylesheet" crossorigin href="/booksy/assets/index-DdFGUFkB.css">
 </head>
 
 <body>
 
 
-  <load src="./partials/header.html"></load>
+  <header>
+    <h2>test</h2>
+    sdfsd;lkf;sdkf
+</header>
   <main>
-    <load src="./partials/hero.html"></load>
-    <load src="./partials/books.html"></load>
-    <load src="./partials/feedbacks.html"></load>
-    <load src="./partials/events.html"></load>
-    <load src="./partials/register-modal.html"></load>
-    <load src="./partials/article.html"></load>
-    <load src="./partials/location.html"></load>
-    <load src="./partials/footer.html"></load>
+    <section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-text">
+      <p class="hero-subtitle">Get 10% off your first order</p>
+      <a href="#books" class="hero-button">Shop Now!</a>
+    </div>
+
+    <h1 class="hero-title">Discover Your Next Great Read Today!</h1>
+    <div class="hero-slider">
+      <button
+        class="slider-btn prev"
+        id="prevBtn"
+        aria-label="Попередній слайд"
+      >
+        ←
+      </button>
+      <ul class="swiper-wrapper">
+        <li class="swiper-slide"><img src="" alt="" /></li>
+        <li class="swiper-slide"><img src="" alt="" /></li>
+        <li class="swiper-slide"><img src="" alt="" /></li>
+      </ul>
+      <button
+        class="slider-btn next"
+        id="nextBtn"
+        arial-label="Наступний слайд"
+      >
+        →
+      </button>
+    </div>
+  </div>
+</section>
+
+    <section class="books-section section">
+  <h2 class="visually-hidden">Trending books</h2>
+
+  <div class="books-header container">
+    <h3 class="books-title">Books</h3>
+    <div class="books-controls">
+      <p class="books-counter">
+        Showing <span id="books-shown">0</span> of
+        <span id="books-total">0</span>
+      </p>
+      <select
+        id="books-category-select"
+        class="books-select"
+        aria-label="Book categories"
+      >
+        <option value="all">All Categories</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container">
+    <ul class="books-list" id="books-list"></ul>
+    <button type="button" id="show-more-btn" class="books-show-more">
+      Show More
+    </button>
+  </div>
+</section>
+
+    <h2>Feedback</h2>
+    
+    
+    
+    
   </main>
 
   <footer class="footer">
   <div class="footer-container">
     <svg class="footer-logo" width="17" height="19">
-      <use href="/vanilla-app-template/assets/sprite-BHtShymw.svg#icon-logo"></use>
+      <use href="/booksy/assets/sprite-BHtShymw.svg#icon-logo"></use>
     </svg>
     <nav>
       <ul class="footer-nav">
