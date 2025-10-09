@@ -16,7 +16,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" />
 
   <script type="module" crossorigin src="/booksy/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/booksy/assets/index-Bw9-Xhe1.css">
+  <link rel="stylesheet" crossorigin href="/booksy/assets/index-BqrklrFH.css">
 </head>
 
 <body>
@@ -61,6 +61,7 @@
 
     <section id="books" class="books-section">
   <h2 class="visually-hidden">Trending books</h2>
+
   <div class="books-header">
     <h3 class="books-title">Books</h3>
     <p class="books-counter">
@@ -68,21 +69,21 @@
     </p>
   </div>
 
-  <div class="books-filters" id="books-filters">
-    <!-- Categories will be dynamically inserted here -->
+  <div class="books-content">
+    <aside class="books-filters" id="books-filters">
+      <!-- Categories will be rendered here -->
+    </aside>
+
+    <div class="books-main">
+      <ul class="books-list" id="books-list">
+        <!-- Books will be rendered here -->
+      </ul>
+
+      <button type="button" class="books-show-more" id="show-more-btn">
+        Show More
+      </button>
+    </div>
   </div>
-
-  <div class="books-spinner" id="books-spinner">
-    <div class="spinner"></div>
-  </div>
-
-  <ul class="books-list" id="books-list">
-    <!-- Books will be rendered here dynamically -->
-  </ul>
-
-  <button type="button" class="books-show-more" id="show-more-btn">
-    Show More
-  </button>
 </section>
 
     <h2>Feedback</h2>
