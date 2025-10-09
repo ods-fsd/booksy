@@ -13,26 +13,103 @@ let visibleCount = 0;
 const PAGE_SIZE = 8;
 let selectedCategory = 'top-books';
 
-// ----------- Fetch helpers -----------
+/* ---------------- MOCK DATA (fallback) ---------------- */
+const mockCategories = [
+  { list_name: 'Combined Print and E-book Fiction' },
+  { list_name: 'Combined Print and E-book Nonfiction' },
+  { list_name: 'Hardcover fiction' },
+  { list_name: 'Paperback trade fiction' },
+  { list_name: 'Paperback nonfiction' },
+  { list_name: 'Advice, how-to & Miscellaneous' },
+  { list_name: "Children’s middle grade hardcover" },
+];
+
+const mockBooks = [
+  {
+    title: 'I Will Find You',
+    author: 'Harlan Coben',
+    price: 15,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/91+V7QmNxtL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'Hello Beautiful',
+    author: 'Ann Napolitano',
+    price: 12,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/81kLwR4IuVL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'It Starts With Us',
+    author: 'Colleen Hoover',
+    price: 10,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/81sX+U4t1DL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'Daisy Jones & The Six',
+    author: 'Taylor Jenkins Reid',
+    price: 14,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/91kUqT3gr6L._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'Saved',
+    author: 'Benjamin Hall',
+    price: 11,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/71e2vG0fDVL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'Spare',
+    author: 'Prince Harry',
+    price: 13,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/71+U6OcYpAL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'Paris The Memoir',
+    author: 'Paris Hilton',
+    price: 15,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/81kEQtiRffL._AC_UL600_SR600,400_.jpg',
+  },
+  {
+    title: 'The Courage to Be Free',
+    author: 'Ron DeSantis',
+    price: 17,
+    book_image:
+      'https://images-na.ssl-images-amazon.com/images/I/81+2eWnX3bL._AC_UL600_SR600,400_.jpg',
+  },
+];
+
+/* ---------------- FETCH HELPERS ---------------- */
+async function safeFetch(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Network error');
+    return await res.json();
+  } catch {
+    return null; // якщо API не відповідає
+  }
+}
+
 async function fetchCategories() {
-  const res = await fetch(`${API_BASE}/category-list`);
-  if (!res.ok) throw new Error('Failed to fetch categories');
-  return await res.json();
+  return (await safeFetch(`${API_BASE}/category-list`)) || mockCategories;
 }
 
 async function fetchTopBooks() {
-  const res = await fetch(`${API_BASE}/top-books`);
-  if (!res.ok) throw new Error('Failed to fetch top books');
-  return await res.json();
+  const data = await safeFetch(`${API_BASE}/top-books`);
+  if (data) return data.flatMap(c => c.books);
+  return mockBooks;
 }
 
 async function fetchBooksByCategory(category) {
-  const res = await fetch(`${API_BASE}/category?category=${encodeURIComponent(category)}`);
-  if (!res.ok) throw new Error('Failed to fetch books by category');
-  return await res.json();
+  const data = await safeFetch(`${API_BASE}/category?category=${encodeURIComponent(category)}`);
+  return data || mockBooks;
 }
 
-// ----------- Renderers -----------
+/* ---------------- RENDER ---------------- */
 function renderCategories(categories) {
   const buttons = [
     '<button class="active" data-category="top-books">All categories</button>',
@@ -59,19 +136,12 @@ function renderBooks(booksToRender) {
       ({ title, author, book_image, price }) => `
     <li class="books-item">
       <div class="books-cover">
-        <img 
-          src="${book_image || 'https://via.placeholder.com/240x360?text=No+Image'}" 
-          alt="${title}" 
-          loading="lazy"
-          onerror="this.src='https://via.placeholder.com/240x360?text=No+Image'"
-        />
+        <img src="${book_image}" alt="${title}" loading="lazy" />
       </div>
       <div class="books-info">
-        <div class="books-info-header">
-          <h4>${title}</h4>
-          <p class="books-price">${price ?? 10}</p>
-        </div>
+        <h4>${title}</h4>
         <p>${author}</p>
+        <p class="books-price">$${price ?? 10}</p>
         <button class="books-learn-more">Learn More</button>
       </div>
     </li>
@@ -86,28 +156,16 @@ function updateCounter() {
   refs.totalCount.textContent = books.length;
 }
 
-// ----------- Loaders -----------
+/* ---------------- LOADERS ---------------- */
 async function loadBooks() {
-  refs.list.innerHTML = '<li class="books-loading">Loading books</li>';
-  
   let data;
   if (selectedCategory === 'top-books') {
-    const top = await fetchTopBooks();
-    data = top.flatMap(c => c.books);
+    data = await fetchTopBooks();
   } else {
     data = await fetchBooksByCategory(selectedCategory);
   }
 
   books = data;
-  refs.list.innerHTML = '';
-  
-  if (books.length === 0) {
-    refs.list.innerHTML = '<li style="grid-column: 1/-1; text-align: center; padding: 40px;"><p>No books found in this category.</p></li>';
-    refs.showMore.style.display = 'none';
-    updateCounter();
-    return;
-  }
-
   visibleCount = Math.min(PAGE_SIZE, books.length);
   renderBooks(books.slice(0, visibleCount));
   updateCounter();
@@ -124,7 +182,7 @@ refs.showMore.addEventListener('click', () => {
   if (visibleCount >= books.length) refs.showMore.style.display = 'none';
 });
 
-// ----------- Init -----------
+/* ---------------- INIT ---------------- */
 async function init() {
   try {
     const categories = await fetchCategories();
@@ -132,7 +190,10 @@ async function init() {
     await loadBooks();
   } catch (err) {
     console.error('Error loading books section:', err);
-    refs.list.innerHTML = '<li style="grid-column: 1/-1; text-align: center; padding: 40px;"><p style="color: var(--text-secondary);">Failed to load books. Please try again later.</p></li>';
+    renderCategories(mockCategories);
+    books = mockBooks;
+    renderBooks(books.slice(0, PAGE_SIZE));
+    updateCounter();
   }
 }
 
