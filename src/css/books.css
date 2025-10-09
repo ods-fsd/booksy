@@ -1,154 +1,100 @@
 /* ===== BOOKS SECTION ===== */
 .books-section {
-  padding: 40px 0 60px;
-  background-color: #f9f4ef;
-  color: #111;
-  font-family: "Rubik", sans-serif;
-}
 
-.books-title {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 16px;
-}
 
-.books-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-
-.books-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 14px;
-  color: #555;
-}
-
-.books-select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.books-select:hover {
-  border-color: #aaa;
-}
-
-.books-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 40px;
-}
-
-.book-card {
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-.book-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-}
-
-.book-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.book-info {
-  padding: 12px;
-}
-
-.book-title {
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 4px;
-}
-
-.book-author {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 8px;
-}
-
-.book-price {
-  font-weight: 600;
-  font-size: 15px;
-  color: #000;
-  margin-bottom: 12px;
-}
-
-.book-btn {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background 0.2s, border-color 0.2s;
-  cursor: pointer;
-}
-
-.book-btn:hover {
-  background-color: #f0f0f0;
-  border-color: #999;
-}
-
-.books-show-more {
-  display: block;
-  margin: 0 auto;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #b45309;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.books-show-more:hover {
-  background-color: #92400e;
-}
-
-/* ===== MEDIA QUERIES ===== */
-@media (min-width: 768px) {
-  .books-title {
-    font-size: 28px;
+  .book-image {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-  .books-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-}
 
-@media (min-width: 1440px) {
-  .books-list {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+  .book-info {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
-  .books-section {
-    padding: 60px 0 80px;
+
+  .book-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color, #111);
   }
-}
+
+
+  .book-author {
+    font-size: 14px;
+    color: var(--secondary-text-color, #555);
+  }
+
+
+  .book-btn {
+    margin-top: 8px;
+    align-self: flex-start;
+    background: var(--accent-color, #222);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+
+  .book-btn:hover {
+    background: var(--accent-color-hover, #444);
+  }
+
+
+  /* ---------- Show More Button ---------- */
+  .books-show-more {
+    display: block;
+    margin: 40px auto 0;
+    padding: 10px 24px;
+    border-radius: 24px;
+    background: var(--accent-color, #222);
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+
+  .books-show-more:hover {
+    background: var(--accent-color-hover, #444);
+  }
+
+
+  /* ---------- Responsive ---------- */
+
+
+  @media (min-width: 768px) {
+    .books-section {
+      padding: 0 32px 32px;
+    }
+
+
+    .books-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+
+  @media (min-width: 1440px) {
+    .books-section {
+      padding: 0 64px 32px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+
+    .books-list {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
