@@ -1,0 +1,58 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.is-open {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  padding: 64px 16px;
+  border-radius: 16px;
+  background: var(--background);
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+/* Hide scrollbar for WebKit-brousers (Chrome, Safari) */
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal_close-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.modal_close-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.modal_close-btn:hover {
+  opacity: 1;
+}

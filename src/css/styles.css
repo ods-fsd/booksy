@@ -6,12 +6,14 @@
 
 /* Sections style */
 @import url('./header.css');
-@import url('./book-modal.css');
 @import url('./hero.css');
 @import url('./books.css');
-@import url('./register-modal.css');
 @import url('./feedbacks.css');
 @import url('./events.css');
 @import url('./article.css');
 @import url('./location.css');
 @import url('./footer.css');
+/* Modals style */
+/* @import url('./modal.css'); */
+@import url('./modal-books.css');
+@import url('./modal-contacts.css');

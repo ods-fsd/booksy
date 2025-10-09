@@ -1,0 +1,177 @@
+.modal-books .container {
+  position: relative;
+}
+
+.modal-books_picture {
+  flex-shrink: 0;
+  max-width: 309px;
+}
+
+.modal-books_img {
+  height: 467px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.modal-books_data {
+  display: block;
+}
+
+.modal-books_title {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.modal-books_author {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.modal-books_price {
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.modal-books_quantity-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.modal-books_quantity-container input {
+  min-width: 42px;
+  width: 42px;
+  text-align: center;
+  background: var(--foraground);
+}
+
+.modal-books_quantity-container .btn {
+  width: 32px;
+  padding: 0;
+}
+
+.modal-books_buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.modal-books_buttons-container .btn {
+  width: 100%;
+  height: 48px;
+}
+
+/* #region accordeon-js style adapation */
+.modal-books .chevron-icon {
+  width: 11px;
+  height: 11px;
+  margin-left: auto;
+}
+
+.modal-books .ac.is-active > .ac-header .ac-trigger .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.modal-books .ac.is-active > .ac-header .ac-trigger::after,
+.modal-books .ac > .ac-header .ac-trigger::after {
+  content: '';
+}
+
+.modal-books .accordion-container {
+  border-bottom: 1px solid rgba(11, 5, 0, 0.15);
+}
+
+.modal-books .ac {
+  background-color: inherit;
+  margin-bottom: 0;
+  border: none;
+  border-top: 1px solid rgba(11, 5, 0, 0.15);
+}
+
+.modal-books .ac .ac-trigger {
+  font: inherit;
+  font-size: 18px;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-books .ac .ac-trigger:focus {
+  color: #0b0500;
+}
+
+.modal-books .ac .ac-panel .ac-text {
+  font: inherit;
+  padding-inline: 0;
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+/*#endregion accordeon-js style adapation */
+
+/* tablet */
+@media screen and (min-width: 768px) {
+  .modal-books {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    display: flex;
+    gap: 24px;
+    padding-inline: 32px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1440px) {
+  .modal-books_buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .modal-books .modal-content {
+    padding-inline: 104px;
+  }
+}
+
+/*#region izitoast style adapation */
+body .iziToast-theme-light {
+  font-family: 'Rubik', sans-serif;
+  background-color: var(--btn-background);
+  max-height: 46px;
+  min-height: 46px;
+  border-radius: 6px;
+}
+body .iziToast > .iziToast-body .iziToast-message {
+  color: white;
+  font-size: 16px;
+}
+
+.customIziToastIcon {
+  fill: white;
+  padding-bottom: 6px;
+}
+/*#endregion izitoast style adapation */
+
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows {
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  appearance: none;
+}

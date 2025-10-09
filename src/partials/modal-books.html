@@ -1,0 +1,119 @@
+<div
+  class="modal modal-books"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="bookModalTitle"
+>
+  <div class="container">
+    <div class="modal-content">
+      <button class="modal_close-btn" aria-label="Close book details modal">
+        <svg>
+          <use xlink:href=""></use>
+        </svg>
+      </button>
+      <picture class="modal-books_picture" id="bookPicture">
+        <img class="modal-books_img" src="" alt="" width="" height="" />
+      </picture>
+      <div
+        class="modal-books_data"
+        data-book-id=""
+        data-book-price=""
+        data-book-title=""
+      >
+        <p class="modal-books_title" id="bookModalTitle"></p>
+        <p class="modal-books_author"></p>
+        <p class="modal-books_price"></p>
+
+        <form class="book-action-form" id="bookModalActionForm">
+          <div
+            class="modal-books_quantity-container"
+            data-min-quantity="1"
+            data-max-quantity="999"
+            data-step="1"
+          >
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-action="decrease"
+            >
+              -
+            </button>
+            <label for="bookQuantity" class="visually-hidden"
+              >Book quantity</label
+            >
+
+            <input
+              class="quantity-input no-arrows"
+              id="bookQuantity"
+              value=""
+              min="1"
+              type="number"
+            />
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-action="increase"
+            >
+              +
+            </button>
+          </div>
+          <div class="modal-books_message-container"></div>
+          <div class="modal-books_buttons-container">
+            <button class="btn" type="button" data-action="add-to-cart">
+              Add To Cart
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              data-action="buy-now"
+            >
+              Buy Now
+            </button>
+          </div>
+        </form>
+
+        <div class="accordion-container">
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Details
+                <svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="details"></p>
+            </div>
+          </div>
+
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Shipping<svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="shipping"></p>
+            </div>
+          </div>
+
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Returns<svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="returns"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
