@@ -1,100 +1,181 @@
-/* ===== BOOKS SECTION ===== */
 .books-section {
+  background: var(--color-scheme-1-background);
+  padding: 0 16px 32px;
+}
 
+/* ---------- Header ---------- */
+.books-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
 
-  .book-image {
-    width: 100%;
-    height: auto;
-    display: block;
+.books-title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-color, #111);
+}
+
+.books-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: var(--secondary-text-color, #555);
+}
+
+/* ---------- Filters ---------- */
+.books-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.books-filter-btn {
+  border: 1px solid var(--border-color, #ddd);
+  background: transparent;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.books-filter-btn:hover,
+.books-filter-btn.active {
+  background: var(--accent-color, #222);
+  color: #fff;
+}
+
+/* ---------- Spinner ---------- */
+.books-spinner {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: var(--accent-color, #222);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Books Grid ---------- */
+.books-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.book-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.book-info {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.book-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color, #111);
+}
+
+.book-author {
+  font-size: 14px;
+  color: var(--secondary-text-color, #555);
+}
+
+.book-btn {
+  margin-top: 8px;
+  align-self: flex-start;
+  background: var(--accent-color, #222);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.book-btn:hover {
+  background: var(--accent-color-hover, #444);
+}
+
+/* ---------- Show More Button ---------- */
+.books-show-more {
+  display: block;
+  margin: 40px auto 0;
+  padding: 10px 24px;
+  border-radius: 24px;
+  background: var(--accent-color, #222);
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.books-show-more:hover {
+  background: var(--accent-color-hover, #444);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 768px) {
+  .books-section {
+    padding: 0 32px 32px;
   }
 
+  .books-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
 
-  .book-info {
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+@media (min-width: 1440px) {
+  .books-section {
+    padding: 0 64px 32px;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
-
-  .book-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-color, #111);
+  .books-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
-
-
-  .book-author {
-    font-size: 14px;
-    color: var(--secondary-text-color, #555);
-  }
-
-
-  .book-btn {
-    margin-top: 8px;
-    align-self: flex-start;
-    background: var(--accent-color, #222);
-    color: #fff;
-    border: none;
-    border-radius: 24px;
-    padding: 6px 14px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-
-  .book-btn:hover {
-    background: var(--accent-color-hover, #444);
-  }
-
-
-  /* ---------- Show More Button ---------- */
-  .books-show-more {
-    display: block;
-    margin: 40px auto 0;
-    padding: 10px 24px;
-    border-radius: 24px;
-    background: var(--accent-color, #222);
-    color: #fff;
-    font-family: 'Rubik', sans-serif;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-
-  .books-show-more:hover {
-    background: var(--accent-color-hover, #444);
-  }
-
-
-  /* ---------- Responsive ---------- */
-
-
-  @media (min-width: 768px) {
-    .books-section {
-      padding: 0 32px 32px;
-    }
-
-
-    .books-list {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-  }
-
-
-  @media (min-width: 1440px) {
-    .books-section {
-      padding: 0 64px 32px;
-      max-width: 1440px;
-      margin: 0 auto;
-    }
-
-
-    .books-list {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-  }
+}
