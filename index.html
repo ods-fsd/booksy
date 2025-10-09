@@ -16,7 +16,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" />
 
   <script type="module" crossorigin src="/booksy/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/booksy/assets/index-C9JxXaCt.css">
+  <link rel="stylesheet" crossorigin href="/booksy/assets/index-DtTixMC6.css">
 </head>
 
 <body>
@@ -28,32 +28,35 @@
 </header>
   <main>
     <section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-text">
-      <p class="hero-subtitle">Get 10% off your first order</p>
-      <a href="#books" class="hero-button">Shop Now!</a>
+  <div class="container hero-container">
+    
+      <div class="hero-text">
+        <p class="hero-subtitle">Get 10% off your first order</p>
+        <a href="#books" class="hero-button">Shop Now!</a>
+      </div>
     </div>
 
     <h1 class="hero-title">Discover Your Next Great Read Today!</h1>
+
     <div class="hero-slider">
       <button
         class="slider-btn prev"
         id="prevBtn"
         aria-label="Попередній слайд"
       >
-        ←
+        <svg class="btn-sparrow" width="14" height="14">
+          <use href="/src/public/img/sprite.svg#icon-arrow-left"></use>
+        </svg>
       </button>
       <ul class="swiper-wrapper">
         <li class="swiper-slide"><img src="" alt="" /></li>
         <li class="swiper-slide"><img src="" alt="" /></li>
         <li class="swiper-slide"><img src="" alt="" /></li>
       </ul>
-      <button
-        class="slider-btn next"
-        id="nextBtn"
-        arial-label="Наступний слайд"
-      >
-        →
+      <button class="slider-btn next" id="nextBtn" aria-label="Наступний слайд">
+        <svg class="btn-sparrow" width="14" height="14">
+          <use href="/src/public/img/sprite.svg#icon-arrow-right"></use>
+        </svg>
       </button>
     </div>
   </div>
