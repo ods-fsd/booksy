@@ -59,12 +59,19 @@ function renderBooks(booksToRender) {
       ({ title, author, book_image, price }) => `
     <li class="books-item">
       <div class="books-cover">
-        <img src="${book_image}" alt="${title}" loading="lazy" />
+        <img 
+          src="${book_image || 'https://via.placeholder.com/240x360?text=No+Image'}" 
+          alt="${title}" 
+          loading="lazy"
+          onerror="this.src='https://via.placeholder.com/240x360?text=No+Image'"
+        />
       </div>
       <div class="books-info">
-        <h4>${title}</h4>
+        <div class="books-info-header">
+          <h4>${title}</h4>
+          <p class="books-price">${price ?? 10}</p>
+        </div>
         <p>${author}</p>
-        <p class="books-price">$${price ?? 10}</p>
         <button class="books-learn-more">Learn More</button>
       </div>
     </li>
@@ -81,6 +88,8 @@ function updateCounter() {
 
 // ----------- Loaders -----------
 async function loadBooks() {
+  refs.list.innerHTML = '<li class="books-loading">Loading books</li>';
+  
   let data;
   if (selectedCategory === 'top-books') {
     const top = await fetchTopBooks();
@@ -90,6 +99,15 @@ async function loadBooks() {
   }
 
   books = data;
+  refs.list.innerHTML = '';
+  
+  if (books.length === 0) {
+    refs.list.innerHTML = '<li style="grid-column: 1/-1; text-align: center; padding: 40px;"><p>No books found in this category.</p></li>';
+    refs.showMore.style.display = 'none';
+    updateCounter();
+    return;
+  }
+
   visibleCount = Math.min(PAGE_SIZE, books.length);
   renderBooks(books.slice(0, visibleCount));
   updateCounter();
@@ -114,6 +132,7 @@ async function init() {
     await loadBooks();
   } catch (err) {
     console.error('Error loading books section:', err);
+    refs.list.innerHTML = '<li style="grid-column: 1/-1; text-align: center; padding: 40px;"><p style="color: var(--text-secondary);">Failed to load books. Please try again later.</p></li>';
   }
 }
 
