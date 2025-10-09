@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/booksy/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booksy</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/booksy/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Booksy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" />
+    <script type="module" crossorigin src="/booksy/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-Cq9HLEc2.css">
+  </head>
 
-  <script type="module" crossorigin src="/booksy/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/booksy/assets/index-BIATrcqM.css">
-</head>
-
-<body>
-
-
-  <header>
+  <body>
+    <header>
     <h2>test</h2>
     sdfsd;lkf;sdkf
 </header>
-  <main>
-    <section class="hero" id="hero">
+    <main>
+      <section class="hero" id="hero">
   <div class="container hero-container">
     
       <div class="hero-text">
@@ -62,7 +62,7 @@
   </div>
 </section>
 
-    <section id="books" class="books-section">
+      <section id="books" class="books-section">
   <h2 class="visually-hidden">Trending books</h2>
 
   <div class="books-header">
@@ -89,8 +89,8 @@
   </div>
 </section>
 
-    <h2>Feedback</h2>
-    <section class="events-section">
+      <h2>Feedback</h2>
+      <section class="events-section">
     <div class="container ev-container">
         <p class="ev-descr-title">Events</p>
         <h2 class="ev-title">Upcoming Events at Booksy</h2>
@@ -182,9 +182,197 @@
         
         </li>
     </ul>
-    
-    
-    <section class="location-section" id="location">
+      <div
+  class="modal modal-contacts"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+  aria-describedby="modalDesc"
+>
+  <div class="container">
+    <div class="modal-content">
+      <button class="modal_close-btn" aria-label="Close contacts form modal">
+        <svg>
+          <use class="mc" xlink:href=""></use>
+        </svg>
+      </button>
+
+      <h2 class="modal-contacts_title" id="modalTitle">Register</h2>
+      <p class="modal-contacts_text" id="modalDesc">
+        Cozy Book Club — “The Midnight Library”
+      </p>
+      <form class="modal-contacts_form" id="contactForm" novalidate>
+        <label class="contact-form-name">
+          Name* <span class="validation-error"></span>
+          <input
+            class="form-control"
+            type="text"
+            id="user_name"
+            name="user_name"
+            required
+            placeholder="Ann"
+            autocomplete="name"
+            data-validate="required"
+        /></label>
+        <label class="contact-form-email"
+          >Email* <span class="validation-error"></span>
+          <input
+            class="form-control"
+            type="email"
+            name="user_email"
+            id="user_email"
+            required
+            placeholder="hello@booksy.com"
+            autocomplete="email"
+            data-validate="email"
+        /></label>
+        <label class="contact-form-message"
+          >Message <span class="validation-error"></span>
+          <textarea
+            class="form-control"
+            name="user_message"
+            id="user_message"
+            placeholder="Type your message..."
+            rows="4"
+          ></textarea>
+        </label>
+
+        <button
+          class="btn register-btn"
+          type="submit"
+          id="submitBtn"
+          name="register"
+          aria-label="Register"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+      <div
+  class="modal modal-books"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="bookModalTitle"
+>
+  <div class="container">
+    <div class="modal-content">
+      <button class="modal_close-btn" aria-label="Close book details modal">
+        <svg>
+          <use xlink:href=""></use>
+        </svg>
+      </button>
+      <picture class="modal-books_picture" id="bookPicture">
+        <img class="modal-books_img" src="" alt="" width="" height="" />
+      </picture>
+      <div
+        class="modal-books_data"
+        data-book-id=""
+        data-book-price=""
+        data-book-title=""
+      >
+        <p class="modal-books_title" id="bookModalTitle"></p>
+        <p class="modal-books_author"></p>
+        <p class="modal-books_price"></p>
+
+        <form class="book-action-form" id="bookModalActionForm">
+          <div
+            class="modal-books_quantity-container"
+            data-min-quantity="1"
+            data-max-quantity="999"
+            data-step="1"
+          >
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-action="decrease"
+            >
+              -
+            </button>
+            <label for="bookQuantity" class="visually-hidden"
+              >Book quantity</label
+            >
+
+            <input
+              class="quantity-input no-arrows"
+              id="bookQuantity"
+              value=""
+              min="1"
+              type="number"
+            />
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-action="increase"
+            >
+              +
+            </button>
+          </div>
+          <div class="modal-books_message-container"></div>
+          <div class="modal-books_buttons-container">
+            <button class="btn" type="button" data-action="add-to-cart">
+              Add To Cart
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              data-action="buy-now"
+            >
+              Buy Now
+            </button>
+          </div>
+        </form>
+
+        <div class="accordion-container">
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Details
+                <svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="details"></p>
+            </div>
+          </div>
+
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Shipping<svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="shipping"></p>
+            </div>
+          </div>
+
+          <div class="ac">
+            <h2 class="ac-header">
+              <button type="button" class="ac-trigger">
+                Returns<svg class="chevron-icon">
+                  <use xlink:href=""></use>
+                </svg>
+              </button>
+            </h2>
+            <div class="ac-panel">
+              <p class="ac-text" data-ac="returns"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+      <section class="location-section" id="location">
   <div class="container location-container">
     <div class="location-content-wrapper">
       <div class="location-text-content">
@@ -250,9 +438,9 @@
   </div>
 </section>
 
-  </main>
+    </main>
 
-  <footer class="footer">
+    <footer class="footer">
   <div class="footer-container">
     <svg class="footer-logo" width="17" height="19">
       <use href="/booksy/assets/sprite-BHtShymw.svg#icon-logo"></use>
@@ -278,6 +466,5 @@
   <p class="footer-copyright">© 2025 Booksy. All rights reserved.</p>
 </footer>
 
-</body>
-
+  </body>
 </html>
