@@ -14,6 +14,6 @@
 @import url('./location.css');
 @import url('./footer.css');
 /* Modals style */
-/* @import url('./modal.css'); */
+@import url('./modal.css');
 @import url('./modal-books.css');
 @import url('./modal-contacts.css');
