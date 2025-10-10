@@ -18,7 +18,7 @@
     />
 
     <script type="module" crossorigin src="/booksy/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-evmHhEH1.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-BOtWTGjn.css">
   </head>
 
   <body>
@@ -26,35 +26,169 @@
     <main>
       <section class="hero" id="hero">
   <div class="container hero-container">
-    
-      <div class="hero-text">
-        <p class="hero-subtitle">Get 10% off your first order</p>
-        <a href="#books" class="hero-button">Shop Now!</a>
+    <div class="hero-title-box">
+      <h1 class="hero-title">Discover Your Next Great Read Today!</h1>
+      <div class="hero-slider-controls">
+        <button
+          class="arrow hero-swiper-btn-prev"
+          aria-label="Попередній слайд"
+          disabled
+        >
+          <svg class="arrow-icon" width="14" height="14">
+            <use href="/booksy/img/sprite.svg#icon-arrow-left"></use>
+          </svg>
+        </button>
+        <button class="arrow hero-swiper-btn-next" aria-label="Наступний слайд">
+          <svg class="arrow-icon" width="14" height="14">
+            <use href="/booksy/img/sprite.svg#icon-arrow-right"></use>
+          </svg>
+        </button>
       </div>
     </div>
-
-    <h1 class="hero-title">Discover Your Next Great Read Today!</h1>
-
-    <div class="hero-slider">
-      <button
-        class="slider-btn prev"
-        id="prevBtn"
-        aria-label="Попередній слайд"
-      >
-        <svg class="btn-sparrow" width="14" height="14">
-          <use href="/src/public/img/sprite.svg#icon-arrow-left"></use>
-        </svg>
-      </button>
-      <ul class="swiper-wrapper">
-        <li class="swiper-slide"><img src="" alt="" /></li>
-        <li class="swiper-slide"><img src="" alt="" /></li>
-        <li class="swiper-slide"><img src="" alt="" /></li>
+    <div class="swiper swiper-hero">
+      <ul class="swiper-wrapper swiper-wrapper-hero">
+        <li class="swiper-slide swiper-slide-hero" data-swiper-parallax="-100">
+          <div class="hero-slide-content">
+            <h2 class="hero-slide-title">
+              Get 10% off your <br />
+              first order
+            </h2>
+            <a
+              href="#books"
+              class="btn slide-btn"
+              role="button"
+              aria-label="Go to Books section"
+              >Shop now!</a
+            >
+          </div>
+          <picture>
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/hero/desctop-banner-1-min.jpg 1x, /booksy/img/hero/desctop-banner-1@2x-min.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/hero/tablet-banner-1-min.jpg 1x, /booksy/img/hero/tablet-banner-1@2x-min.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/hero/mobile-banner-1-2-min.jpg 1x, /booksy/img/hero/mobile-banner-1@2x-2-min.jpg 2x"
+            />
+            <img
+              src="/booksy/img/hero/desctop-banner-1-min.jpg"
+              alt="Get 10% off your first order"
+              class="hero-slide-img"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+        </li>
+        <li class="swiper-slide swiper-slide-hero" data-swiper-parallax="-100">
+          <div class="hero-slide-content">
+            <h2 class="hero-slide-title">
+              Save 15% on <br />
+              some books
+            </h2>
+            <a
+              href="#books"
+              class="btn slide-btn"
+              role="button"
+              aria-label="Go to Books section"
+              >Shop now!</a
+            >
+          </div>
+          <picture>
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/hero/desctop-baner-2-min.jpg 1x, /booksy/img/hero/desctop-baner-2@2x-min.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/hero/tablet-banner-2-min.jpg 1x, /booksy/img/hero/tablet-banner-2@2x-min.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/hero/mobile-banner-1-3-min.jpg 1x, /booksy/img/hero/mobile-banner-1@2x-3-min.jpg 2x"
+            />
+            <img
+              src="/booksy/img/hero/desctop-baner-2-min.jpg"
+              alt="Save 15% on some books"
+              class="hero-slide-img"
+              loading="lazy"
+            />
+          </picture>
+        </li>
+        <li class="swiper-slide swiper-slide-hero" data-swiper-parallax="-100">
+          <div class="hero-slide-content">
+            <h2 class="hero-slide-title">
+              Summer Sale! <br />
+              Up to -40% discounts
+            </h2>
+            <a
+              href="#books"
+              class="btn slide-btn"
+              role="button"
+              aria-label="Go to Books section"
+              >Shop now!</a
+            >
+          </div>
+          <picture>
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/hero/desctop-baner-3-min.jpg 1x, /booksy/img/hero/desctop-baner-3@2x-min.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/hero/tablet-banner-3-min.jpg 1x, /booksy/img/hero/tablet-banner-3@2x-min.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/hero/mobile-banner-1-min.jpg 1x, /booksy/img/hero/mobile-banner-1@2x-min.jpg 2x"
+            />
+            <img
+              src="/booksy/img/hero/desctop-baner-3-min.jpg"
+              alt="Summer Sale! Up to -40% discounts"
+              class="hero-slide-img"
+              loading="lazy"
+            />
+          </picture>
+        </li>
+        <li class="swiper-slide swiper-slide-hero" data-swiper-parallax="-100">
+          <div class="hero-slide-content">
+            <h2 class="hero-slide-title">
+              Last chance to buy our <br />
+              spring bestsellers
+            </h2>
+            <a
+              href="#books"
+              class="btn slide-btn"
+              role="button"
+              aria-label="Go to Books section"
+              >Shop now!</a
+            >
+          </div>
+          <picture>
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/hero/desctop-baner-4-min.jpg 1x, /booksy/img/hero/desctop-baner-4@2x-min.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/hero/tablet-banner-4-min.jpg 1x, /booksy/img/hero/tablet-banner-4@2x-min.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/hero/mobile-banner-1-1-min.jpg 1x, /booksy/img/hero/mobile-banner-1@2x-1-min.jpg 2x"
+            />
+            <img
+              src="/booksy/img/hero/desctop-baner-4-min.jpg"
+              alt="Last chance to buy our spring bestsellers"
+              class="hero-slide-img"
+              loading="lazy"
+            />
+          </picture>
+        </li>
       </ul>
-      <button class="slider-btn next" id="nextBtn" aria-label="Наступний слайд">
-        <svg class="btn-sparrow" width="14" height="14">
-          <use href="/src/public/img/sprite.svg#icon-arrow-right"></use>
-        </svg>
-      </button>
     </div>
   </div>
 </section>
