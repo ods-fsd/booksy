@@ -62,8 +62,7 @@ function renderCategoriesList(categories) {
 }
 
 async function selectCategory(category) {
-  showLoader(); // показуємо лоадер
-
+  showLoader(); // 
   select.value = category;
 
   list
@@ -86,7 +85,7 @@ async function selectCategory(category) {
     console.error('Помилка при завантаженні книг:', error);
     gallery.innerHTML = '<li class="no-books">Failed to load books</li>';
   } finally {
-    hideLoader(); // ховаємо лоадер завжди — навіть якщо сталася помилка
+    hideLoader(); 
   }
 }
 
@@ -137,7 +136,7 @@ function updateBooksList() {
   const currentSlice = allBooks.slice(0, visibleCount);
   showLoader();
 
-  // Відкласти важке оновлення DOM, щоб лоадер промалювався
+ 
   requestAnimationFrame(() => {
     setTimeout(() => {
       if (currentSlice.length === 0) {
@@ -159,7 +158,7 @@ function updateBooksList() {
       }
 
       hideLoader();
-    }, 100); // ця затримка потрібна, щоб браузер встиг показати лоадер
+    }, 100); 
   });
 }
 
