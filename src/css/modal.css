@@ -16,6 +16,13 @@
 }
 
 .modal-content {
+  background: #fceee6;
+}
+.btn {
+  background: #e15d05;
+}
+
+.modal-content {
   position: relative;
   width: 100%;
   padding: 64px 16px;
