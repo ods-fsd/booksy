@@ -46,6 +46,12 @@ export default defineConfig(({ command }) => {
         },
       },
     },
+
+    // 🔧 Дозволяємо top-level await
+    esbuild: {
+      target: 'esnext',
+    },
+
     plugins: [
       injectHTML(),
       FullReload(['./src/**/*.html']),
