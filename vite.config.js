@@ -1,19 +1,10 @@
 import { defineConfig } from 'vite';
-import { globSync } from 'glob';
-import path from 'path';
+import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
-  const htmlFiles = globSync('./src/*.html');
-
-  const input = htmlFiles.reduce((acc, file) => {
-    const name = path.basename(file, path.extname(file));
-    acc[name] = path.resolve(file);
-    return acc;
-  }, {});
-
   return {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
@@ -21,10 +12,8 @@ export default defineConfig(({ command }) => {
     root: 'src',
     build: {
       sourcemap: true,
-      outDir: '../dist',
-      emptyOutDir: true,
       rollupOptions: {
-        input,
+        input: glob.sync('./src/*.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -45,16 +34,12 @@ export default defineConfig(({ command }) => {
           },
         },
       },
+      outDir: '../dist',
+      emptyOutDir: true,
     },
-
-    // 🔧 Дозволяємо top-level await
-    esbuild: {
-      target: 'esnext',
-    },
-
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/*.html']),
+      FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
       }),
