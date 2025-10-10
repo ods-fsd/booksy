@@ -27,16 +27,30 @@ function hideLoader() {
 
 let currentBreakpoint = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
-// Завантаження категорій
-showLoader();
-const categoryList = await getCategoryList();
-renderCategoriesList(categoryList);
+// --- ВИПРАВЛЕНИЙ БЛОК ---
+// Створюємо головну асинхронну функцію для завантаження початкових даних
+async function initializeBooks() {
+  showLoader();
+  try {
+    // Завантаження категорій
+    const categoryList = await getCategoryList();
+    renderCategoriesList(categoryList);
 
-// Завантаження топ-книг
-const topBooksData = await getTopBooks();
-allBooks = topBooksData.flatMap(({ books }) => books);
-renderBooks();
-hideLoader();
+    // Завантаження топ-книг
+    const topBooksData = await getTopBooks();
+    allBooks = topBooksData.flatMap(({ books }) => books);
+    renderBooks();
+  } catch (error) {
+    console.error('Помилка завантаження початкових даних:', error);
+    gallery.innerHTML = '<li class="no-books">Не вдалося завантажити книги. Спробуйте пізніше.</li>';
+  } finally {
+    hideLoader();
+  }
+}
+
+// Запускаємо ініціалізацію секції
+initializeBooks();
+// --- КІНЕЦЬ ВИПРАВЛЕНОГО БЛОКУ ---
 
 function renderCategoriesList(categories) {
   select.innerHTML =
@@ -217,33 +231,6 @@ document.addEventListener('click', e => {
   }
 });
 
-// function createMarkup(data) {
-//   return data
-//     .map(({ title, author, book_image, price, _id }) => {
-//       let displayPrice;
-
-//       if (typeof price === 'string' && price.trim() !== '0.00') {
-//         displayPrice = price.trim();
-//       } else if (typeof price === 'number') {
-//         displayPrice = price.toFixed(2);
-//       } else {
-//         displayPrice = '9.99';
-//       }
-
-//       return `<li class="book-card">
-//       <img  loading="lazy" class="book-cover" src="${book_image}" alt="${title}" width="150" />
-//       <div class="book-card-info">
-//         <div class="book-card-descriptions">
-//           <h3 class="book-card-title">${title.toLowerCase()}</h3>
-//           <h4 class="book-card-author">${author}</h4>
-//         </div>
-//         <p class="book-price">$${displayPrice}</p>
-//       </div>
-//       <button type="button" class="btn-secondary btn-book" data-id="${_id}">Learn more</button>
-//     </li>`;
-//     })
-//     .join('');
-// }
 function createMarkup(data) {
   return data
     .map(({ title, author, book_image, price, _id }, index) => {
