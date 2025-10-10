@@ -6,3 +6,8 @@ import './js/events.js';
 import './js/footer.js';
 import './js/button-up.js';
 import './js/modal.js';
+import './js/products-api.js';
+import './js/render-function.js';
+import './js/refs.js';
+import './js/storage.js';
+import './js/helpers.js';
