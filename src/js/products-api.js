@@ -4,89 +4,83 @@ const BASE_URL = 'https://books-backend.p.goit.global/books';
 const apiClient = axios.create({ baseURL: BASE_URL });
 
 /**
- * Helper function to make API requests to the base URL.
- * Handles basic error logging.
+ * Universal helper to make API requests.
+ * Handles basic error logging and response extraction.
  * @param {string} url - The endpoint URL relative to BASE_URL.
- * @returns {Promise<Object|Array>} - The data returned from the API.
+ * @returns {Promise<Object|Array>} - Data returned from the API.
  */
 async function fetchURL(url = '') {
   try {
     const { data } = await apiClient.get(url);
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error.message);
-    throw error;
+    console.error(`❌ Error fetching data from ${url}:`, error.message);
+    throw new Error('Failed to fetch data from the Books API');
   }
 }
 
 /**
- * Fetches the list of book categories from the API
- * @returns {Promise<Array>} Array of category names (list_name property from each category object)
+ * 🔹 Отримати перелік усіх категорій книг
+ * @returns {Promise<Array<string>>} Масив назв категорій
+ * Endpoint: /category-list
  */
 export async function getCategoryList() {
   const list = await fetchURL('/category-list');
-  return list.map(e => e.list_name);
+  return list.map(item => item.list_name);
 }
 
 /**
- * Fetches the list of top 5 books in each categorie from the API
- * @returns {Promise<Object>} Object of book categories, each containing details about the 5 books within that category
+ * 🔹 Отримати популярні книги (топові з усіх категорій)
+ * @returns {Promise<Array<Object>>} Масив об’єктів категорій із масивами книг
+ * Endpoint: /top-books
  */
 export async function getTopBooks() {
-  const response = await fetchURL(`/top-books`);
-  const uniqueBooks = response.map(list => ({
-    ...list,
-    books: filterUniqueBooksByImage(list.books),
+  const response = await fetchURL('/top-books');
+  // Усуваємо дублікати книг із однаковими зображеннями
+  return response.map(category => ({
+    ...category,
+    books: filterUniqueBooksByImage(category.books),
   }));
-  return uniqueBooks;
 }
 
 /**
- * Fetches the list books in certain categorie from the API
- * @param {string} category - The name of the category to fetch books for.
- * @returns {Promise<Object>} Object of books in that category
+ * 🔹 Отримати книги конкретної категорії
+ * @param {string} category - Назва категорії
+ * @returns {Promise<Array<Object>>} Масив книг цієї категорії
+ * Endpoint: /category?category=selectedCategory
  */
 export async function getBooksByCategory(category) {
-  if (!category) {
-    const error = new Error('Valid category must be provided.');
-    console.error(error);
-    throw error;
+  if (!category || typeof category !== 'string') {
+    throw new Error('Valid category name must be provided.');
   }
-  const response = await fetchURL(`/category?category=${category}`);
-  const uniqueBooks = filterUniqueBooksByImage(response);
-  return uniqueBooks;
+  const response = await fetchURL(`/category?category=${encodeURIComponent(category)}`);
+  return filterUniqueBooksByImage(response);
 }
 
 /**
- * Filters an array of books to keep only those with unique book_image URLs
- * @param {Array<Object>} books - Array of book objects
- * @returns {Array<Object>} Filtered array of books with unique book_image
+ * 🔹 Отримати детальну інформацію про книгу за ID
+ * @param {string} id - Унікальний ідентифікатор книги
+ * @returns {Promise<Object>} Об’єкт із детальною інформацією про книгу
+ * Endpoint: /bookId
  */
-// function filterUniqueBooksByImage(books) {
-//   return books.filter(
-//     (book, index, self) =>
-//       index === self.findIndex(b => b.book_image === book.book_image)
-//   );
-// }
+export async function getBookByID(id) {
+  if (!id || typeof id !== 'string') {
+    throw new Error('Valid book ID must be provided.');
+  }
+  return await fetchURL(`/${id}`);
+}
+
+/**
+ * 🔸 Утиліта для фільтрації дублікатів книг за book_image
+ * @param {Array<Object>} books - Масив книг
+ * @returns {Array<Object>} Масив без дублікатів
+ */
 function filterUniqueBooksByImage(books) {
   const seen = new Set();
   return books.filter(book => {
+    if (!book.book_image) return false;
     if (seen.has(book.book_image)) return false;
     seen.add(book.book_image);
     return true;
   });
-}
-
-/**
- * Fetches the list of book details by ID from the API
- * @param {string} id - The unique ID of the book.
- * @returns {Promise<Object>} An object containing the book's details.
- */
-export async function getBookByID(id) {
-  if (!id) {
-    const error = new Error('Valid book ID must be provided.');
-    console.error(error);
-    throw error;
-  }
-  return await fetchURL(`/${id}`);
 }
