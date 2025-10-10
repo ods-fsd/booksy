@@ -59,30 +59,56 @@
   </div>
 </section>
 
-      <section id="books" class="books-section">
-  <h2 class="visually-hidden">Trending books</h2>
-
-  <div class="books-header">
-    <h3 class="books-title">Books</h3>
-    <p class="books-counter">
-      Showing <span id="books-shown">0</span> of <span id="books-total">0</span>
-    </p>
-  </div>
-
-  <div class="books-content">
-    <aside class="books-filters" id="books-filters">
-      <!-- Categories will be rendered here -->
-    </aside>
-
-    <div class="books-main">
-      <ul class="books-list" id="books-list">
-        <!-- Books will be rendered here -->
-      </ul>
-
-      <button type="button" class="books-show-more" id="show-more-btn">
-        Show More
-      </button>
-    </div>
+      <section class="section" id="books">
+  <div class="container">
+    <h2 class="visually-hidden">Trending books</h2>
+    <form class="books-form">
+      <div class="categories-wrapper">
+        <div class="books-counter">
+          <h3 class="subtitle">Books</h3>
+          <p class="counter-books">
+            Showing <span class="visible-books"></span> of
+            <span class="total-books"></span>
+          </p>
+        </div>
+        <fieldset class="categories-group">
+          <legend class="visually-hidden">Choose book category</legend>
+          <ul class="categories-list"></ul>
+        </fieldset>
+        <div class="select-wrapper">
+          <label for="category-select" class="visually-hidden"
+            >Choose category</label
+          >
+          <select id="category-select"></select>
+          <svg
+            class="categories-arrow"
+            width="12"
+            height="8"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <use href="./img/icons.svg#icon-chevron-down" />
+          </svg>
+        </div>
+      </div>
+      <div class="books-wrapper">
+        <div
+          id="loader"
+          class="loader hidden"
+          role="status"
+          aria-live="polite"
+          aria-label="Loading books"
+        ></div>
+        <ul class="gallery" aria-live="polite" aria-label="Book list"></ul>
+        <button
+          type="button"
+          class="btn btn-show-more btn-show-more-hidden"
+          aria-label="Show more books"
+        >
+          Show more
+        </button>
+      </div>
+    </form>
   </div>
 </section>
 
