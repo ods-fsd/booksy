@@ -1,195 +1,299 @@
-(() => {
-  const API_BASE = 'https://books-backend.p.goit.global/books';
+import {
+  getTopBooks,
+  getBooksByCategory,
+  getCategoryList,
+} from './products-api';
+import { openBooksModal } from './modal';
 
-  const refs = {
-    filters: document.getElementById('books-filters'),
-    list: document.getElementById('books-list'),
-    showMore: document.getElementById('show-more-btn'),
-    shownCount: document.getElementById('books-shown'),
-    totalCount: document.getElementById('books-total'),
-  };
+const gallery = document.querySelector('.gallery');
+const select = document.querySelector('#category-select');
+const showMore = document.querySelector('.btn-show-more');
+const visibleCounter = document.querySelector('.visible-books');
+const totalCounter = document.querySelector('.total-books');
+const list = document.querySelector('.categories-list');
+const arrow = document.querySelector('.categories-arrow');
 
-  // ---------- Mock Data ----------
-  const mockCategories = [
-    { list_name: 'Fiction' },
-    { list_name: 'Non-fiction' },
-    { list_name: 'Science' },
-    { list_name: 'Fantasy' },
-    { list_name: 'History' },
-  ];
+const loader = document.querySelector('.loader');
 
-  const mockBooks = [
-    {
-      title: 'The Great Adventure',
-      author: 'John Doe',
-      book_image: 'https://placehold.co/240x320?text=Book+1',
-      price: 12.99,
-      category: 'Fiction',
-    },
-    {
-      title: 'Hidden Truths',
-      author: 'Jane Smith',
-      book_image: 'https://placehold.co/240x320?text=Book+2',
-      price: 10.5,
-      category: 'Fiction',
-    },
-    {
-      title: 'The World of Science',
-      author: 'Albert Newton',
-      book_image: 'https://placehold.co/240x320?text=Book+3',
-      price: 15.0,
-      category: 'Science',
-    },
-    {
-      title: 'Legends of Old',
-      author: 'Clara Myth',
-      book_image: 'https://placehold.co/240x320?text=Book+4',
-      price: 11.25,
-      category: 'Fantasy',
-    },
-    {
-      title: 'Past and Present',
-      author: 'George History',
-      book_image: 'https://placehold.co/240x320?text=Book+5',
-      price: 13.99,
-      category: 'History',
-    },
-  ];
+let allBooks = [];
+let visibleCount = 0;
 
-  // ---------- State ----------
-  let books = [];
-  let visibleCount = 0;
-  const PAGE_SIZE = 8;
-  let selectedCategory = 'top-books';
-  let offlineMode = false;
+function showLoader() {
+  loader.classList.remove('hidden');
+}
+function hideLoader() {
+  loader.classList.add('hidden');
+}
 
-  // ---------- Fetch helpers ----------
-  async function fetchWithFallback(url, fallbackData) {
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('Network response was not ok');
-      return await res.json();
-    } catch (err) {
-      console.warn('⚠️ Using mock data due to fetch error:', err.message);
-      offlineMode = true;
-      return fallbackData;
-    }
-  }
+let currentBreakpoint = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
-  async function fetchCategories() {
-    return await fetchWithFallback(`${API_BASE}/category-list`, mockCategories);
-  }
+// Завантаження категорій
+showLoader();
+const categoryList = await getCategoryList();
+renderCategoriesList(categoryList);
 
-  async function fetchTopBooks() {
-    const top = await fetchWithFallback(`${API_BASE}/top-books`, [
-      { books: mockBooks },
-    ]);
-    return top.flatMap(c => c.books);
-  }
+// Завантаження топ-книг
+const topBooksData = await getTopBooks();
+allBooks = topBooksData.flatMap(({ books }) => books);
+renderBooks();
+hideLoader();
 
-  async function fetchBooksByCategory(category) {
-    if (offlineMode) {
-      return mockBooks.filter(b => b.category === category);
-    }
-    return await fetchWithFallback(
-      `${API_BASE}/category?category=${encodeURIComponent(category)}`,
-      mockBooks.filter(b => b.category === category)
+function renderCategoriesList(categories) {
+  select.innerHTML =
+    '<option selected value="All categories">All categories</option>';
+  list.innerHTML =
+    '<li><button class="category-btn active-category" value="All categories">All categories</button></li>';
+
+  categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    select.appendChild(option);
+
+    const item = document.createElement('li');
+    item.classList.add('category-item');
+    const button = document.createElement('button');
+    button.value = cat;
+    button.textContent = cat;
+    button.classList.add('category-btn');
+    item.appendChild(button);
+    list.appendChild(item);
+  });
+}
+
+async function selectCategory(category) {
+  showLoader(); // показуємо лоадер
+
+  select.value = category;
+
+  list
+    .querySelectorAll('.category-btn')
+    .forEach(btn =>
+      btn.classList.toggle('active-category', btn.value === category)
     );
-  }
 
-  // ---------- Renderers ----------
-  function renderCategories(categories) {
-    const buttons = [
-      '<button class="active" data-category="top-books">All categories</button>',
-      ...categories.map(
-        cat => `<button data-category="${cat.list_name}">${cat.list_name}</button>`
-      ),
-    ];
-    refs.filters.innerHTML = buttons.join('');
-
-    refs.filters.addEventListener('click', async e => {
-      if (e.target.tagName !== 'BUTTON') return;
-      document
-        .querySelectorAll('.books-filters button')
-        .forEach(btn => btn.classList.remove('active'));
-      e.target.classList.add('active');
-
-      selectedCategory = e.target.dataset.category;
-      books = [];
-      visibleCount = 0;
-      refs.list.innerHTML = '';
-      await loadBooks();
-    });
-  }
-
-  function renderBooks(booksToRender) {
-    const markup = booksToRender
-      .map(
-        ({ title, author, book_image, price }) => `
-      <li class="books-item">
-        <div class="books-cover">
-          <img src="${book_image}" alt="${title}" loading="lazy" />
-        </div>
-        <div class="books-info">
-          <h4>${title}</h4>
-          <p>${author}</p>
-          <p class="books-price">$${price ?? 10}</p>
-          <button class="books-learn-more">Learn More</button>
-        </div>
-      </li>
-    `
-      )
-      .join('');
-    refs.list.insertAdjacentHTML('beforeend', markup);
-  }
-
-  function updateCounter() {
-    refs.shownCount.textContent = visibleCount;
-    refs.totalCount.textContent = books.length;
-  }
-
-  // ---------- Loaders ----------
-  async function loadBooks() {
-    let data;
-    if (selectedCategory === 'top-books') {
-      data = await fetchTopBooks();
+  try {
+    if (category === 'All categories') {
+      const topBooksData = await getTopBooks();
+      allBooks = topBooksData.flatMap(({ books }) => books);
     } else {
-      data = await fetchBooksByCategory(selectedCategory);
+      allBooks = await getBooksByCategory(category);
     }
 
-    books = data;
-    visibleCount = Math.min(PAGE_SIZE, books.length);
-    renderBooks(books.slice(0, visibleCount));
-    updateCounter();
-
-    refs.showMore.style.display = books.length > visibleCount ? 'block' : 'none';
+    visibleCount = getInitialCount();
+    renderBooks();
+  } catch (error) {
+    console.error('Помилка при завантаженні книг:', error);
+    gallery.innerHTML = '<li class="no-books">Failed to load books</li>';
+  } finally {
+    hideLoader(); // ховаємо лоадер завжди — навіть якщо сталася помилка
   }
+}
 
-  refs.showMore.addEventListener('click', () => {
-    const nextCount = visibleCount + PAGE_SIZE;
-    renderBooks(books.slice(visibleCount, nextCount));
-    visibleCount = Math.min(nextCount, books.length);
-    updateCounter();
+select.addEventListener('change', e => {
+  const category = e.target.value;
+  selectCategory(category);
+});
 
-    if (visibleCount >= books.length) refs.showMore.style.display = 'none';
+list.addEventListener('click', e => {
+  e.preventDefault();
+  const btn = e.target.closest('.category-btn');
+  if (!btn) return;
+
+  // оновлення aria-pressed
+  list.querySelectorAll('.category-btn').forEach(b => {
+    b.classList.remove('active-category');
+    b.setAttribute('aria-pressed', 'false');
   });
 
-  // ---------- Init ----------
-  async function init() {
-    try {
-      const categories = await fetchCategories();
-      renderCategories(categories);
-      await loadBooks();
-    } catch (err) {
-      console.error('Error initializing Books section:', err);
-      offlineMode = true;
-      renderCategories(mockCategories);
-      books = mockBooks;
-      visibleCount = Math.min(PAGE_SIZE, books.length);
-      renderBooks(books.slice(0, visibleCount));
-      updateCounter();
-    }
+  btn.classList.add('active-category');
+  btn.setAttribute('aria-pressed', 'true');
+
+  const category = btn.value;
+  selectCategory(category);
+});
+
+showMore.addEventListener('click', () => {
+  visibleCount += 4;
+  updateBooksList();
+  showMore.blur();
+});
+
+function renderBooks() {
+  visibleCount = getInitialCount();
+  updateBooksList();
+  totalCounter.textContent = allBooks.length;
+
+  if (visibleCount >= allBooks.length) {
+    showMore.classList.add('btn-show-more-hidden');
   }
 
-  document.addEventListener('DOMContentLoaded', init);
-})();
+  if (visibleCount < allBooks.length) {
+    showMore.classList.remove('btn-show-more-hidden');
+  }
+}
+
+function updateBooksList() {
+  const currentSlice = allBooks.slice(0, visibleCount);
+  showLoader();
+
+  // Відкласти важке оновлення DOM, щоб лоадер промалювався
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      if (currentSlice.length === 0) {
+        gallery.innerHTML = '<li class="no-books">No books found</li>';
+        visibleCounter.textContent = 0;
+        showMore.classList.add('btn-show-more-hidden');
+        hideLoader();
+        return;
+      }
+
+      gallery.innerHTML = createMarkup(currentSlice);
+      visibleCounter.textContent = Math.min(visibleCount, allBooks.length);
+      showMore.disabled = false;
+
+      if (visibleCount >= allBooks.length) {
+        showMore.classList.add('btn-show-more-hidden');
+      } else {
+        showMore.classList.remove('btn-show-more-hidden');
+      }
+
+      hideLoader();
+    }, 100); // ця затримка потрібна, щоб браузер встиг показати лоадер
+  });
+}
+
+function getInitialCount() {
+  return window.innerWidth < 768 ? 10 : 24;
+}
+
+window.addEventListener(
+  'resize',
+  debounce(() => {
+    const newBreakpoint = window.innerWidth < 768 ? 'mobile' : 'desktop';
+    if (newBreakpoint !== currentBreakpoint) {
+      currentBreakpoint = newBreakpoint;
+      renderBooks();
+    }
+  }, 300)
+);
+
+function debounce(func, wait) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+gallery.addEventListener('click', event => {
+  const btn = event.target.closest('.btn-book');
+  if (!btn) return;
+  const bookId = btn.dataset.id;
+  openBooksModal(bookId);
+});
+
+let selectIsOpen = false;
+
+select.addEventListener('mousedown', () => {
+  // Меню щойно відкривається
+  arrow.style.transform = 'translateY(-50%) rotate(180deg)';
+  selectIsOpen = true;
+});
+
+// При зміні — закривається
+select.addEventListener('change', () => {
+  if (selectIsOpen) {
+    arrow.style.transform = 'translateY(-50%)';
+    selectIsOpen = false;
+  }
+});
+
+// На всякий випадок, коли клацнули поза select
+document.addEventListener('click', e => {
+  if (selectIsOpen && !select.contains(e.target)) {
+    arrow.style.transform = 'translateY(-50%)';
+    selectIsOpen = false;
+  }
+});
+
+// function createMarkup(data) {
+//   return data
+//     .map(({ title, author, book_image, price, _id }) => {
+//       let displayPrice;
+
+//       if (typeof price === 'string' && price.trim() !== '0.00') {
+//         displayPrice = price.trim();
+//       } else if (typeof price === 'number') {
+//         displayPrice = price.toFixed(2);
+//       } else {
+//         displayPrice = '9.99';
+//       }
+
+//       return `<li class="book-card">
+//       <img  loading="lazy" class="book-cover" src="${book_image}" alt="${title}" width="150" />
+//       <div class="book-card-info">
+//         <div class="book-card-descriptions">
+//           <h3 class="book-card-title">${title.toLowerCase()}</h3>
+//           <h4 class="book-card-author">${author}</h4>
+//         </div>
+//         <p class="book-price">$${displayPrice}</p>
+//       </div>
+//       <button type="button" class="btn-secondary btn-book" data-id="${_id}">Learn more</button>
+//     </li>`;
+//     })
+//     .join('');
+// }
+function createMarkup(data) {
+  return data
+    .map(({ title, author, book_image, price, _id }, index) => {
+      const displayPrice =
+        typeof price === 'number'
+          ? price.toFixed(2)
+          : typeof price === 'string' && price.trim() !== '0.00'
+          ? price.trim()
+          : '9.99';
+
+      const safeTitle = escapeHtml(title);
+      const safeAuthor = escapeHtml(author);
+      const loadingAttribute = index < 3 ? 'eager' : 'lazy';
+
+      return `
+        <li class="book-card">
+          <img
+           loading="${loadingAttribute}"
+            class="book-cover"
+            src="${book_image}"
+            alt="Book cover: ${safeTitle} by ${safeAuthor}"
+            width="150"
+            height="auto"
+          />
+          <div class="book-card-info">
+            <div class="book-card-descriptions">
+              <h3 class="book-card-title">${safeTitle.toLowerCase()}</h3>
+              <h4 class="book-card-author">${safeAuthor}</h4>
+            </div>
+            <p class="book-price">$${displayPrice}</p>
+          </div>
+          <button
+            type="button"
+            class="btn-secondary btn-book"
+            data-id="${_id}"
+            aria-label="Learn more about ${safeTitle} by ${safeAuthor}"
+          >
+            Learn more
+          </button>
+        </li>`;
+    })
+    .join('');
+}
+function escapeHtml(text = '') {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
