@@ -1,11 +1,18 @@
 .footer {
   background-color: #ea8d50;
   padding: 80px 16px;
-  width: 375px;
+  width: 100%;
   height: 703px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-container {
+  background-color: #ea8d50;
+  padding: 80px 16px;
+  width: 100%;
+  height: 703px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,6 +117,10 @@
   }
 
   .footer-container {
+    width: 768px;
+    height: 535px;
+    padding: 80px 64px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,6 +155,10 @@
     margin-left: -360px;
   }
 
+  .footer-join-message {
+    margin-left: -320px;
+  }
+
   .footer-join-form {
     margin-top: 8px;
     margin-bottom: 24px;
@@ -151,7 +166,7 @@
 
   .footer-line {
     width: 704px;
-    margin-top: 40px;
-    margin-bottom: 24px;
+    margin-top: 80px;
+    margin-bottom: 32px;
   }
 }

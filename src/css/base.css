@@ -21,10 +21,3 @@ body {
   min-height: 100vh;
   margin: 0;
 }
-
-main {
-  flex-grow: 1;
-}
-main:has(.back-link) {
-  text-align: center;
-}
