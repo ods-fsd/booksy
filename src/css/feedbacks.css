@@ -118,8 +118,3 @@
   transform: none;
   pointer-events: none;
 }
-
-.header,
-.footer {
-  display: none !important;
-}
