@@ -52,7 +52,7 @@
   min-width: 42px;
   width: 42px;
   text-align: center;
-  background: var(--foraground);
+  background: #0b05000d;
 }
 
 .modal-books_quantity-container .btn {
@@ -151,7 +151,7 @@
 /*#region izitoast style adapation */
 body .iziToast-theme-light {
   font-family: 'Rubik', sans-serif;
-  background-color: var(--btn-background);
+  background-color: #e15d05;
   max-height: 46px;
   min-height: 46px;
   border-radius: 6px;

@@ -24,7 +24,60 @@
   overflow-y: auto;
   max-height: 100vh;
 }
+/* btn */
+.btn {
+  background-color: #e15d05; /* Accent color */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e15d05;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
 
+.btn:hover,
+.btn:focus {
+  background-color: #0b0500; /* hover/focus */
+  border-color: #0b0500;
+}
+
+.btn:active {
+  background-color: #b44a04;
+  border-color: #b44a04;
+}
+
+.btn:disabled {
+  background-color: #0b0500;
+  border-color: #0b0500;
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: transparent;
+  color: #0b0500;
+  border: 1px solid #0b0500;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #ea8d50;
+  border-color: #0b0500;
+}
+
+.btn-secondary:active {
+  background-color: #dad9d8;
+}
+
+.btn-secondary:disabled {
+  background-color: transparent;
+  color: #0b0500;
+  opacity: 0.2;
+  cursor: not-allowed;
+}
 /* Hide scrollbar for WebKit-brousers (Chrome, Safari) */
 .modal-content::-webkit-scrollbar {
   display: none;
