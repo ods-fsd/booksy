@@ -1,6 +1,5 @@
 .article-section {
     padding: 64px 0;
-    /* background-color: var(--article-bg, #f6efe9); */
 }
 .article-container {
     display: flex;
@@ -22,7 +21,6 @@
 }
 .article-text {
     margin: 0;
-    color: var(--color-text-secondary, #3a3a3a);
     font-size: 18px;
     line-height: 1.6;
 }
