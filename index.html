@@ -20,7 +20,7 @@
     <script type="module" crossorigin src="/booksy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-qDwaDOZO.js">
     <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-DgQmctZI.css">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-BF12SXxv.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-B6D1zuQb.css">
   </head>
 
   <body>
@@ -719,30 +719,38 @@
 
     </main>
 
-    <footer class="footer container">
-  <div class="footer-container">
-    <svg class="footer-logo" width="17" height="19">
-      <use href="/booksy/assets/sprite-CIwJLidB.svg#icon-logo"></use>
-    </svg>
-    <nav>
-      <ul class="footer-nav">
-        <li class="footer-nav-item"><a href="#" class="footer-nav-link">Home</a></li>
-        <li class="footer-nav-item"><a href="#books" class="footer-nav-link">Books</a></li>
-        <li class="footer-nav-item"><a href="#feedbacks" class="footer-nav-link">Feedbacks</a></li>
-        <li class="footer-nav-item"><a href="#location" class="footer-nav-link">Location</a></li>
-      </ul>
-    </nav>
+    <footer class="footer">
+  <div class="container">
+    <div class="footer-container">
+      <nav class="footer-logo-nav">
+        <a href="./index.html" class="footer-logo-icon" aria-label="Back to homepage">
+          <svg class="logo-icon" width="84" height="36" fill="black">
+            <use href="/booksy/img/sprite.svg#icon-logo"></use>
+          </svg>
+        </a>
+        <ul class="footer-nav-links-list">
+          <li><a href="#home" class="footer-nav-link">Home</a></li>
+          <li><a href="#books" class="footer-nav-link">Books</a></li>
+          <li><a href="#feedbacks" class="footer-nav-link">Feedbacks</a></li>
+          <li><a href="#location" class="footer-nav-link">Location</a></li>
+        </ul>
+      </nav>
+      <div class="footer-join">
+        <form class="form-footer">
+          <label for="join" class="footer-join-label">Join</label>
+          <div class="footer-email-form">
+            <input class="email-input" type="email" name="email-address" placeholder="Enter your email" id="join"
+              required pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" autocomplete="email" />
+            <button class="btn-secondary footer-join-btn" type="submit">Sign up</button>
+          </div>
+        </form>
+        <span class="footer-join-message">* Required field</span>
+      </div>
+    </div>
+    <div class="license-container">
+      <span class="license-text" aria-label="license-text">&#xA9; 2025 Booksy. All rights reserved.</span>
+    </div>
   </div>
-  <div class="footer-join">
-    <p class="footer-join-text">Join</p>
-    <form class="footer-join-form">
-      <input type="email" class="footer-join-input" placeholder="Enter your email" required />
-      <button type="submit" class="footer-join-btn">Sign Up</button>
-    </form>
-    <p class="footer-join-message">* Required field</p>
-  </div>
-  <p class="footer-line"></p>
-  <p class="footer-copyright">© 2025 Booksy. All rights reserved.</p>
 </footer>
 
   </body>
