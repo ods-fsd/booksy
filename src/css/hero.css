@@ -1,6 +1,3 @@
-h1 {
-  font-size: 40px;
-}
 .hero {
   background-color: #fceee6;
   padding-top: 0;
@@ -28,9 +25,9 @@ h1 {
 
 .swiper-hero {
   overflow: hidden;
-  height: 200px;
+  height: 199px;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .swiper-slide-hero {
@@ -59,6 +56,7 @@ h1 {
 }
 
 .hero-slide-title {
+  width: 172px;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.4;
@@ -162,23 +160,44 @@ h1 {
 }
 
 @media only screen and (min-width: 768px) {
+  .hero-title {
+    width: 560px;
+  }
+
   .hero-title-box {
     display: flex;
     align-items: center;
     gap: 24px;
     justify-content: space-between;
-    width: 704px;
+    width: 100%;
     height: 96px;
     flex-direction: row;
   }
 
+  .hero-slide-title {
+    width: 274px;
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .slide-btn {
+    font-size: 16px;
+    gap: 8px;
+    border: 1px solid #e15d05;
+    border-radius: 4px;
+    padding-inline: 10px;
+    width: 164px;
+    height: 32px;
+  }
+
   .swiper-hero {
     height: 274px;
+    border-radius: unset;
   }
 
   .swiper-slide-hero {
-    width: 704px;
     height: 274px;
+    width: 100%;
   }
 
   .hero-slider-controls {
@@ -215,7 +234,15 @@ h1 {
 
 @media only screen and (min-width: 1440px) {
   .swiper-hero {
+    width: 100%;
     height: 395px;
+    border-radius: 16px;
+    border: 1px solid #000;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+  .swiper-slide-hero {
+    height: 395px;
+    width: 100%;
   }
 
   .hero-slide-content {
@@ -223,12 +250,20 @@ h1 {
     padding-left: 56px;
   }
 
+  .hero-slide-title {
+    width: 392px;
+  }
+  .hero-title {
+    width: 1168px;
+  }
   .hero-title,
   .hero-slide-title {
     font-size: 52px;
   }
 
   .slide-btn {
+    padding-block: 8px;
+    padding-inline: 20px;
     width: 227px;
     height: 40px;
   }
