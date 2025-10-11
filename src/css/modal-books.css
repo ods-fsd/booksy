@@ -1,6 +1,9 @@
 .modal-books .container {
   position: relative;
 }
+.modal-content {
+  background-color: #fceee6;
+}
 
 .modal-books_picture {
   flex-shrink: 0;
