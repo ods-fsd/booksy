@@ -53,6 +53,8 @@
   width: 42px;
   text-align: center;
   background: #0b05000d;
+  border-radius: 4px;
+  border: 1px solid rgba(11, 5, 0, 0.15);
 }
 
 .modal-books_quantity-container .btn {
