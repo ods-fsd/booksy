@@ -21,7 +21,7 @@ export function initSlider({ containerSelector, prevSelector, nextSelector }) {
   const swiper = new Swiper(container, {
     modules: [Navigation],
     slidesPerView: 1,
-    spaceBetween: 16,
+    spaceBetween: 0,
     loop: false,
     allowTouchMove: true,
     navigation: {
@@ -29,32 +29,26 @@ export function initSlider({ containerSelector, prevSelector, nextSelector }) {
       nextEl: nextBtn,
     },
     on: {
-      init() {
-        updateButtons();
-      },
-      slideChange() {
-        updateButtons();
-      },
+      init: updateButtons,
+      slideChange: updateButtons,
     },
   });
 
   function updateButtons() {
     if (swiper.isBeginning) {
       prevBtn.disabled = true;
-      prevBtn.classList.add('disabled');
     } else {
       prevBtn.disabled = false;
-      prevBtn.classList.remove('disabled');
     }
 
     if (swiper.isEnd) {
       nextBtn.disabled = true;
-      nextBtn.classList.add('disabled');
     } else {
       nextBtn.disabled = false;
-      nextBtn.classList.remove('disabled');
     }
   }
+
+  updateButtons();
 }
 //Обʼєкт з посиланнями на ДОМ елементи
 
