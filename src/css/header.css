@@ -1,3 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+body.body--no-scroll {
+  overflow: hidden;
+}
 .header {
   background-color: #fceee6;
 }
@@ -68,7 +74,9 @@
   background-color: #fceee6;
   visibility: hidden;
   pointer-events: none;
-  transition: background-color 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  transform: translateY(-20px);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -77,10 +85,11 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  display: block;
-  z-index: 1000;
-  box-shadow: 0 1px 6px 0 rgba(46, 47, 66, 0.08),
-    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 2px 1px 0 rgba(46, 47, 66, 0.08);
+  transform: translateY(0);
+}
+
+.burger-logo-icon {
+  cursor: pointer;
 }
 
 .burger-logo-icon:focus,
@@ -141,10 +150,6 @@
 .header-modal-list-link:focus,
 .header-modal-list-link:hover {
   opacity: 0.5;
-}
-
-body-no-scroll {
-  overflow: hidden;
 }
 
 @media only screen and (min-width: 768px) {

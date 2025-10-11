@@ -1,6 +1,7 @@
 const burgerBtn = document.querySelector('.burger-icon');
 const menu = document.querySelector('.header-modal');
 const closeBtn = document.querySelector('.header-modal-nav-close');
+const body = document.body;
 
 burgerBtn.addEventListener('click', () => {
   menu.classList.add('is-open');
