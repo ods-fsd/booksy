@@ -1,157 +1,127 @@
 .footer {
-  background-color: #ea8d50;
-  padding: 80px 16px;
-  width: 375px;
-  height: 703px;
+  background: #ea8d50;
+  padding: 80px 0;
 }
-
 .footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.footer-logo {
-  width: 84px;
-  height: 36px;
-}
-
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 32px;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  padding-bottom: 80px;
 }
 
-.footer-nav-link {
-  width: 24px;
-}
-
-.footer-join-text {
-  font-weight: 600;
-}
-
-.footer-join-form {
+.footer-logo-nav {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+}
+.footer-logo-icon {
+  display: block;
+}
+.footer-logo-icon:hover,
+.footer-logo-icon:focus {
+  transform: scale(1.1);
+}
+.footer-nav-links-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+}
+.footer-nav-link {
+  display: block;
+}
+.footer-nav-link:hover {
+  transform: scale(1.1);
+}
+
+.footer-join-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.footer-email-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  margin-top: 16px;
   margin-bottom: 12px;
 }
-
-.footer-join-input {
-  border: 1px solid rgba(11, 5, 0, 0.15);
+.email-input {
+  min-width: auto;
+  width: 100%;
+  min-height: 48px;
   border-radius: 4px;
+  background-color: #0b05000d;
+  color: #0b0500;
   padding: 12px;
-  width: 221px;
-  height: 48px;
-  background-color: rgba(11, 5, 0, 0.05);
-  color: rgba(11, 5, 0, 0.6);
+}
+.email-input::placeholder {
+  color: #0b050099;
+}
+.email-input:invalid {
 }
 
-.footer-join-input::placeholder {
-  color: rgba(11, 5, 0, 0.6);
-}
-
-.footer-join-input:user-invalid {
-  color: #ad0000;
-}
-
-.footer-join-input:hover,
-.footer-join-input:focus {
-  border: 1px solid rgba(11, 5, 0, 0.15);
-  border-radius: 4px;
-  padding: 8px 12px;
+.email-input:hover,
+.email-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #e15d05;
 }
 
 .footer-join-btn {
-  border: 1px solid #0b0500;
-  border-radius: 4px;
-  padding: 12px 24px;
-  height: 48px;
   min-width: 106px;
+  min-height: 48px;
+  border-radius: 4px;
   background-color: transparent;
-  white-space: nowrap;
 }
-
 .footer-join-btn:hover,
 .footer-join-btn:focus {
   background-color: #0b0500;
   color: #ffffff;
-  cursor: pointer;
 }
-
 .footer-join-message {
   font-size: 12px;
 }
-
-.footer-line {
-  margin-top: 80px;
-  margin-bottom: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 343px;
-  height: 0px;
-}
-
-.footer-copyright {
+.license-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 32px 58px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.license-text {
   font-size: 14px;
+}
+.license-text:hover,
+.license-text:focus {
+  color: #7c3505;
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 768px) {
-  .footer {
-    width: 768px;
-    height: 535px;
-    padding: 80px 64px;
-  }
-
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 32px;
-  }
-
-  .footer-nav {
+  .footer-nav-links-list {
     flex-direction: row;
     gap: 32px;
-    margin-top: 0;
-    margin-bottom: 32px;
   }
-
   .footer-join {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-width: 400px;
   }
-
-  .footer-join-input {
-    border: 1px solid rgba(11, 5, 0, 0.15);
-    border-radius: 4px;
-    padding: 8px 12px;
+  .email-input {
     width: 278px;
-    height: 48px;
   }
+}
 
-  .footer-join-text {
-    font-weight: 600;
-    margin-left: -360px;
+@media screen and (min-width: 1440px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
   }
-
-  .footer-join-form {
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .footer-line {
-    width: 704px;
-    margin-top: 40px;
-    margin-bottom: 24px;
+  .footer-logo-nav {
+    align-items: flex-start;
   }
 }
