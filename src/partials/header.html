@@ -1,26 +1,26 @@
 <header class="header">
   <div class="header-container container">
-    <div class="header-logo">
+    <a href="./index.html" class="header-logo">
       <svg class="logo-icon" width="84" height="36">
-        <use href="../public/img/sprite.svg#icon-logo"></use>
+        <use href="./img/sprite.svg#icon-logo"></use>
       </svg>
-    </div>
+    </a>
     <nav class="header-nav">
       <ul class="header-nav-list">
         <li class="header-nav-list-item">
-          <a href="#" class="header-nav-list-link">Home</a>
+          <a href="./index.html" class="header-nav-list-link">Home</a>
         </li>
         <li class="header-nav-list-item">
-          <a href="#" class="header-nav-list-link">Books</a>
+          <a href="#books" class="header-nav-list-link">Books</a>
         </li>
         <li class="header-nav-list-item">
-          <a href="#" class="header-nav-list-link">Feedbacks</a>
+          <a href="#feedbacks" class="header-nav-list-link">Feedbacks</a>
         </li>
         <li class="header-nav-list-item">
-          <a href="#" class="header-nav-list-link">Events</a>
+          <a href="#events" class="header-nav-list-link">Events</a>
         </li>
         <li class="header-nav-list-item">
-          <a href="#" class="header-nav-list-link">Location</a>
+          <a href="#location" class="header-nav-list-link">Location</a>
         </li>
       </ul>
     </nav>
@@ -38,38 +38,40 @@
     </div>
   </div>
   <div class="header-modal header-modal-container">
-    <div class="header-modal-nav">
-      <div class="header-modal-nav-logo">
-        <svg class="burger-logo-icon" width="84" height="36">
-          <use href="./img/sprite.svg#icon-logo"></use>
-        </svg>
+    <div class="header-modal-container">
+      <div class="header-modal-nav">
+        <a href="./index.html" class="header-modal-nav-logo">
+          <svg class="logo-icon" width="84" height="36">
+            <use href="./img/sprite.svg#icon-logo"></use>
+          </svg>
+        </a>
+        <button
+          type="button"
+          class="header-modal-nav-close"
+          aria-label="Закрити меню"
+        >
+          <svg class="x-logo-icon" width="12" height="12">
+            <use href="./img/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
       </div>
-      <button
-        type="button"
-        class="header-modal-nav-close"
-        aria-label="Закрити меню"
-      >
-        <svg class="x-logo-icon" width="12" height="12">
-          <use href="./img/sprite.svg#icon-x"></use>
-        </svg>
-      </button>
+      <ul class="header-modal-list">
+        <li class="header-modal-list-item">
+          <a href="#" class="header-modal-list-link">Home</a>
+        </li>
+        <li class="header-modal-list-item">
+          <a href="#books" class="header-modal-list-link">Books</a>
+        </li>
+        <li class="header-modal-list-item">
+          <a href="#feedbacks" class="header-modal-list-link">Feedbacks</a>
+        </li>
+        <li class="header-modal-list-item">
+          <a href="#events" class="header-modal-list-link">Events</a>
+        </li>
+        <li class="header-modal-list-item">
+          <a href="#location" class="header-modal-list-link">Location</a>
+        </li>
+      </ul>
     </div>
-    <ul class="header-modal-list">
-      <li class="header-modal-list-item">
-        <a href="#" class="header-modal-list-link">Home</a>
-      </li>
-      <li class="header-modal-list-item">
-        <a href="#" class="header-modal-list-link">Books</a>
-      </li>
-      <li class="header-modal-list-item">
-        <a href="#" class="header-modal-list-link">Feedbacks</a>
-      </li>
-      <li class="header-modal-list-item">
-        <a href="#" class="header-modal-list-link">Events</a>
-      </li>
-      <li class="header-modal-list-item">
-        <a href="#" class="header-modal-list-link">Location</a>
-      </li>
-    </ul>
   </div>
 </header>
