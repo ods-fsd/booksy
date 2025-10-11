@@ -3,78 +3,113 @@ import axios from 'axios';
 const BASE_URL = 'https://books-backend.p.goit.global/books';
 const apiClient = axios.create({ baseURL: BASE_URL });
 
-/**
- * Universal helper to make API requests.
- * Handles basic error logging and response extraction.
- * @param {string} url - The endpoint URL relative to BASE_URL.
- * @returns {Promise<Object|Array>} - Data returned from the API.
- */
+// ---------------- MOCK DATA ----------------
+const MOCK_CATEGORIES = [
+  'Fiction',
+  'Science',
+  'Romance',
+  'History',
+  'Fantasy',
+  'Business',
+];
+
+const MOCK_BOOKS = [
+  {
+    _id: 'm1',
+    title: 'Mockingbird Dreams',
+    author: 'Harper Green',
+    book_image: 'https://placehold.co/227x322/EEE/333?text=Mock+1',
+    price: 12.99,
+  },
+  {
+    _id: 'm2',
+    title: 'The Silent Ocean',
+    author: 'Liam Stone',
+    book_image: 'https://placehold.co/227x322/DDD/111?text=Mock+2',
+    price: 9.99,
+  },
+  {
+    _id: 'm3',
+    title: 'Echoes of Tomorrow',
+    author: 'Aria Vale',
+    book_image: 'https://placehold.co/227x322/CCC/000?text=Mock+3',
+    price: 14.99,
+  },
+  {
+    _id: 'm4',
+    title: 'The Quantum Garden',
+    author: 'Soren Blake',
+    book_image: 'https://placehold.co/227x322/BBB/000?text=Mock+4',
+    price: 10.99,
+  },
+  {
+    _id: 'm5',
+    title: 'City of Secrets',
+    author: 'Nora Kade',
+    book_image: 'https://placehold.co/227x322/AAA/000?text=Mock+5',
+    price: 11.49,
+  },
+  {
+    _id: 'm6',
+    title: 'Journey to Orion',
+    author: 'Kai Mercer',
+    book_image: 'https://placehold.co/227x322/999/fff?text=Mock+6',
+    price: 13.99,
+  },
+];
+
+// ---------------- UNIVERSAL FETCH HELPER ----------------
 async function fetchURL(url = '') {
   try {
     const { data } = await apiClient.get(url);
     return data;
   } catch (error) {
-    console.error(`❌ Error fetching data from ${url}:`, error.message);
-    throw new Error('Failed to fetch data from the Books API');
+    console.warn(`⚠️ API unavailable (${url}). Using mock data instead.`);
+    return null; // повертаємо null, щоб виклик нижче підставив моки
   }
 }
 
-/**
- * 🔹 Отримати перелік усіх категорій книг
- * @returns {Promise<Array<string>>} Масив назв категорій
- * Endpoint: /category-list
- */
+// ---------------- API-LIKE EXPORTS ----------------
+
 export async function getCategoryList() {
   const list = await fetchURL('/category-list');
+  if (!list) return MOCK_CATEGORIES; // fallback
   return list.map(item => item.list_name);
 }
 
-/**
- * 🔹 Отримати популярні книги (топові з усіх категорій)
- * @returns {Promise<Array<Object>>} Масив об’єктів категорій із масивами книг
- * Endpoint: /top-books
- */
 export async function getTopBooks() {
   const response = await fetchURL('/top-books');
-  // Усуваємо дублікати книг із однаковими зображеннями
+  if (!response) {
+    // fallback: одна категорія з моками
+    return [
+      {
+        list_name: 'Mock Category',
+        books: MOCK_BOOKS,
+      },
+    ];
+  }
+
   return response.map(category => ({
     ...category,
     books: filterUniqueBooksByImage(category.books),
   }));
 }
 
-/**
- * 🔹 Отримати книги конкретної категорії
- * @param {string} category - Назва категорії
- * @returns {Promise<Array<Object>>} Масив книг цієї категорії
- * Endpoint: /category?category=selectedCategory
- */
 export async function getBooksByCategory(category) {
-  if (!category || typeof category !== 'string') {
-    throw new Error('Valid category name must be provided.');
-  }
   const response = await fetchURL(`/category?category=${encodeURIComponent(category)}`);
+  if (!response) return MOCK_BOOKS; // fallback
   return filterUniqueBooksByImage(response);
 }
 
-/**
- * 🔹 Отримати детальну інформацію про книгу за ID
- * @param {string} id - Унікальний ідентифікатор книги
- * @returns {Promise<Object>} Об’єкт із детальною інформацією про книгу
- * Endpoint: /bookId
- */
 export async function getBookByID(id) {
-  if (!id || typeof id !== 'string') {
-    throw new Error('Valid book ID must be provided.');
+  const response = await fetchURL(`/${id}`);
+  if (!response) {
+    return MOCK_BOOKS.find(b => b._id === id) || MOCK_BOOKS[0];
   }
-  return await fetchURL(`/${id}`);
+  return response;
 }
 
-/**
- * 🔸 Утиліта для фільтрації дублікатів книг за book_image
- * @param {Array<Object>} books - Масив книг
- * @returns {Array<Object>} Масив без дублікатів
- */
+// ---------------- HELPERS ----------------
 function filterUniqueBooksByImage(books) {
   const seen = new Set();
   return books.filter(book => {
