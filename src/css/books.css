@@ -1,46 +1,106 @@
-/* === 🧩 Секція Books — базова структура === */
+/* ===  Базова секція (Mobile 320px+) === */
 #books {
-  background: var(--color-scheme-1-background);
-  padding: 0 16px 32px;
+  background-color: #fceee6;
+  padding: 24px 16px;
   width: 100%;
-  max-width: 100%;
   box-sizing: border-box;
+  min-width: 320px;
 }
 
 .books-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
-/* === Заголовок та лічильник === */
+/* ===  Wrapper для категорій === */
+.categories-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===  Заголовок та лічильник === */
 .books-counter {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 8px;
 }
 
 .subtitle {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
+  white-space: nowrap;
 }
 
 .counter-books {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
+  white-space: nowrap;
 }
 
-/* === Селектор категорій === */
+/* ===  Список категорій (desktop only) === */
+.categories-group {
+  display: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  width: 100%;
+}
+
+.category-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+  border-color: var(--color-bamboo);
+  background: rgba(166, 208, 105, 0.1);
+}
+
+.category-btn.active-category {
+  background: var(--color-bamboo);
+  border-color: var(--color-bamboo);
+  color: var(--color-scheme-2-text);
+  font-weight: 600;
+}
+
+/* ===  Селектор категорій (mobile/tablet) === */
 .select-wrapper {
   position: relative;
+  width: 100%;
 }
 
 #category-select {
@@ -50,15 +110,21 @@
   border: 1px solid var(--color-neutral-darkest);
   border-radius: 8px;
   width: 100%;
-  height: 43px;
-  padding: 8px 40px 8px 16px;
+  height: 44px;
+  padding: 10px 40px 10px 16px;
   background-color: var(--color-scheme-1-background);
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
   cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#category-select:focus {
+  outline: none;
+  border-color: var(--color-bamboo);
 }
 
 .categories-arrow {
@@ -73,41 +139,55 @@
   transition: transform 0.3s ease;
 }
 
-.select-wrapper:focus-within .categories-arrow {
-  transform: translateY(-50%) rotate(180deg);
+/* ===  Wrapper для галереї та кнопки === */
+.books-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* === Галерея книг === */
+/* ===  Галерея книг === */
 .gallery {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 20px;
   justify-items: center;
-  padding-top: 24px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
+/* ===  Картка книги === */
 .book-card {
-  width: 227px;
-  height: 439px;
-  min-width: 221px;
+  width: 100%;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  gap: 8px;
+  gap: 12px;
 }
 
 .book-cover {
-  width: 227px;
-  height: 322px;
-  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 227/322;
   object-fit: cover;
+  border-radius: 8px;
+  background: var(--color-neutral-light);
 }
 
-/* === Опис книги === */
+/* ===  Інформація про книгу === */
 .book-card-info {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
+  gap: 8px;
+}
+
+.book-card-descriptions {
+  flex: 1;
+  min-width: 0;
 }
 
 .book-card-title {
@@ -117,6 +197,10 @@
   line-height: 150%;
   text-transform: capitalize;
   color: var(--color-scheme-2-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 0 4px 0;
 }
 
 .book-card-author {
@@ -125,67 +209,109 @@
   font-size: 14px;
   line-height: 150%;
   color: var(--color-scheme-2-text);
+  opacity: 0.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
 }
 
 .book-price {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   color: var(--color-scheme-2-text);
+  white-space: nowrap;
+  margin: 0;
 }
 
-/* === Кнопка Learn More === */
+/* ===  Кнопка Learn More === */
 .btn-book {
-  border: 1px solid var(--color-neutral-darkest);
+
   border-radius: 4px;
-  padding: 8px 20px;
-  width: 227px;
-  height: 40px;
-  background: transparent;
+  padding: 10px 20px;
+  width: 100%;
+  height: 44px;
+  background: var(--color-scheme-1-background);
   cursor: pointer;
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
-  color: var(--color-scheme-2-text);
-  transition: background 0.3s, color 0.3s;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
-.btn-book:hover {
-  background: var(--color-neutral-darkest);
+.btn-book:hover,
+.btn-book:focus {
+  background: var(--color-bamboo);
+  border-color: var(--color-bamboo);
   color: var(--color-scheme-1-background);
 }
 
-/* === Кнопка Show More === */
+.btn-book:active {
+  transform: scale(0.98);
+}
+
+/* ===  Кнопка Show More === */
 .btn-show-more {
-  border: 1px solid var(--color-bamboo);
+  border: 1px solid #d2691e;
   border-radius: 4px;
   padding: 12px 24px;
-  width: 342px;
+  width: 100%;
+  max-width: 320px;
   height: 48px;
-  background: var(--color-bamboo);
+  background: #d2691e;
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
-  color: var(--color-scheme-2-text);
+  line-height: 150%;
+  color: white;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 24px;
+}
+
+.btn-show-more:hover {
+  background: #c45e16;
+  border-color: #c45e16;
+}
+
+.btn-show-more:active {
+  transform: scale(0.98);
 }
 
 .btn-show-more-hidden {
   display: none;
 }
 
-/* === Loader === */
+/* ===  Повідомлення "No books" === */
+.no-books {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: var(--font-family);
+  font-size: 18px;
+  color: var(--color-scheme-1-text);
+  opacity: 0.6;
+}
+
+/* === ⏳ Loader === */
 .loader {
-  display: block;
-  margin: 32px auto;
-  border: 6px solid rgba(0, 0, 0, 0.1);
-  border-top: 6px solid var(--color-bamboo);
+  grid-column: 1 / -1;
+  margin: 40px auto;
+  border: 4px solid rgba(166, 208, 105, 0.2);
+  border-top: 4px solid var(--color-bamboo);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   animation: spin 0.8s linear infinite;
+}
+
+.loader.hidden {
+  display: none;
 }
 
 @keyframes spin {
@@ -198,18 +324,62 @@
   }
 }
 
-/* === 📱 Tablet (768px) === */
-@media only screen and (min-width: 768px) {
+/* ============================================
+    MOBILE LARGE (375px+)
+   ============================================ */
+@media only screen and (min-width: 375px) {
   #books {
-    padding: 0 32px 32px;
-    width: 768px;
+    padding: 24px 20px;
   }
 
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .counter-books {
+    font-size: 14px;
+  }
+
+  #category-select {
+    height: 48px;
+    padding: 12px 40px 12px 16px;
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+    MOBILE XL / SMALL TABLET (520px+)
+   ============================================ */
+@media only screen and (min-width: 520px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     justify-items: start;
   }
 
+  .book-card {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+/* ============================================
+    TABLET (768px+)
+   ============================================ */
+@media only screen and (min-width: 768px) {
+  #books {
+    padding: 0 32px 32px;
+  }
+
+  .books-form {
+    gap: 24px;
+  }
+
+  .categories-wrapper {
+    gap: 16px;
+  }
+
+  /* Заголовок + селект в один ряд */
   .books-counter {
     gap: 24px;
     width: 394px;
@@ -220,40 +390,176 @@
   #category-select {
     width: 249px;
     height: 43px;
+    font-size: 18px;
+  }
+
+  /* Сітка 2 колонки */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    justify-items: start;
+  }
+
+  .book-card {
+    width: 227px;
+    max-width: 227px;
+  }
+
+  .book-cover {
+    height: 322px;
+    aspect-ratio: auto;
+  }
+
+  .book-card-info {
+    width: 227px;
+  }
+
+  .book-card-descriptions {
+    width: 175px;
+  }
+
+  .book-price {
+    font-size: 20px;
+  }
+
+  .btn-book {
+    width: 227px;
+    height: 40px;
+    padding: 8px 20px;
+  }
+
+  .btn-show-more {
+    margin-top: 32px;
   }
 }
 
-/* === 💻 Desktop (1440px) === */
+/* ============================================
+    DESKTOP (1440px+)
+   ============================================ */
 @media only screen and (min-width: 1440px) {
   #books {
     padding: 0 64px 32px;
-    width: 1440px;
   }
 
   .books-form {
     flex-direction: row;
-    align-items: start;
-    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 1312px;
+    margin: 0 auto;
   }
 
+  /* Ліва колонка з категоріями */
   .categories-wrapper {
+    padding: 32px 0 0;
     width: 308px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    height: 430px;
+    flex-shrink: 0;
   }
 
+  .books-counter {
+    width: 308px;
+    height: 30px;
+  }
+
+  .categories-group {
+    width: 308px;
+    height: 344px;
+  }
+
+  /* Показуємо список кнопок */
+  .categories-group {
+    display: block;
+  }
+
+  /* Ховаємо селект */
+  .select-wrapper {
+    display: none;
+  }
+
+  /* Права колонка з книгами */
+  .books-wrapper {
+    padding: 32px 0 0;
+    width: 980px;
+    flex-shrink: 0;
+  }
+
+  /* Сітка 4 колонки × 6 рядів = 24 книги */
   .gallery {
     grid-template-columns: repeat(4, 1fr);
     gap: 40px 24px;
-    justify-items: start;
   }
 
-  .books-wrapper {
-    width: 980px;
+  .book-card {
+    width: 227px;
+    max-width: 227px;
+    height: 439px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .book-cover {
+    height: 322px;
+  }
+
+  .book-card-info {
+    width: 227px;
+    height: 45px;
+  }
+
+  .book-card-descriptions {
+    width: 175px;
+    height: 45px;
+    flex-shrink: 0;
+  }
+
+  .book-card-title {
+    margin: 12px 0 0 0;
+  }
+
+  .book-price {
+    font-size: 20px;
+  }
+
+  .btn-book {
+    width: 227px;
+    height: 40px;
+    padding: 8px 20px;
   }
 
   .btn-show-more {
     margin-top: 40px;
+    width: 342px;
+    font-weight: 400;
+    color: white;
   }
+
+  .btn-show-more:hover {
+    background: transparent;
+    color: var(--color-bamboo);
+  }
+}
+
+/* ============================================
+    ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
