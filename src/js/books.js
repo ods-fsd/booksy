@@ -12,46 +12,41 @@ const visibleCounter = document.querySelector('.visible-books');
 const totalCounter = document.querySelector('.total-books');
 const list = document.querySelector('.categories-list');
 const arrow = document.querySelector('.categories-arrow');
-
 const loader = document.querySelector('.loader');
 
 let allBooks = [];
 let visibleCount = 0;
-
-function showLoader() {
-  loader.classList.remove('hidden');
-}
-function hideLoader() {
-  loader.classList.add('hidden');
-}
-
 let currentBreakpoint = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
-// --- ВИПРАВЛЕНИЙ БЛОК ---
-// Створюємо головну асинхронну функцію для завантаження початкових даних
+function showLoader() {
+  loader?.classList.remove('hidden');
+}
+function hideLoader() {
+  loader?.classList.add('hidden');
+}
+
+// --- ІНІЦІАЛІЗАЦІЯ ---
 async function initializeBooks() {
   showLoader();
   try {
-    // Завантаження категорій
+    // 1️⃣ Отримуємо список категорій
     const categoryList = await getCategoryList();
     renderCategoriesList(categoryList);
 
-    // Завантаження топ-книг
+    // 2️⃣ Отримуємо топові книги для стартового показу
     const topBooksData = await getTopBooks();
     allBooks = topBooksData.flatMap(({ books }) => books);
     renderBooks();
   } catch (error) {
-    console.error('Помилка завантаження початкових даних:', error);
+    console.error('❌ Помилка завантаження даних:', error);
     gallery.innerHTML = '<li class="no-books">Не вдалося завантажити книги. Спробуйте пізніше.</li>';
   } finally {
     hideLoader();
   }
 }
-
-// Запускаємо ініціалізацію секції
 initializeBooks();
-// --- КІНЕЦЬ ВИПРАВЛЕНОГО БЛОКУ ---
 
+// --- РЕНДЕР КАТЕГОРІЙ ---
 function renderCategoriesList(categories) {
   select.innerHTML =
     '<option selected value="All categories">All categories</option>';
@@ -75,16 +70,14 @@ function renderCategoriesList(categories) {
   });
 }
 
+// --- ОБРОБКА ВИБОРУ КАТЕГОРІЇ ---
 async function selectCategory(category) {
-  showLoader(); // показуємо лоадер
+  showLoader();
 
   select.value = category;
-
-  list
-    .querySelectorAll('.category-btn')
-    .forEach(btn =>
-      btn.classList.toggle('active-category', btn.value === category)
-    );
+  list.querySelectorAll('.category-btn').forEach(btn =>
+    btn.classList.toggle('active-category', btn.value === category)
+  );
 
   try {
     if (category === 'All categories') {
@@ -97,61 +90,44 @@ async function selectCategory(category) {
     visibleCount = getInitialCount();
     renderBooks();
   } catch (error) {
-    console.error('Помилка при завантаженні книг:', error);
-    gallery.innerHTML = '<li class="no-books">Failed to load books</li>';
+    console.error('❌ Помилка при завантаженні книг:', error);
+    gallery.innerHTML = '<li class="no-books">Не вдалося завантажити книги цієї категорії</li>';
   } finally {
-    hideLoader(); // ховаємо лоадер завжди — навіть якщо сталася помилка
+    hideLoader();
   }
 }
 
 select.addEventListener('change', e => {
-  const category = e.target.value;
-  selectCategory(category);
+  selectCategory(e.target.value);
 });
 
 list.addEventListener('click', e => {
   e.preventDefault();
   const btn = e.target.closest('.category-btn');
   if (!btn) return;
-
-  // оновлення aria-pressed
-  list.querySelectorAll('.category-btn').forEach(b => {
-    b.classList.remove('active-category');
-    b.setAttribute('aria-pressed', 'false');
-  });
-
-  btn.classList.add('active-category');
-  btn.setAttribute('aria-pressed', 'true');
-
-  const category = btn.value;
-  selectCategory(category);
+  selectCategory(btn.value);
 });
 
+// --- ПОКАЗ ЩЕ ---
 showMore.addEventListener('click', () => {
   visibleCount += 4;
   updateBooksList();
   showMore.blur();
 });
 
+// --- РЕНДЕР КНИГ ---
 function renderBooks() {
   visibleCount = getInitialCount();
   updateBooksList();
   totalCounter.textContent = allBooks.length;
 
-  if (visibleCount >= allBooks.length) {
-    showMore.classList.add('btn-show-more-hidden');
-  }
-
-  if (visibleCount < allBooks.length) {
-    showMore.classList.remove('btn-show-more-hidden');
-  }
+  toggleShowMoreVisibility();
 }
 
 function updateBooksList() {
   const currentSlice = allBooks.slice(0, visibleCount);
   showLoader();
 
-  // Відкласти важке оновлення DOM, щоб лоадер промалювався
   requestAnimationFrame(() => {
     setTimeout(() => {
       if (currentSlice.length === 0) {
@@ -164,23 +140,25 @@ function updateBooksList() {
 
       gallery.innerHTML = createMarkup(currentSlice);
       visibleCounter.textContent = Math.min(visibleCount, allBooks.length);
-      showMore.disabled = false;
-
-      if (visibleCount >= allBooks.length) {
-        showMore.classList.add('btn-show-more-hidden');
-      } else {
-        showMore.classList.remove('btn-show-more-hidden');
-      }
-
+      toggleShowMoreVisibility();
       hideLoader();
-    }, 100); // ця затримка потрібна, щоб браузер встиг показати лоадер
+    }, 100);
   });
+}
+
+function toggleShowMoreVisibility() {
+  if (visibleCount >= allBooks.length) {
+    showMore.classList.add('btn-show-more-hidden');
+  } else {
+    showMore.classList.remove('btn-show-more-hidden');
+  }
 }
 
 function getInitialCount() {
   return window.innerWidth < 768 ? 10 : 24;
 }
 
+// --- АДАПТИВНИЙ РЕРЕНДЕР ---
 window.addEventListener(
   'resize',
   debounce(() => {
@@ -192,6 +170,7 @@ window.addEventListener(
   }, 300)
 );
 
+// --- ДОДАТКОВІ ХЕЛПЕРИ ---
 function debounce(func, wait) {
   let timeout;
   return (...args) => {
@@ -200,30 +179,25 @@ function debounce(func, wait) {
   };
 }
 
+// --- МОДАЛКА ---
 gallery.addEventListener('click', event => {
   const btn = event.target.closest('.btn-book');
   if (!btn) return;
-  const bookId = btn.dataset.id;
-  openBooksModal(bookId);
+  openBooksModal(btn.dataset.id);
 });
 
+// --- UI: стрілка селекта ---
 let selectIsOpen = false;
-
 select.addEventListener('mousedown', () => {
-  // Меню щойно відкривається
   arrow.style.transform = 'translateY(-50%) rotate(180deg)';
   selectIsOpen = true;
 });
-
-// При зміні — закривається
 select.addEventListener('change', () => {
   if (selectIsOpen) {
     arrow.style.transform = 'translateY(-50%)';
     selectIsOpen = false;
   }
 });
-
-// На всякий випадок, коли клацнули поза select
 document.addEventListener('click', e => {
   if (selectIsOpen && !select.contains(e.target)) {
     arrow.style.transform = 'translateY(-50%)';
@@ -231,24 +205,25 @@ document.addEventListener('click', e => {
   }
 });
 
+// --- HTML РЕНДЕРИНГ ---
 function createMarkup(data) {
   return data
     .map(({ title, author, book_image, price, _id }, index) => {
       const displayPrice =
         typeof price === 'number'
           ? price.toFixed(2)
-          : typeof price === 'string' && price.trim() !== '0.00'
+          : price && price.trim() !== '0.00'
           ? price.trim()
           : '9.99';
 
       const safeTitle = escapeHtml(title);
       const safeAuthor = escapeHtml(author);
-      const loadingAttribute = index < 3 ? 'eager' : 'lazy';
+      const loadingAttr = index < 3 ? 'eager' : 'lazy';
 
       return `
         <li class="book-card">
           <img
-           loading="${loadingAttribute}"
+            loading="${loadingAttr}"
             class="book-cover"
             src="${book_image}"
             alt="Book cover: ${safeTitle} by ${safeAuthor}"
@@ -274,13 +249,8 @@ function createMarkup(data) {
     })
     .join('');
 }
+
 function escapeHtml(text = '') {
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;',
-  };
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
   return text.replace(/[&<>"']/g, m => map[m]);
 }
