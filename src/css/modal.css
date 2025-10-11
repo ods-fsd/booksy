@@ -20,7 +20,7 @@
   width: 100%;
   padding: 64px 16px;
   border-radius: 16px;
-  background: var(--background);
+  background: #fceee6;
   overflow-y: auto;
   max-height: 100vh;
 }
