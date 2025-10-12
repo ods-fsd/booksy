@@ -1,3 +1,6 @@
+import '../img/feedbacks/JaneDoe.svg';
+import '../img/feedbacks/JohnSmith.svg';
+import '../img/feedbacks/EmilyJohnson.svg';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Keyboard, A11y } from 'swiper/modules';
 
