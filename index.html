@@ -18,9 +18,9 @@
     />
 
     <script type="module" crossorigin src="/booksy/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-CMFBp1Qk.js">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-CFA735_Q.css">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-CnSi8zgc.css">
+    <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-Bbd4d-DD.js">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-kr3g72Yb.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-Cj_w8n6K.css">
   </head>
 
   <body>
@@ -204,19 +204,31 @@
           <ul class="categories-list"></ul>
         </fieldset>
         <div class="select-wrapper">
-          <label for="category-select" class="visually-hidden"
-            >Choose category</label
+          <button
+            type="button"
+            class="category-select-btn"
+            id="category-select-btn"
           >
-          <select id="category-select"></select>
-          <svg
-            class="categories-arrow"
-            width="12"
-            height="8"
+            <span class="category-select-text">Categories</span>
+            <svg
+              class="categories-arrow"
+              width="12"
+              height="12"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="./img/sprite.svg#icon-arrow-down" />
+            </svg>
+          </button>
+          <ul class="category-dropdown hidden" id="category-dropdown"></ul>
+
+          <!-- Прихований select для accessibility -->
+          <select
+            id="category-select"
+            class="visually-hidden"
             aria-hidden="true"
-            focusable="false"
-          >
-            <use href="./img/icons.svg#icon-chevron-down" />
-          </svg>
+            tabindex="-1"
+          ></select>
         </div>
       </div>
       <div class="books-wrapper">
