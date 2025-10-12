@@ -420,8 +420,10 @@ export function openBooksModal(bookId = '660df41ba957e5c1ae0f519e') {
     console.error('Books modal is not initialized.');
   }
 }
-// open - register - modal;
-window.addEventListener('open-register-modal', event => {
+
+
+
+window.addEventListener('open-contacts-modal', event => {
   const eventTitle = event.detail?.title;
 
   if (eventTitle) {
