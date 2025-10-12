@@ -57,16 +57,15 @@ swiper.on('update', syncDisabled);
 syncDisabled();
 
 // modalka
-document.querySelector('.events-section')?.addEventListener('click', (e) => {
+document.querySelector('.events-section')?.addEventListener('click', e => {
   const btn = e.target.closest('.js-register');
   if (!btn) return;
 
   const payload = {
-    id: btn.dataset.id,
-    title: btn.dataset.title,
-    date: btn.dataset.date,
-    format: btn.dataset.format,
+    title: btn.dataset.title || 'Register',
+    date: btn.dataset.date || '',
+    format: btn.dataset.format || '',
   };
 
-  window.dispatchEvent(new CustomEvent('open-register-modal', { detail: payload }));
+  window.dispatchEvent(new CustomEvent('open-contacts-modal', { detail: payload }));
 });
