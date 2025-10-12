@@ -37,8 +37,9 @@
   justify-content: space-between;
   border-radius: 8px;
   gap: 16px;
-  width: 343px;
-  height: 199px;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
 }
 
 .hero-slide-content {
@@ -57,7 +58,8 @@
 }
 
 .hero-slide-title {
-  width: 172px;
+  /* width: 172px; */
+  width: 100%;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.4;
@@ -125,6 +127,7 @@
   fill: #fff;
   transition: fill 0.3s ease;
 }
+
 .arrow:hover,
 .arrow:focus-visible {
   background-color: #fceee6;
@@ -160,6 +163,18 @@
   margin-bottom: 24px;
 }
 
+.swiper-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
 @media only screen and (min-width: 768px) {
   .hero-title {
     width: 560px;
@@ -176,7 +191,7 @@
   }
 
   .hero-slide-title {
-    width: 274px;
+    /* width: 274px; */
     font-size: 32px;
     line-height: 1.2;
   }
@@ -197,8 +212,10 @@
   }
 
   .swiper-slide-hero {
-    height: 274px;
+    /* height: 274px; */
+    flex-shrink: 0;
     width: 100%;
+    height: 100%;
   }
 
   .hero-slider-controls {
@@ -237,8 +254,10 @@
   }
 
   .swiper-slide-hero {
-    height: 395px;
+    /* height: 395px; */
+    flex-shrink: 0;
     width: 100%;
+    height: 100%;
   }
 
   .hero-slide-content {
@@ -247,7 +266,7 @@
   }
 
   .hero-slide-title {
-    width: 392px;
+    /* width: 392px; */
   }
 
   .hero-title {

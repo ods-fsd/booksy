@@ -46,6 +46,10 @@ export function initSlider({
     ? document.querySelector(paginationSelector)
     : null;
 
+  const swiper = new Swiper(container, {
+    modules: [Navigation],
+    slidesPerView: 1,
+    spaceBetween: 0,
 
   let pagination;
   if (paginationEl) {
@@ -91,6 +95,8 @@ export function initSlider({
     }),
     breakpoints,
     on: {
+      init: updateButtons,
+      slideChange: updateButtons,
       init(sw) {
         updateArrows(sw);
       },
@@ -101,6 +107,23 @@ export function initSlider({
     ...options,
   });
 
+  function updateButtons() {
+    if (swiper.isBeginning) {
+      prevBtn.disabled = true;
+    } else {
+      prevBtn.disabled = false;
+    }
+
+    if (swiper.isEnd) {
+      nextBtn.disabled = true;
+    } else {
+      nextBtn.disabled = false;
+    }
+  }
+
+  updateButtons();
+}
+//Обʼєкт з посиланнями на ДОМ елементи
   function updateArrows(sw) {
     if (!prevBtn || !nextBtn) return;
     prevBtn.disabled = sw.isBeginning;
