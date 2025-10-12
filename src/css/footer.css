@@ -2,6 +2,7 @@
   background: #ea8d50;
   padding: 80px 0;
 }
+
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -18,13 +19,11 @@
   flex-direction: column;
   gap: 32px;
 }
+
 .footer-logo-icon {
   display: block;
 }
-.footer-logo-icon:hover,
-.footer-logo-icon:focus {
-  transform: scale(1.1);
-}
+
 .footer-nav-links-list {
   display: flex;
   align-items: center;
@@ -32,11 +31,9 @@
   flex-direction: column;
   gap: 32px;
 }
+
 .footer-nav-link {
   display: block;
-}
-.footer-nav-link:hover {
-  transform: scale(1.1);
 }
 
 .footer-join-label {
@@ -44,6 +41,7 @@
   font-weight: 600;
   margin-bottom: 16px;
 }
+
 .footer-email-form {
   display: flex;
   align-items: center;
@@ -51,6 +49,7 @@
   gap: 16px;
   margin-bottom: 12px;
 }
+
 .email-input {
   min-width: auto;
   width: 100%;
@@ -60,14 +59,9 @@
   color: #0b0500;
   padding: 12px;
 }
+
 .email-input::placeholder {
   color: #0b050099;
-}
-
-.email-input:hover,
-.email-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px #e15d05;
 }
 
 .footer-join-btn {
@@ -76,14 +70,11 @@
   border-radius: 4px;
   background-color: transparent;
 }
-.footer-join-btn:hover,
-.footer-join-btn:focus {
-  background-color: #0b0500;
-  color: #ffffff;
-}
+
 .footer-join-message {
   font-size: 12px;
 }
+
 .license-container {
   display: flex;
   align-items: center;
@@ -92,13 +83,10 @@
   padding: 32px 58px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .license-text {
   font-size: 14px;
-}
-.license-text:hover,
-.license-text:focus {
-  color: #7c3505;
-  text-decoration: underline;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -106,9 +94,11 @@
     flex-direction: row;
     gap: 32px;
   }
+
   .footer-join {
     min-width: 400px;
   }
+
   .email-input {
     width: 278px;
   }
@@ -119,7 +109,38 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   .footer-logo-nav {
     align-items: flex-start;
+  }
+
+  .footer-logo-icon:hover,
+  .footer-logo-icon:focus {
+    fill: #7c3505;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .footer-nav-link:hover,
+  .footer-nav-link:focus {
+    color: #7c3505;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .email-input:hover,
+  .email-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #e15d05;
+  }
+
+  .footer-join-btn:hover,
+  .footer-join-btn:focus {
+    background-color: #0b0500;
+    color: #ffffff;
+  }
+
+  .license-text:hover,
+  .license-text:focus {
+    color: #7c3505;
+    text-decoration: underline;
   }
 }
