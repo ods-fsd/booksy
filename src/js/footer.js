@@ -1,5 +1,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+
 const form = document.querySelector('.form-footer');
 const emailInput = document.querySelector('.email-input');
 
@@ -8,8 +9,10 @@ form.addEventListener('submit', function (e) {
 
   const email = emailInput.value.trim();
 
+
   if (!validateEmail(email)) {
     iziToast.error({
+      theme: 'light',
       title: 'Error',
       message: 'Please enter a valid email address.',
       position: 'topRight',
@@ -17,6 +20,7 @@ form.addEventListener('submit', function (e) {
     });
     return;
   }
+
 
   fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'POST',
@@ -30,17 +34,22 @@ form.addEventListener('submit', function (e) {
         throw new Error('Network response was not ok');
       }
       return response.json();
-    }).then(data => {
+    })
+    .then(data => {
+
       iziToast.success({
+        theme: 'light',
         title: 'Success',
         message: 'Thank you for subscribing!',
         position: 'topRight',
         timeout: 3000,
       });
-      emailInput.value = ''; 
+      emailInput.value = '';
     })
     .catch(error => {
+
       iziToast.error({
+        theme: 'light',
         title: 'Error',
         message: 'There was an error processing your request. Please try again later.',
         position: 'topRight',
