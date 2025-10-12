@@ -191,6 +191,7 @@ body.body--no-scroll {
   .header-header-modal {
     display: none;
   }
+
   .header-modal.is-open {
     display: none;
   }
