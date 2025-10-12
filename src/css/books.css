@@ -1,7 +1,7 @@
 /* ===  Базова секція (Mobile 320px+) === */
 #books {
   background-color: #fceee6;
-  padding: 24px 16px;
+  padding: 0 16px 32px;
   width: 100%;
   box-sizing: border-box;
   min-width: 320px;
@@ -11,14 +11,18 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
 }
 
 /* ===  Wrapper для категорій === */
 .categories-wrapper {
+  padding: 32px 0 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 /* ===  Заголовок та лічильник === */
@@ -33,7 +37,7 @@
 .subtitle {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
   white-space: nowrap;
@@ -42,7 +46,7 @@
 .counter-books {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
   white-space: nowrap;
@@ -97,17 +101,16 @@
   font-weight: 600;
 }
 
-/* ===  Селектор категорій (mobile/tablet) === */
+/* ===  Кастомний селектор категорій (mobile/tablet) === */
 .select-wrapper {
   position: relative;
   width: 100%;
-  border-radius: 8px;
 }
 
-#category-select {
+/* Кнопка селекту */
+.category-select-btn {
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 4px;
   width: 100%;
@@ -121,23 +124,110 @@
   color: var(--color-scheme-1-text);
   cursor: pointer;
   transition: border-color 0.3s ease;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
-#category-select:focus {
+.category-select-btn:hover {
+  border-color: var(--color-bamboo);
+}
+
+.category-select-btn:focus {
   outline: none;
   border-color: var(--color-bamboo);
 }
 
+/* Текст кнопки */
+.category-select-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Стрілка */
 .categories-arrow {
   position: absolute;
   top: 50%;
-  right: 16px;
+  right: 12px;
   transform: translateY(-50%);
   width: 12px;
-  height: 8px;
+  height: 12px;
   fill: var(--color-scheme-1-text);
   pointer-events: none;
   transition: transform 0.3s ease;
+}
+
+.category-select-btn.open .categories-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Випадаючий список */
+.category-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--color-scheme-1-background);
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  z-index: 100;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+.category-dropdown.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.category-dropdown-item {
+  padding: 0;
+  margin: 0;
+}
+
+.category-dropdown-btn {
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.category-dropdown-btn:hover {
+  background: rgba(166, 208, 105, 0.1);
+}
+
+.category-dropdown-btn.active {
+  background: var(--color-bamboo);
+  color: var(--color-scheme-2-text);
+  font-weight: 600;
+}
+
+/* Старий select (повністю прихований) */
+#category-select {
+  display: none;
 }
 
 /* ===  Wrapper для галереї та кнопки === */
@@ -148,7 +238,7 @@
   align-items: center;
 }
 
-/* ===  Галерея книг === */
+/* === Галерея книг === */
 .gallery {
   display: grid;
   grid-template-columns: 1fr;
@@ -220,7 +310,7 @@
 .book-price {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 150%;
   color: var(--color-scheme-2-text);
   white-space: nowrap;
@@ -229,10 +319,11 @@
 
 /* ===  Кнопка Learn More === */
 .btn-book {
+  border: 1px solid var(--color-neutral-darkest);
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   width: 100%;
-  height: 44px;
+  height: 40px;
   background: var(--color-scheme-1-background);
   cursor: pointer;
   font-family: var(--font-family);
@@ -261,7 +352,7 @@
   border-radius: 4px;
   padding: 12px 24px;
   width: 100%;
-  max-width: 320px;
+  max-width: 343px;
   height: 48px;
   background: #d2691e;
   font-family: var(--font-family);
@@ -298,7 +389,7 @@
   opacity: 0.6;
 }
 
-/* === ⏳ Loader === */
+/* ===  Loader === */
 .loader {
   grid-column: 1 / -1;
   margin: 40px auto;
@@ -328,23 +419,7 @@
     MOBILE LARGE (375px+)
    ============================================ */
 @media only screen and (min-width: 375px) {
-
-  /* Розширюємо контейнер для екранів 375px+ */
-  .books-form,
-  .categories-wrapper,
-  .books-counter,
-  .select-wrapper,
-  #category-select,
-  .books-wrapper,
-  .gallery,
-  .book-card,
-  .book-cover,
-  .book-card-info,
-  .book-card-descriptions,
-  .btn-book,
-  .btn-show-more {
-    /* Наслідуємо базові стилі, можна додати специфічні */
-  }
+  /* Наслідуємо базові стилі */
 }
 
 /* ============================================
@@ -404,14 +479,11 @@
     flex-shrink: 0;
   }
 
-  #category-select {
+  .category-select-btn {
     width: 249px;
     height: 43px;
     padding: 8px 40px 8px 12px;
     font-size: 18px;
-    border: 1px solid var(--opacity-neutral-darkest-15);
-    border-radius: 4px;
-    background: var(--opacity-neutral-darkest-5);
   }
 
   /* Wrapper для книг */
@@ -440,9 +512,9 @@
     margin-top: 32px;
     width: 342px;
     max-width: 342px;
-
+    background: var(--color-bamboo);
     border-color: var(--color-bamboo);
-
+    color: var(--color-white);
   }
 
   .btn-show-more:hover {
@@ -514,6 +586,8 @@
     width: 342px;
     font-weight: 400;
     color: white;
+    background: var(--color-bamboo);
+    border-color: var(--color-bamboo);
   }
 
   .btn-show-more:hover {

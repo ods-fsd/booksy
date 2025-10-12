@@ -11,16 +11,22 @@ const showMore = document.querySelector('.btn-show-more');
 const visibleCounter = document.querySelector('.visible-books');
 const totalCounter = document.querySelector('.total-books');
 const list = document.querySelector('.categories-list');
-const arrow = document.querySelector('.categories-arrow');
 const loader = document.querySelector('.loader');
+
+// Кастомний dropdown
+const selectBtn = document.querySelector('.category-select-btn');
+const selectText = document.querySelector('.category-select-text');
+const dropdown = document.querySelector('.category-dropdown');
 
 let allBooks = [];
 let visibleCount = 0;
 let currentBreakpoint = window.innerWidth < 768 ? 'mobile' : 'desktop';
+let isDropdownOpen = false;
 
 function showLoader() {
   loader?.classList.remove('hidden');
 }
+
 function hideLoader() {
   loader?.classList.add('hidden');
 }
@@ -29,11 +35,9 @@ function hideLoader() {
 async function initializeBooks() {
   showLoader();
   try {
-    // 1️⃣ Отримуємо список категорій
     const categoryList = await getCategoryList();
     renderCategoriesList(categoryList);
 
-    // 2️⃣ Отримуємо топові книги для стартового показу
     const topBooksData = await getTopBooks();
     allBooks = topBooksData.flatMap(({ books }) => books);
     renderBooks();
@@ -48,27 +52,104 @@ initializeBooks();
 
 // --- РЕНДЕР КАТЕГОРІЙ ---
 function renderCategoriesList(categories) {
+  // Старий select (прихований)
   select.innerHTML =
     '<option selected value="All categories">All categories</option>';
+  
+  // Desktop список кнопок
   list.innerHTML =
-    '<li><button class="category-btn active-category" value="All categories">All categories</button></li>';
+    '<li><button type="button" class="category-btn active-category" value="All categories">All categories</button></li>';
+
+  // Mobile/Tablet dropdown
+  dropdown.innerHTML = `
+    <li class="category-dropdown-item">
+      <button type="button" class="category-dropdown-btn active" data-value="All categories">
+        All categories
+      </button>
+    </li>
+  `;
 
   categories.forEach(cat => {
+    // Старий select
     const option = document.createElement('option');
     option.value = cat;
     option.textContent = cat;
     select.appendChild(option);
 
+    // Desktop список
     const item = document.createElement('li');
     item.classList.add('category-item');
     const button = document.createElement('button');
+    button.type = 'button';
     button.value = cat;
     button.textContent = cat;
     button.classList.add('category-btn');
     item.appendChild(button);
     list.appendChild(item);
+
+    // Mobile dropdown
+    const dropdownItem = document.createElement('li');
+    dropdownItem.classList.add('category-dropdown-item');
+    const dropdownBtn = document.createElement('button');
+    dropdownBtn.type = 'button';
+    dropdownBtn.classList.add('category-dropdown-btn');
+    dropdownBtn.dataset.value = cat;
+    dropdownBtn.textContent = cat;
+    dropdownItem.appendChild(dropdownBtn);
+    dropdown.appendChild(dropdownItem);
   });
 }
+
+// --- КАСТОМНИЙ DROPDOWN ---
+function toggleDropdown() {
+  isDropdownOpen = !isDropdownOpen;
+  dropdown?.classList.toggle('hidden', !isDropdownOpen);
+  selectBtn?.classList.toggle('open', isDropdownOpen);
+}
+
+function selectCategoryFromDropdown(category) {
+  // Оновлюємо текст кнопки
+  if (selectText) {
+    selectText.textContent = category === 'All categories' ? 'Categories' : category;
+  }
+  
+  // Оновлюємо активний стан у dropdown
+  dropdown?.querySelectorAll('.category-dropdown-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.value === category);
+  });
+  
+  // Закриваємо dropdown
+  toggleDropdown();
+  
+  // Завантажуємо книги
+  selectCategory(category);
+}
+
+// Event listeners для dropdown
+selectBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleDropdown();
+});
+
+dropdown?.addEventListener('click', (e) => {
+  const btn = e.target.closest('.category-dropdown-btn');
+  if (!btn) return;
+  selectCategoryFromDropdown(btn.dataset.value);
+});
+
+// Закриття при кліку поза dropdown
+document.addEventListener('click', (e) => {
+  if (isDropdownOpen && !selectBtn?.contains(e.target) && !dropdown?.contains(e.target)) {
+    toggleDropdown();
+  }
+});
+
+// Закриття при ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && isDropdownOpen) {
+    toggleDropdown();
+  }
+});
 
 // --- ОБРОБКА ВИБОРУ КАТЕГОРІЇ ---
 async function selectCategory(category) {
@@ -97,10 +178,7 @@ async function selectCategory(category) {
   }
 }
 
-select.addEventListener('change', e => {
-  selectCategory(e.target.value);
-});
-
+// Desktop категорії (клік на список)
 list.addEventListener('click', e => {
   e.preventDefault();
   const btn = e.target.closest('.category-btn');
@@ -184,25 +262,6 @@ gallery.addEventListener('click', event => {
   const btn = event.target.closest('.btn-book');
   if (!btn) return;
   openBooksModal(btn.dataset.id);
-});
-
-// --- UI: стрілка селекта ---
-let selectIsOpen = false;
-select.addEventListener('mousedown', () => {
-  arrow.style.transform = 'translateY(-50%) rotate(180deg)';
-  selectIsOpen = true;
-});
-select.addEventListener('change', () => {
-  if (selectIsOpen) {
-    arrow.style.transform = 'translateY(-50%)';
-    selectIsOpen = false;
-  }
-});
-document.addEventListener('click', e => {
-  if (selectIsOpen && !select.contains(e.target)) {
-    arrow.style.transform = 'translateY(-50%)';
-    selectIsOpen = false;
-  }
 });
 
 // --- HTML РЕНДЕРИНГ ---

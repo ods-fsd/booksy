@@ -63,8 +63,6 @@
 .email-input::placeholder {
   color: #0b050099;
 }
-.email-input:invalid {
-}
 
 .email-input:hover,
 .email-input:focus {
