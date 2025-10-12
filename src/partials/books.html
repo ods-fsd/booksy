@@ -3,45 +3,50 @@
     <h2 class="visually-hidden">Trending books</h2>
     <form class="books-form">
       <div class="categories-wrapper">
+        <!-- Верхній ряд: Books + Showing + Categories в одну лінію -->
         <div class="books-counter">
           <h3 class="subtitle">Books</h3>
           <p class="counter-books">
             Showing <span class="visible-books"></span> of
             <span class="total-books"></span>
           </p>
+          <!-- Селект тепер всередині books-counter -->
+          <div class="select-wrapper">
+            <button
+              type="button"
+              class="category-select-btn"
+              id="category-select-btn"
+            >
+              <span class="category-select-text">Categories</span>
+              <svg
+                class="categories-arrow"
+                width="12"
+                height="12"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="./img/sprite.svg#icon-arrow-down" />
+              </svg>
+            </button>
+            <ul class="category-dropdown hidden" id="category-dropdown"></ul>
+
+            <!-- Прихований select для accessibility -->
+            <select
+              id="category-select"
+              class="visually-hidden"
+              aria-hidden="true"
+              tabindex="-1"
+            ></select>
+          </div>
         </div>
+
+        <!-- Desktop список категорій -->
         <fieldset class="categories-group">
           <legend class="visually-hidden">Choose book category</legend>
           <ul class="categories-list"></ul>
         </fieldset>
-        <div class="select-wrapper">
-          <button
-            type="button"
-            class="category-select-btn"
-            id="category-select-btn"
-          >
-            <span class="category-select-text">Categories</span>
-            <svg
-              class="categories-arrow"
-              width="12"
-              height="12"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="./img/sprite.svg#icon-arrow-down" />
-            </svg>
-          </button>
-          <ul class="category-dropdown hidden" id="category-dropdown"></ul>
-
-          <!-- Прихований select для accessibility -->
-          <select
-            id="category-select"
-            class="visually-hidden"
-            aria-hidden="true"
-            tabindex="-1"
-          ></select>
-        </div>
       </div>
+
       <div class="books-wrapper">
         <div
           id="loader"

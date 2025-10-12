@@ -1,7 +1,7 @@
 /* ===  Базова секція (Mobile 320px+) === */
 #books {
   background-color: #fceee6;
-  padding: 0 16px 32px;
+  padding: 24px 16px;
   width: 100%;
   box-sizing: border-box;
   min-width: 320px;
@@ -11,23 +11,20 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
-  max-width: 343px;
-  margin: 0 auto;
 }
 
 /* ===  Wrapper для категорій === */
 .categories-wrapper {
-  padding: 32px 0 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 /* ===  Заголовок та лічильник === */
 .books-counter {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -37,7 +34,7 @@
 .subtitle {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
   white-space: nowrap;
@@ -46,7 +43,7 @@
 .counter-books {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
   white-space: nowrap;
@@ -101,7 +98,7 @@
   font-weight: 600;
 }
 
-/* ===  Кастомний селектор категорій (mobile/tablet) === */
+/* ===  Селектор категорій (mobile/tablet) === */
 .select-wrapper {
   position: relative;
   width: 100%;
@@ -111,7 +108,7 @@
 .category-select-btn {
   appearance: none;
   -webkit-appearance: none;
-  border: 1px solid var(--opacity-neutral-darkest-15);
+  border: 1px solid;
   border-radius: 4px;
   width: 100%;
   height: 43px;
@@ -174,7 +171,8 @@
   width: 100%;
   max-height: 300px;
   overflow-y: auto;
-  background: var(--color-scheme-1-background);
+  background: rgba(252, 238, 230, 0.98);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -238,7 +236,7 @@
   align-items: center;
 }
 
-/* === Галерея книг === */
+/* ===  Галерея книг === */
 .gallery {
   display: grid;
   grid-template-columns: 1fr;
@@ -310,7 +308,7 @@
 .book-price {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   color: var(--color-scheme-2-text);
   white-space: nowrap;
@@ -321,9 +319,9 @@
 .btn-book {
   border: 1px solid var(--color-neutral-darkest);
   border-radius: 4px;
-  padding: 8px 20px;
+  padding: 10px 20px;
   width: 100%;
-  height: 40px;
+  height: 44px;
   background: var(--color-scheme-1-background);
   cursor: pointer;
   font-family: var(--font-family);
@@ -352,14 +350,14 @@
   border-radius: 4px;
   padding: 12px 24px;
   width: 100%;
-  max-width: 343px;
+  max-width: 320px;
   height: 48px;
   background: #d2691e;
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-  color: white;
+  color: var(--color-white);
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 24px;
@@ -389,7 +387,7 @@
   opacity: 0.6;
 }
 
-/* ===  Loader === */
+/* === ⏳ Loader === */
 .loader {
   grid-column: 1 / -1;
   margin: 40px auto;
@@ -419,7 +417,23 @@
     MOBILE LARGE (375px+)
    ============================================ */
 @media only screen and (min-width: 375px) {
-  /* Наслідуємо базові стилі */
+
+  /* Розширюємо контейнер для екранів 375px+ */
+  .books-form,
+  .categories-wrapper,
+  .books-counter,
+  .select-wrapper,
+  #category-select,
+  .books-wrapper,
+  .gallery,
+  .book-card,
+  .book-cover,
+  .book-card-info,
+  .book-card-descriptions,
+  .btn-book,
+  .btn-show-more {
+    /* Наслідуємо базові стилі, можна додати специфічні */
+  }
 }
 
 /* ============================================
@@ -461,6 +475,7 @@
 
   /* Заголовок + лічильник + селект */
   .books-counter {
+    justify-content: space-between;
     gap: 24px;
     width: 100%;
   }
@@ -471,6 +486,7 @@
 
   .counter-books {
     font-size: 14px;
+    margin-left: auto;
   }
 
   /* Селект справа */
@@ -479,11 +495,14 @@
     flex-shrink: 0;
   }
 
-  .category-select-btn {
+  #category-select {
     width: 249px;
     height: 43px;
     padding: 8px 40px 8px 12px;
     font-size: 18px;
+    border: 1px solid var(--opacity-neutral-darkest-15);
+    border-radius: 4px;
+    background: var(--opacity-neutral-darkest-5);
   }
 
   /* Wrapper для книг */
@@ -586,8 +605,6 @@
     width: 342px;
     font-weight: 400;
     color: white;
-    background: var(--color-bamboo);
-    border-color: var(--color-bamboo);
   }
 
   .btn-show-more:hover {
