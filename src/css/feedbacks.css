@@ -10,8 +10,7 @@
 }
 
 .feedbacks-section {
-  background: var(--fb-bg);
-  padding: 64px 0; /* mobile */
+  padding-bottom: 72px; /* або 64px, як зручно */
 }
 
 .feedbacks-eyebrow {
@@ -31,8 +30,8 @@
 /* Swiper area */
 .feedbacks-swiper {
   position: relative;
+  overflow: visible; /* важливо */
 }
-
 /* Card */
 .feedbacks-list {
   list-style: none;
@@ -80,10 +79,11 @@
 
 .feedbacks-nav {
   position: absolute;
-  right: 0;
-  bottom: -40px;
+  right: 16px;
+  bottom: 16px; /* не від'ємне значення */
   display: flex;
   gap: 8px;
+  z-index: 2;
 }
 
 .feedbacks-nav__btn {
@@ -91,12 +91,20 @@
   height: 36px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--card-bg);
+  background: #e15d05;
   display: grid;
   place-items: center;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
 }
+
+.feedbacks-nav__btn svg {
+  width: 13.41px;
+  height: 13.41px;
+  fill: #fff; /* ✅ робить іконку білою */
+  transition: fill 0.25s ease;
+}
+
 .feedbacks-nav__btn:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow);
@@ -107,14 +115,19 @@
 
 .feedbacks-pagination {
   position: absolute;
-  left: 0;
-  bottom: -28px;
+  left: 16px;
+  bottom: 24px;
 }
 
 .feedbacks-nav__btn.swiper-button-disabled {
   opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
   pointer-events: none;
+}
+
+/* Повертаємо видимість, навіть коли Swiper поставив lock */
+.feedbacks-nav__btn.swiper-button-lock {
+  display: grid !important;
+}
+.feedbacks-pagination.swiper-pagination-lock {
+  display: block !important;
 }

@@ -14,32 +14,27 @@ export function initFeedbacksSlider() {
 
   const prevBtn = container.querySelector('.feedbacks-nav__btn--prev');
   const nextBtn = container.querySelector('.feedbacks-nav__btn--next');
+  const paginationEl = container.querySelector('.feedbacks-pagination');
 
   const swiper = new Swiper(container, {
     modules: [Navigation, Pagination, Keyboard, A11y],
     slidesPerView: 1,
     spaceBetween: 16,
     loop: false,
+    watchOverflow: false,
+    rewind: true, //
 
     navigation: {
       nextEl: nextBtn,
       prevEl: prevBtn,
     },
-
     pagination: {
-      el: container.querySelector('.feedbacks-pagination'),
+      el: paginationEl || '.feedbacks-pagination',
       clickable: true,
       dynamicBullets: true,
     },
-
-    keyboard: {
-      enabled: true,
-      onlyInViewport: true,
-    },
-
-    a11y: {
-      enabled: true,
-    },
+    keyboard: { enabled: true, onlyInViewport: true },
+    a11y: { enabled: true },
 
     breakpoints: {
       768: { slidesPerView: 2, spaceBetween: 24 },
@@ -47,23 +42,10 @@ export function initFeedbacksSlider() {
     },
   });
 
-  const syncAria = () => {
-    if (prevBtn)
-      prevBtn.setAttribute(
-        'aria-disabled',
-        prevBtn.classList.contains('swiper-button-disabled') ? 'true' : 'false'
-      );
-    if (nextBtn)
-      nextBtn.setAttribute(
-        'aria-disabled',
-        nextBtn.classList.contains('swiper-button-disabled') ? 'true' : 'false'
-      );
-  };
-
-  syncAria();
-  swiper.on('afterInit', syncAria);
-  swiper.on('slideChange', syncAria);
-  swiper.on('reachBeginning', syncAria);
-  swiper.on('reachEnd', syncAria);
-  swiper.on('fromEdge', syncAria);
+  swiper.on('afterInit', () => {
+    swiper.pagination?.render?.();
+    swiper.pagination?.update?.();
+  });
 }
+
+document.addEventListener('DOMContentLoaded', initFeedbacksSlider);
