@@ -199,13 +199,13 @@ body.body--no-scroll {
 @media only screen and (min-width: 1440px) {
   .logo-icon:focus,
   .logo-icon:hover {
-    fill: #c9a6a6;
+    fill: #7c3505;
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .header-nav-list-link:focus,
   .header-nav-list-link:hover {
-    color: #c9a6a6;
+    color: #7c3505;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

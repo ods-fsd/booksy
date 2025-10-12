@@ -1,6 +1,4 @@
-
 //Допоміжні функції
-
 export function debounce(func, delay) {
   let timeout;
   return (...args) => {
@@ -10,19 +8,20 @@ export function debounce(func, delay) {
 }
 
 // Ініціалізація слайдера Swiper
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+// Імпортуємо Swiper та необхідні модулі
+import Swiper from "swiper";
+import {
+  Navigation,
+  Pagination,
+  Parallax,
+  Autoplay,
+  Keyboard,
+} from "swiper/modules";
+import "swiper/css/bundle";
 
 /**
  * Ініціалізує слайдер Swiper з підтримкою пагінації, навігації та брейкпоінтів.
- * @param {Object} options - Налаштування слайдера.
- * @param {string} options.containerSelector - CSS-селектор контейнера слайдера.
- * @param {string} [options.prevSelector] - CSS-селектор кнопки "Попередній".
- * @param {string} [options.nextSelector] - CSS-селектор кнопки "Наступний".
- * @param {string} [options.paginationSelector] - CSS-селектор контейнера пагінації.
- * @param {Function} [options.customBullet] - Функція кастомного bullet-рендера.
- * @param {Object} [options.breakpoints] - Налаштування брейкпоінтів.
- * @param {Object} [options.options] - Додаткові налаштування Swiper.
+ * @param {object} settings - Налаштування слайдера.
  * @returns {Swiper|null}
  */
 export function initSlider({
@@ -32,7 +31,7 @@ export function initSlider({
   paginationSelector,
   customBullet,
   breakpoints,
-  options = {},
+  options = {}, // Додаткові опції для гнучкості
 }) {
   const root = document.querySelector(containerSelector);
   if (!root) {
@@ -46,20 +45,22 @@ export function initSlider({
     ? document.querySelector(paginationSelector)
     : null;
 
+  // Функція для оновлення стану кнопок навігації
+  function updateArrows(swiperInstance) {
+    if (!prevBtn || !nextBtn) return;
 
-  let pagination;
-  if (paginationEl) {
-    pagination = {
-      el: paginationEl,
-      clickable: true,
-    };
+    const isBeginning = swiperInstance.isBeginning;
+    const isEnd = swiperInstance.isEnd;
 
-    if (typeof customBullet === 'function') {
-      pagination.renderBullet = customBullet;
-    }
+    prevBtn.disabled = isBeginning;
+    nextBtn.disabled = isEnd;
+    prevBtn.classList.toggle("disabled", isBeginning);
+    nextBtn.classList.toggle("disabled", isEnd);
   }
 
-  const swiper = new Swiper(root, {
+  // Збираємо налаштування для Swiper
+  const swiperOptions = {
+    modules: [Navigation, Pagination, Parallax, Autoplay, Keyboard],
     loop: false,
     slidesPerView: 1,
     slidesPerGroup: 1,
@@ -73,46 +74,40 @@ export function initSlider({
       enabled: true,
       onlyInViewport: true,
     },
+    // Налаштування навігації (кнопки "вперед/назад")
     navigation:
       prevBtn && nextBtn
         ? {
             nextEl: nextBtn,
             prevEl: prevBtn,
           }
-        : undefined,
-    ...(paginationEl && {
-      pagination: {
-        el: paginationEl,
-        clickable: true,
-        ...(typeof customBullet === 'function' && {
-          renderBullet: customBullet,
-        }),
-      },
-    }),
+        : false, // Вимикаємо, якщо кнопок немає
+    // Налаштування пагінації (точки)
+    pagination: paginationEl
+      ? {
+          el: paginationEl,
+          clickable: true,
+          ...(typeof customBullet === "function" && {
+            renderBullet: customBullet,
+          }),
+        }
+      : false, // Вимикаємо, якщо пагінації немає
     breakpoints,
     on: {
-      init(sw) {
-        updateArrows(sw);
-      },
-      slideChange(sw) {
-        updateArrows(sw);
-      },
+      // Викликаємо функцію оновлення кнопок при ініціалізації та зміні слайда
+      init: updateArrows,
+      slideChange: updateArrows,
     },
-    ...options,
-  });
+    ...options, // Додаємо кастомні опції, щоб вони могли перезаписати дефолтні
+  };
 
-  function updateArrows(sw) {
-    if (!prevBtn || !nextBtn) return;
-    prevBtn.disabled = sw.isBeginning;
-    nextBtn.disabled = sw.isEnd;
-    prevBtn.classList.toggle('disabled', sw.isBeginning);
-    nextBtn.classList.toggle('disabled', sw.isEnd);
-  }
+  const swiper = new Swiper(root, swiperOptions);
 
-  [prevBtn, nextBtn].forEach(btn => {
+  // Додаємо обробники кліків для зняття фокусу з кнопок
+  [prevBtn, nextBtn].forEach((btn) => {
     if (!btn) return;
-    btn.addEventListener('click', () => {
-      btn.blur();
+    btn.addEventListener("click", () => {
+      btn.blur(); // Прибирає синю рамку фокусу з кнопки після кліку
     });
   });
 
