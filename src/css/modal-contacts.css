@@ -41,6 +41,13 @@
 .modal-contacts_form input,
 .modal-contacts_form textarea {
   margin-top: 8px;
+  background-color: #fceee6;
+  color: #0b0500;
+  border: 1px solid #0b050099;
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-width: 100%;
+  outline: none;
 }
 
 .modal-contacts_form textarea {
