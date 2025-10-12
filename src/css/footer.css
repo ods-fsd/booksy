@@ -146,3 +146,31 @@
     text-decoration: underline;
   }
 }
+
+body .iziToast-theme-light {
+  font-family: 'Rubik', sans-serif;
+  background-color: #e15d05 !important;
+  padding: 8px 16px;
+  max-height: 46px;
+  min-height: 46px;
+  border-radius: 6px;
+}
+
+body .iziToast-theme-light .iziToast-message,
+body .iziToast-theme-light .iziToast-title {
+  color: white;
+  font-size: 16px;
+}
+
+body .iziToast-theme-light.iziToast-success {
+  background-color: #e15d05;
+}
+
+body .iziToast-theme-light.iziToast-error {
+  background-color: #e15d05;
+}
+
+.customIziToastIcon {
+  fill: white;
+  padding-bottom: 6px;
+}
