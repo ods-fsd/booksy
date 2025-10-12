@@ -58,6 +58,7 @@
   background-color: #0b05000d;
   color: #0b0500;
   padding: 12px;
+  border: 1px solid rgba(11, 5, 0, 0.15);
 }
 
 .email-input::placeholder {
@@ -69,6 +70,7 @@
   min-height: 48px;
   border-radius: 4px;
   background-color: transparent;
+  border: 1px solid #0b0500;
 }
 
 .footer-join-message {
