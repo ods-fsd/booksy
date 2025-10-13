@@ -1,113 +1,115 @@
-# Vanilla App Template
+# Booksy - Frontend Project
 
-Цей проект було створено за допомогою Vite. Для знайомства та налаштування
-додаткових можливостей [звернись до документації](https://vitejs.dev/).
+This project is a front-end web application developed based on a specific Figma design layout. It aims to faithfully implement the user interface and functionality outlined in the provided design and technical specifications.
 
-## Створення репозиторію за шаблоном
+![Figma Design Preview](https://i.imgur.com/80bwIY6.png)
+## 🚀 About The Project
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення
-репозиторію свого проекту. Для цього натисни на кнопку `«Use this template»` і
-обери опцію `«Create a new repository»`, як показано на зображенні.
+This project was created as a practical exercise in building modern web interfaces. The primary goal was to translate a high-fidelity design from Figma into a functional, responsive, and interactive website using core web technologies and modern JavaScript libraries.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+* **Design Source:** [Figma Layout](https://www.figma.com/design/Q8qeSuzKR9tcbh1Ez9jOX4/Booksy?node-id=5999-10563)
+* **Technical Specification:** [Google Sheets Document](https://docs.google.com/spreadsheets/d/1nOa1jHR-3bqoSYLumuP9wtZ5HVCVOO9xDJYE-TQm1Kc/edit#gid=0)
 
-На наступному етапі відкриється сторінка створення нового репозиторію. Заповни
-поле його імені, переконайся, що репозиторій публічний, після чого натисни
-кнопку `«Create repository from template»`.
+---
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## 👥 Team
 
-Після того, як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як показано
-на зображенні.
+This project was brought to life by the **Semantic Samurais**.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+* **[Denys Orlyk](https://github.com/ods-fsd)** - Team Lead, Developer
+* **[Vladyslav Zaporozhets](https://github.com/Vladyslav-Zaporozhets)** - Scrum Master, Developer
+* **[Yaroslav Bilyk](https://github.com/BilykYarosalvAleksandrovich)** - Developer
+* **[Oleksii Lishchuk](https://github.com/M3X4N1K)** - Developer
+* **[Mykola Kruhlyk](https://github.com/Mykola-Kruhlyk)** - Developer
+* **[Halyna Obykhvost](https://github.com/HalynkaGoIT)** - Developer
+* **[Iryna Yaitchenia](https://github.com/Irina0427)** - Developer
+* **[Stanyslav Halasyk](https://github.com/StanislavHalasyk)** - Developer
+* **[Oleksandr Zabolotny](https://github.com/Dantegazza-bit)** - Developer
 
-Проскроливши сторінку до самого кінця, в секції `«Workflow permissions»` обери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це необхідно
-для автоматизації процесу деплою проекту.
+---
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+## 🛠️ Tech Stack
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів та папок
-репозиторію-шаблону. Далі працюй з ним, як з будь-яким іншим особистим
-репозиторієм, клонуй його собі на комп'ютер, пиши код, роби коміти та відправляй
-їх на GitHub.
+This project was built using the following technologies and libraries:
 
-## Підготовка до роботи
+* **Core Technologies:**
+    * HTML5
+    * CSS3
+    * JavaScript
 
-1. Переконайся, що на комп'ютері встановлено LTS-версію Node.js.
-   [Скачай та встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проекту в терміналі командою `npm install`.
-3. Запусти режим розробки, виконавши в терміналі команду `npm run dev`.
-4. Перейдіть у браузері за адресою
-   [http://localhost:5173](http://localhost:5173). Ця сторінка буде автоматично
-   перезавантажуватись після збереження змін у файли проекту.
+* **Libraries & Dependencies:**
+    * **[accordion-js](https://www.npmjs.com/package/accordion-js):** For creating accessible accordion components.
+    * **[axios](https://www.npmjs.com/package/axios):** For making promise-based HTTP requests.
+    * **[izitoast](https://www.npmjs.com/package/izitoast):** For elegant and customizable notification popups.
+    * **[swiper](https://www.npmjs.com/package/swiper):** For creating modern touch sliders.
 
-## Файли і папки
+* **Development Tools:**
+    * **[Vite](https://vitejs.dev/):** A modern front-end build tool.
+    * `vite-plugin-full-reload`: Enables full page reload on file changes.
+    * `vite-plugin-html-inject`: For injecting assets into HTML files.
 
-- Файли розмітки компонентів сторінки повинні лежати в папці `src/partials` та
-  імпортуватись до файлу `index.html`. Наприклад, файл з розміткою хедера
-  `header.html` створюємо у папці `partials` та імпортуємо в `index.html`.
-- Файли стилів повинні лежати в папці `src/css` та імпортуватись до HTML-файлів
-  сторінок. Наприклад, для `index.html` файл стилів називається `index.css`.
-- Зображення додавай до папки `src/img`. Збирач оптимізує їх, але тільки при
-  деплої продакшн версії проекту. Все це відбувається у хмарі, щоб не
-  навантажувати твій комп'ютер, тому що на слабких компʼютерах це може зайняти
-  багато часу.
+* **Typography:**
+    * **Font:** Rubik (from Google Fonts)
 
-## Деплой
+---
 
-Продакшн версія проекту буде автоматично збиратися та деплоїтись на GitHub
-Pages, у гілку `gh-pages`, щоразу, коли оновлюється гілка `main`. Наприклад,
-після прямого пуша або прийнятого пул-реквесту. Для цього необхідно у файлі
-`package.json` змінити значення прапора `--base=/<REPO>/`, для команди `build`,
-замінивши `<REPO>` на назву свого репозиторію, та відправити зміни на GitHub.
+## ⚙️ Getting Started
 
-```json
-"build": "vite build --base=/<REPO>/",
+To get a local copy up and running, follow these simple steps.
+
+### **Prerequisites**
+
+Make sure you have Node.js and npm installed on your machine.
+* Node.js (version 18.x or higher is recommended)
+* npm
+
+You can check your versions with the following commands:
+```sh
+node -v
+npm -v
+```
+Installation & Launch
+Clone the repository:
+
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+Navigate to the project directory:
+
+```sh
+cd your-repo-name
+```
+Install NPM packages:
+
+```sh
+npm install
 ```
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) та
-виставити роздачу продакшн версії файлів з папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+Start the development server:
 
-![GitHub Pages settings](./assets/repo-settings.png)
+```sh
+npm run dev
+```
 
-### Статус деплою
+After running the last command, the project will be available at http://localhost:5173/ (or another port if 5173 is busy).
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+🤝 Contributing
 
-- **Жовтий колір** - виконується збірка та деплой проекту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, збірки чи деплою сталася помилка.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-Більш детальну інформацію про статус можна переглянути натиснувши на іконку, і в
-вікні, що випадає, перейти за посиланням `Details`.
+Fork the Project
 
-![Deployment status](./assets/deploy-status.png)
+Create your Feature Branch
+```sh
+git checkout -b
+```
+Commit your Changes
+```sh
+git commit -m 'Add some AmazingFeature'
+```
 
-### Жива сторінка
+Push to the Branch
+```sh
+git push origin feature/AmazingFeature
+```
 
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися за
-адресою, вказаною на вкладці `Settings` > `Pages` в налаштуваннях репозиторію.
-Наприклад, ось посилання на живу версію для цього репозиторію
+Open a Pull Request
 
-[https://goitacademy.github.io/vanilla-app-template/](https://goitacademy.github.io/vanilla-app-template/).
-
-Якщо відкриється порожня сторінка, переконайся, що у вкладці `Console` немає
-помилок пов'язаних з неправильними шляхами до CSS та JS файлів проекту
-(**404**). Швидше за все у тебе неправильне значення прапора `--base` для
-команди `build` у файлі `package.json`.
-
-## Як це працює
-
-![How it works](./assets/how-it-works.png)
-
-1. Після кожного пуша у гілку `main` GitHub-репозиторію, запускається
-   спеціальний скрипт (GitHub Action) із файлу `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується та
-   проходить лінтинг та збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн версія файлів проекту
-   відправляється у гілку `gh-pages`. В іншому випадку, у лозі виконання скрипта
-   буде вказано в чому проблема.
