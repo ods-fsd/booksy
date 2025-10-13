@@ -166,3 +166,19 @@
     margin-top: 32px;
   }
 }
+
+/* Переписуємо з більш точною специфічністю */
+.feedbacks-controls .feedbacks-pagination {
+  position: static;
+  inset: auto;
+  transform: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+}
+
+.feedbacks-section .feedbacks-controls .feedbacks-pagination {
+  position: static;
+  inset: auto;
+  transform: none;
+}

@@ -26,7 +26,7 @@ export function initFeedbacksSlider() {
     watchOverflow: true,
 
     navigation: { nextEl: nextBtn, prevEl: prevBtn },
-    pagination: { el: paginationEl, clickable: true, dynamicBullets: true },
+    pagination: { el: paginationEl, clickable: true },
 
     keyboard: { enabled: true, onlyInViewport: true },
     a11y: { enabled: true },
