@@ -313,16 +313,11 @@ class BooksModal extends Modal {
     const quantity = parseInt(this.form.querySelector('.quantity-input').value);
 
     iziToast.show({
-      iconUrl: '/img/icons.svg',
       theme: 'light',
       progressBar: true,
       message: `Book (${quantity} pcs) added`,
       target: '.modal-books_message-container',
       timeout: 3000,
-      // replace izitost image tag to use sprite
-      onOpening: function (instance, toast) {
-        replaceIziToastIcon(toast, '/img/icons.svg#icon-shopping-basket');
-      },
     });
 
     console.log(`Book with ID '${bookId}' (qty: ${quantity}) added to Cart.`);
@@ -334,14 +329,10 @@ class BooksModal extends Modal {
   handleBuyNow() {
     console.log('"Buy Now" clicked.');
     iziToast.show({
-      iconUrl: '/img/icons.svg',
       position: 'center',
       theme: 'light',
       message: `Thanks for buying!`,
       timeout: 3000,
-      onOpening: function (instance, toast) {
-        replaceIziToastIcon(toast, '/img/icons.svg#icon-shopping-basket');
-      },
     });
 
     this.close();
@@ -420,8 +411,6 @@ export function openBooksModal(bookId = '660df41ba957e5c1ae0f519e') {
     console.error('Books modal is not initialized.');
   }
 }
-
-
 
 window.addEventListener('open-contacts-modal', event => {
   const eventTitle = event.detail?.title;
