@@ -1,9 +1,5 @@
-import '../img/feedbacks/JaneDoe.svg';
-import '../img/feedbacks/JohnSmith.svg';
-import '../img/feedbacks/EmilyJohnson.svg';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Keyboard, A11y } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,27 +8,26 @@ export function initFeedbacksSlider() {
   const container = document.querySelector('.feedbacks-swiper');
   if (!container) return;
 
-  const prevBtn = container.querySelector('.feedbacks-nav__btn--prev');
-  const nextBtn = container.querySelector('.feedbacks-nav__btn--next');
-  const paginationEl = container.querySelector('.feedbacks-pagination');
+  // Контролли ЗОВНІ — шукаємо в document, а не всередині swiper
+  const prevBtn = document.querySelector('.feedbacks-nav__btn--prev');
+  const nextBtn = document.querySelector('.feedbacks-nav__btn--next');
+  const paginationEl = document.querySelector('.feedbacks-pagination');
 
+  // src/js/feedbacks.js
   const swiper = new Swiper(container, {
     modules: [Navigation, Pagination, Keyboard, A11y],
     slidesPerView: 1,
     spaceBetween: 16,
-    loop: false,
-    watchOverflow: false,
-    rewind: true, //
 
-    navigation: {
-      nextEl: nextBtn,
-      prevEl: prevBtn,
-    },
-    pagination: {
-      el: paginationEl || '.feedbacks-pagination',
-      clickable: true,
-      dynamicBullets: true,
-    },
+    // 1) Прибрати це:
+    // rewind: true,
+
+    // 2) (опційно, але рекомендовано)
+    watchOverflow: true,
+
+    navigation: { nextEl: nextBtn, prevEl: prevBtn },
+    pagination: { el: paginationEl, clickable: true, dynamicBullets: true },
+
     keyboard: { enabled: true, onlyInViewport: true },
     a11y: { enabled: true },
 
@@ -42,6 +37,7 @@ export function initFeedbacksSlider() {
     },
   });
 
+  // 3) Залишити примусове оновлення пагінації
   swiper.on('afterInit', () => {
     swiper.pagination?.render?.();
     swiper.pagination?.update?.();
