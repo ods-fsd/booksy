@@ -20,7 +20,7 @@
     <script type="module" crossorigin src="/booksy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-BHxofFQz.js">
     <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-kr3g72Yb.css">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-CSxLGrqd.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-CvMmFd7N.css">
   </head>
 
   <body>
@@ -367,7 +367,12 @@
     <h2 class="feedbacks-title" id="feedbacks-title">Customer Feedbacks</h2>
     <p class="feedbacks-eyebrow">See what our readers are saying about us!</p>
 
-    <div class="swiper feedbacks-swiper" tabindex="0">
+    <!-- СЛАЙДЕР -->
+    <div
+      class="swiper feedbacks-swiper"
+      tabindex="0"
+      aria-describedby="feedbacks-title"
+    >
       <ul class="swiper-wrapper feedbacks-list">
         <li class="swiper-slide feedbacks-item">
           <p class="feedbacks-text">
@@ -377,7 +382,7 @@
           <div class="feedbacks-author">
             <img
               class="feedbacks-avatar"
-              src="/booksy/assets/JaneDoe-on8hDdxm.svg"
+              src="/booksy/img/feedbacks/JaneDoe.svg"
               width="40"
               height="40"
               alt="Jane Doe"
@@ -398,7 +403,7 @@
           <div class="feedbacks-author">
             <img
               class="feedbacks-avatar"
-              src="/booksy/assets/JohnSmith-BrrdYmwL.svg"
+              src="/booksy/img/feedbacks/JohnSmith.svg"
               width="40"
               height="40"
               alt="John Smith"
@@ -419,7 +424,7 @@
           <div class="feedbacks-author">
             <img
               class="feedbacks-avatar"
-              src="/booksy/assets/EmilyJohnson-BjSrFAQK.svg"
+              src="/booksy/img/feedbacks/EmilyJohnson.svg"
               width="40"
               height="40"
               alt="Emily Johnson"
@@ -432,7 +437,10 @@
           </div>
         </li>
       </ul>
+    </div>
 
+    <!-- КОНТРОЛИ ПІД СЛАЙДЕРОМ (поза .swiper) -->
+    <div class="feedbacks-controls">
       <div
         class="swiper-pagination feedbacks-pagination"
         aria-label="Slides"
