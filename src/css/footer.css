@@ -154,6 +154,8 @@ body .iziToast-theme-light {
   max-height: 46px;
   min-height: 46px;
   border-radius: 6px;
+  padding-right: 35px !important;
+  padding-left: 35px !important;
 }
 
 body .iziToast-theme-light .iziToast-message,
