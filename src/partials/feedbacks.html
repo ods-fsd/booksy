@@ -7,7 +7,12 @@
     <h2 class="feedbacks-title" id="feedbacks-title">Customer Feedbacks</h2>
     <p class="feedbacks-eyebrow">See what our readers are saying about us!</p>
 
-    <div class="swiper feedbacks-swiper" tabindex="0">
+    <!-- СЛАЙДЕР -->
+    <div
+      class="swiper feedbacks-swiper"
+      tabindex="0"
+      aria-describedby="feedbacks-title"
+    >
       <ul class="swiper-wrapper feedbacks-list">
         <li class="swiper-slide feedbacks-item">
           <p class="feedbacks-text">
@@ -72,7 +77,10 @@
           </div>
         </li>
       </ul>
+    </div>
 
+    <!-- КОНТРОЛИ ПІД СЛАЙДЕРОМ (поза .swiper) -->
+    <div class="feedbacks-controls">
       <div
         class="swiper-pagination feedbacks-pagination"
         aria-label="Slides"
