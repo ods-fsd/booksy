@@ -147,7 +147,7 @@
   }
 }
 
-body .iziToast-theme-light {
+/* body .iziToast-theme-light {
   font-family: 'Rubik', sans-serif;
   background-color: #e15d05 !important;
   padding: 8px 16px;
@@ -175,4 +175,4 @@ body .iziToast-theme-light.iziToast-error {
 .customIziToastIcon {
   fill: white;
   padding-bottom: 6px;
-}
+} */

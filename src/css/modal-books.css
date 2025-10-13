@@ -153,14 +153,29 @@
 /*#region izitoast style adapation */
 body .iziToast-theme-light {
   font-family: 'Rubik', sans-serif;
-  background-color: #e15d05;
+  background-color: #e15d05; /* Основний помаранчевий фон */
   max-height: 46px;
   min-height: 46px;
   border-radius: 6px;
 }
-body .iziToast > .iziToast-body .iziToast-message {
+
+/* Загальний стиль для тексту */
+body .iziToast-theme-light .iziToast-message,
+body .iziToast-theme-light .iziToast-title {
   color: white;
   font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Стиль для повідомлень про УСПІХ (зелений фон) */
+body .iziToast-theme-light.iziToast-success {
+  background-color: #28a745;
+}
+
+/* Стиль для повідомлень про ПОМИЛКУ (червоний фон) */
+body .iziToast-theme-light.iziToast-error {
+  background-color: #dc3545;
 }
 
 .customIziToastIcon {
