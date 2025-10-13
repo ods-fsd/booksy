@@ -150,12 +150,12 @@
 body .iziToast-theme-light {
   font-family: 'Rubik', sans-serif;
   background-color: #e15d05 !important;
-  padding: 8px 16px;
+  padding: 8px 34px 8px 8px !important;
   max-height: 46px;
   min-height: 46px;
   border-radius: 6px;
-  padding-right: 35px !important;
-  padding-left: 35px !important;
+
+  text-align: center;
 }
 
 body .iziToast-theme-light .iziToast-message,
