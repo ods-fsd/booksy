@@ -145,11 +145,11 @@ document.addEventListener('click', (e) => {
 });
 
 // Закриття при ESC
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && isDropdownOpen) {
-    toggleDropdown();
-  }
-});
+// document.addEventListener('keydown', (e) => {
+//   if (e.key === 'Escape' && isDropdownOpen) {
+//     toggleDropdown();
+//   }
+// });
 
 // --- ОБРОБКА ВИБОРУ КАТЕГОРІЇ ---
 async function selectCategory(category) {
