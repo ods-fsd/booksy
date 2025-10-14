@@ -18,11 +18,11 @@
   <script type="module" crossorigin src="/booksy/index.js"></script>
   <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-BHxofFQz.js">
   <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-kr3g72Yb.css">
-  <link rel="stylesheet" crossorigin href="/booksy/assets/index-xYEoUr8u.css">
+  <link rel="stylesheet" crossorigin href="/booksy/assets/index-wGPH5DTl.css">
 </head>
 
 <body>
-  <header class="header">
+  <header class="header" id="header">
   <div class="header-container container">
     <a href="./index.html" class="header-logo">
       <svg class="logo-icon" width="84" height="36">
@@ -49,12 +49,7 @@
       </ul>
     </nav>
     <div class="burger">
-      <button
-        type="button"
-        class="burger-icon"
-        data-burger-btn
-        aria-label="Відкрити меню"
-      >
+      <button type="button" class="burger-icon" data-burger-btn aria-label="Відкрити меню">
         <svg class="burger-icon-svg" width="24" height="24">
           <use href="./img/sprite.svg#icon-burger"></use>
         </svg>
@@ -69,11 +64,7 @@
             <use href="./img/sprite.svg#icon-logo"></use>
           </svg>
         </a>
-        <button
-          type="button"
-          class="header-modal-nav-close"
-          aria-label="Закрити меню"
-        >
+        <button type="button" class="header-modal-nav-close" aria-label="Закрити меню">
           <svg class="x-logo-icon" width="12" height="12">
             <use href="./img/sprite.svg#icon-x"></use>
           </svg>
@@ -81,7 +72,7 @@
       </div>
       <ul class="header-modal-list">
         <li class="header-modal-list-item">
-          <a href="./index.html" class="header-modal-list-link">Home</a>
+          <a href="#header" class="header-modal-list-link">Home</a>
         </li>
         <li class="header-modal-list-item">
           <a href="#books" class="header-modal-list-link">Books</a>
@@ -99,7 +90,6 @@
     </div>
   </div>
 </header>
-
   <main>
     <section class="hero" id="hero">
   <div class="container hero-container">
@@ -893,7 +883,7 @@
           </svg>
         </a>
         <ul class="footer-nav-links-list">
-          <li><a href="./index.html" class="footer-nav-link">Home</a></li>
+          <li><a href="#header" class="footer-nav-link">Home</a></li>
           <li><a href="#books" class="footer-nav-link">Books</a></li>
           <li><a href="#feedbacks" class="footer-nav-link">Feedbacks</a></li>
           <li><a href="#location" class="footer-nav-link">Location</a></li>
