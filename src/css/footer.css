@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  padding-bottom: 80px;
+  margin-bottom: 80px;
 }
 
 .footer-logo-nav {
@@ -138,12 +138,15 @@
   .footer-join-btn:focus {
     background-color: #0b0500;
     color: #ffffff;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .license-text:hover,
   .license-text:focus {
     color: #7c3505;
     text-decoration: underline;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
