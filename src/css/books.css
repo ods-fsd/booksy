@@ -87,7 +87,8 @@
   transition: all 0.3s ease;
 }
 
-.category-btn:hover {
+.category-btn:hover,
+.category-btn:focus {
   border-color: #e15d05;
   background: rgba(225, 93, 5, 0.1);
 }
@@ -130,13 +131,10 @@
   position: relative;
 }
 
-.category-select-btn:hover {
-  border-color: #e15d05;
-}
-
+.category-select-btn:hover,
 .category-select-btn:focus {
-  outline: none;
   border-color: #e15d05;
+  outline: none;
 }
 
 /* Текст кнопки */
@@ -215,7 +213,8 @@
   transition: background 0.2s ease;
 }
 
-.category-dropdown-btn:hover {
+.category-dropdown-btn:hover,
+.category-dropdown-btn:focus {
   background: rgba(225, 93, 5, 0.1);
 }
 
@@ -370,7 +369,8 @@
   margin-top: 24px;
 }
 
-.btn-show-more:hover {
+.btn-show-more:hover,
+.btn-show-more:focus {
   background: #b44a04;
   border-color: #b44a04;
 }
@@ -525,7 +525,8 @@
     color: #fff;
   }
 
-  .btn-show-more:hover {
+  .btn-show-more:hover,
+  .btn-show-more:focus {
     background: transparent;
     color: #e15d05;
   }
@@ -595,7 +596,8 @@
     color: #fff;
   }
 
-  .btn-show-more:hover {
+  .btn-show-more:hover,
+  .btn-show-more:focus {
     background: transparent;
     color: #e15d05;
   }

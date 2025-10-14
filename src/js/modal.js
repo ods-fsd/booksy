@@ -31,20 +31,20 @@ class Modal {
     this.closeClickHandler = this.handleCloseClick.bind(this);
   }
 
-  trapFocusHandler = event => {
-    if (event.key !== 'Tab') return;
+  // trapFocusHandler = event => {
+  //   if (event.key !== 'Tab') return;
 
-    const isShift = event.shiftKey;
-    const active = document.activeElement;
+  //   const isShift = event.shiftKey;
+  //   const active = document.activeElement;
 
-    if (isShift && active === this.firstFocusableElement) {
-      event.preventDefault();
-      this.lastFocusableElement.focus();
-    } else if (!isShift && active === this.lastFocusableElement) {
-      event.preventDefault();
-      this.firstFocusableElement.focus();
-    }
-  };
+  //   if (isShift && active === this.firstFocusableElement) {
+  //     event.preventDefault();
+  //     this.lastFocusableElement.focus();
+  //   } else if (!isShift && active === this.lastFocusableElement) {
+  //     event.preventDefault();
+  //     this.firstFocusableElement.focus();
+  //   }
+  // };
 
   open() {
     this.modalElement.classList.add('is-open');
