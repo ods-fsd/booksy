@@ -15,7 +15,7 @@ form.addEventListener('submit', function (e) {
       theme: 'light',
       title: 'Error',
       message: 'Please enter a valid email address.',
-      position: 'topRight',
+      position: 'topCenter',
       timeout: 3000,
     });
     return;
@@ -41,8 +41,9 @@ form.addEventListener('submit', function (e) {
         theme: 'light',
         title: 'Success',
         message: 'Thank you for subscribing!',
-        position: 'topRight',
+        position: 'topCenter',
         timeout: 3000,
+        class: 'footer-subscribe-toast',
       });
       emailInput.value = '';
     })
@@ -52,7 +53,7 @@ form.addEventListener('submit', function (e) {
         theme: 'light',
         title: 'Error',
         message: 'There was an error processing your request. Please try again later.',
-        position: 'topRight',
+        position: 'topCenter',
         timeout: 3000,
       });
     });

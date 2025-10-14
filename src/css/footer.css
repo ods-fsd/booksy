@@ -147,32 +147,13 @@
   }
 }
 
-/* body .iziToast-theme-light {
-  font-family: 'Rubik', sans-serif;
-  background-color: #e15d05 !important;
-  padding: 8px 34px 8px 8px !important;
-  max-height: 46px;
-  min-height: 46px;
-  border-radius: 6px;
-
-  text-align: center;
+.iziToast.footer-subscribe-toast > .iziToast-body .iziToast-texts {
+  margin: 0;
+  padding: 0;
+  color: #0b0500;
 }
 
-body .iziToast-theme-light .iziToast-message,
-body .iziToast-theme-light .iziToast-title {
-  color: white;
-  font-size: 16px;
-}
-
-body .iziToast-theme-light.iziToast-success {
+/* Ви також можете стилізувати фон, як ми робили раніше */
+.iziToast.iziToast-color-green.footer-subscribe-toast {
   background-color: #e15d05;
 }
-
-body .iziToast-theme-light.iziToast-error {
-  background-color: #e15d05;
-}
-
-.customIziToastIcon {
-  fill: white;
-  padding-bottom: 6px;
-} */
