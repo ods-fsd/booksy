@@ -74,7 +74,9 @@ async function fetchURL(url = '') {
 export async function getCategoryList() {
   const list = await fetchURL('/category-list');
   if (!list) return MOCK_CATEGORIES; // fallback
-  return list.map(item => item.list_name);
+  return list
+    .map(item => item.list_name)
+    .filter(name => name && name.trim().length > 0); // !Test (категоріям без назв зазь тут бути)
 }
 
 export async function getTopBooks() {
@@ -96,7 +98,9 @@ export async function getTopBooks() {
 }
 
 export async function getBooksByCategory(category) {
-  const response = await fetchURL(`/category?category=${encodeURIComponent(category)}`);
+  const response = await fetchURL(
+    `/category?category=${encodeURIComponent(category)}`
+  );
   if (!response) return MOCK_BOOKS; // fallback
   return filterUniqueBooksByImage(response);
 }
