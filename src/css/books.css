@@ -8,8 +8,8 @@
 
 .div-book {
   display: flex;
+  flex-direction: column;
   gap: 24px;
-  width: 100%;
 }
 
 .books-form {
@@ -544,6 +544,12 @@
     align-items: flex-start;
     gap: 24px;
     max-width: 1312px;
+  }
+
+  .div-book {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
   }
 
   /* Ліва колонка з категоріями */
