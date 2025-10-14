@@ -88,11 +88,30 @@
   background-color: #e15d05;
 }
 
-.slide-btn:hover,
+/* .slide-btn:hover,
 .slide-btn:focus-visible {
   background-color: #fceee6;
+  color: #ffffff;
+  border: 0.52px solid #0b0500;
+  border-radius: 2px;
+  outline: none;
+  transition: all 0.3s ease;
+} */
+
+.slide-btn:hover {
+  background-color: #bb5317;
+  color: #ffffff;
+  border: 0.52px solid #0b0500;
+  border-radius: 2px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.slide-btn:focus-visible {
+  background-color: #ea8d50;
   color: #0b0500;
   border: 0.52px solid #0b0500;
+  border-radius: 2px;
   outline: none;
   transition: all 0.3s ease;
 }
