@@ -1,12 +1,12 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules'; // Додано Keyboard
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const swiper = new Swiper('.ev-swiper', {
-  modules: [Navigation, Pagination],
+  modules: [Navigation, Pagination, Keyboard], // Додано Keyboard
 
   wrapperClass: 'ev-list',
   slideClass: 'ev-item',
@@ -22,16 +22,19 @@ const swiper = new Swiper('.ev-swiper', {
   pagination: {
     el: '.ev-pagination',
     clickable: true,
-    bulletElement: 'li',
     bulletClass: 'ev-dot',
     bulletActiveClass: 'ev-dot--active',
-    renderBullet: (index, className) =>
-      `<li class="${className}" aria-label="Go to slide ${index + 1}" tabindex="0"></li>`,
   },
 
   navigation: {
     prevEl: '.ev-swipe-btn-prev',
     nextEl: '.ev-swipe-btn-next',
+  },
+
+  // Додано опцію для керування з клавіатури
+  keyboard: {
+    enabled: true,
+    onlyInViewport: true,
   },
 
   watchOverflow: true,
@@ -40,15 +43,15 @@ const swiper = new Swiper('.ev-swiper', {
 const prevBtn = document.querySelector('.ev-swipe-btn-prev');
 const nextBtn = document.querySelector('.ev-swipe-btn-next');
 
+// Ця функція коректно обробляє стан кнопок
 function syncDisabled() {
+  if (!prevBtn || !nextBtn) return;
+
   const atStart = swiper.isBeginning;
   const atEnd = swiper.isEnd;
 
   prevBtn.toggleAttribute('disabled', atStart);
   nextBtn.toggleAttribute('disabled', atEnd);
-
-  prevBtn.setAttribute('aria-disabled', String(atStart));
-  nextBtn.setAttribute('aria-disabled', String(atEnd));
 }
 
 swiper.on('afterInit', syncDisabled);
@@ -56,7 +59,7 @@ swiper.on('slideChange', syncDisabled);
 swiper.on('update', syncDisabled);
 syncDisabled();
 
-// modalka
+// Обробник для модального вікна залишається без змін
 document.querySelector('.events-section')?.addEventListener('click', e => {
   const btn = e.target.closest('.js-register');
   if (!btn) return;
@@ -67,5 +70,7 @@ document.querySelector('.events-section')?.addEventListener('click', e => {
     format: btn.dataset.format || '',
   };
 
-  window.dispatchEvent(new CustomEvent('open-contacts-modal', { detail: payload }));
+  window.dispatchEvent(
+    new CustomEvent('open-contacts-modal', { detail: payload })
+  );
 });
