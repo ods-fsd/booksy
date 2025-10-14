@@ -38,11 +38,13 @@
 .feedbacks-swiper {
   position: relative;
 }
+
 .feedbacks-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .feedbacks-swiper .swiper-slide {
   height: auto;
 }
