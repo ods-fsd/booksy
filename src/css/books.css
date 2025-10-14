@@ -253,8 +253,9 @@
 
 /* ===  Картка книги === */
 .book-card {
-  width: 343px;
-  height: 604px;
+  width: 100%; /*! Test */
+  max-width: 343px; /*! Test */
+  height: auto; /*! Test */
   min-width: 221px;
   display: flex;
   flex-direction: column;
@@ -430,8 +431,7 @@
 /* ============================================
     MOBILE XL / SMALL TABLET (520px+)
    ============================================ */
-@media only screen and (min-width: 520px) {
-
+@media only screen and (min-width: 768px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
