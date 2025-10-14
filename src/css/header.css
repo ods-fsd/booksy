@@ -135,6 +135,22 @@ body.body--no-scroll {
   color: #0b0500;
 }
 
+.logo-icon:focus,
+.logo-icon:hover,
+.x-logo-icon:focus,
+.x-logo-icon:hover,
+.burger-icon-svg:focus,
+.burger-icon-svg:hover {
+  fill: #7c3505;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-modal-list-link:focus,
+.header-modal-list-link:hover {
+  color: #7c3505;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @media only screen and (min-width: 768px) {
   .header-logo {
     width: 84px;
@@ -171,9 +187,7 @@ body.body--no-scroll {
   .header-modal.is-open {
     display: none;
   }
-}
 
-@media only screen and (min-width: 1440px) {
   .logo-icon:focus,
   .logo-icon:hover {
     fill: #7c3505;
@@ -185,4 +199,7 @@ body.body--no-scroll {
     color: #7c3505;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+}
+
+@media only screen and (min-width: 1440px) {
 }
