@@ -8,7 +8,7 @@
     <script type="module" crossorigin src="/booksy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-BHxofFQz.js">
     <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-kr3g72Yb.css">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-DC8WquLK.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-DdJDlOKR.css">
   </head>
 
   <body>
@@ -267,44 +267,45 @@
 </section>
 
       <section class="section-books" id="books">
-  <div class="container">
+  <div class="container div-book">
     <h2 class="visually-hidden">Trending books</h2>
-    <div class="books-container">
+    <form class="books-form">
       <div class="categories-wrapper">
-        <form class="books-form">
-          <div class="books-counter">
-            <h3 class="subtitle">Books</h3>
-            <p class="counter-books">
-              Showing <span class="visible-books"></span> of
-              <span class="total-books"></span>
-            </p>
-            <div class="select-wrapper">
-              <button type="button" class="category-select-btn" id="category-select-btn">
-                <span class="category-select-text">Categories</span>
-                <svg class="categories-arrow" width="12" height="12" aria-hidden="true" focusable="false">
-                  <use href="./img/sprite.svg#icon-arrow-down" />
-                </svg>
-              </button>
-              <ul class="category-dropdown hidden" id="category-dropdown"></ul>
+        <!-- Верхній ряд: Books + Showing + Categories в одну лінію -->
+        <div class="books-counter">
+          <h3 class="subtitle">Books</h3>
+          <p class="counter-books">
+            Showing <span class="visible-books"></span> of
+            <span class="total-books"></span>
+          </p>
+          <!-- Селект тепер всередині books-counter -->
+          <div class="select-wrapper">
+            <button type="button" class="category-select-btn" id="category-select-btn">
+              <span class="category-select-text">Categories</span>
+              <svg class="categories-arrow" width="12" height="12" aria-hidden="true" focusable="false">
+                <use href="./img/sprite.svg#icon-arrow-down" />
+              </svg>
+            </button>
+            <ul class="category-dropdown hidden" id="category-dropdown"></ul>
 
-              <select id="category-select" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
-            </div>
+            <!-- Прихований select для accessibility -->
+            <select id="category-select" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
           </div>
+        </div>
 
-          <fieldset class="categories-group">
-            <legend class="visually-hidden">Choose book category</legend>
-            <ul class="categories-list"></ul>
-          </fieldset>
-        </form>
+        <!-- Desktop список категорій -->
+        <fieldset class="categories-group">
+          <legend class="visually-hidden">Choose book category</legend>
+          <ul class="categories-list"></ul>
+        </fieldset>
       </div>
-
-      <div class="books-wrapper">
-        <div id="loader" class="loader hidden" role="status" aria-live="polite" aria-label="Loading books"></div>
-        <ul class="gallery" aria-live="polite" aria-label="Book list"></ul>
-        <button type="button" class="btn btn-show-more btn-show-more-hidden" aria-label="Show more books">
-          Show more
-        </button>
-      </div>
+    </form>
+    <div class="books-wrapper">
+      <div id="loader" class="loader hidden" role="status" aria-live="polite" aria-label="Loading books"></div>
+      <ul class="gallery" aria-live="polite" aria-label="Book list"></ul>
+      <button type="button" class="btn btn-show-more btn-show-more-hidden" aria-label="Show more books">
+        Show more
+      </button>
     </div>
   </div>
 </section>
@@ -549,132 +550,194 @@
 </section>
 
       <section class="events-section" id="events">
-    <div class="container ev-container">
-        <p class="ev-ev">Events</p>
-        <h2 class="ev-title">Upcoming Events at Booksy</h2>
-        <p class="ev-text">Discover readings, workshops, and bookish gatherings — online and offline. Everyone's
-            welcome.</p>
+  <div class="container ev-container">
+    <p class="ev-ev">Events</p>
+    <h2 class="ev-title">Upcoming Events at Booksy</h2>
+    <p class="ev-text">
+      Discover readings, workshops, and bookish gatherings — online and offline.
+      Everyone's welcome.
+    </p>
 
-        <div class="ev-swiper">
-            <ul class="ev-list">
-                <!-- Midnight -->
-                <li class="ev-item">
-                    <picture class="ev-photo">
-                        <source media="(min-width: 1440px)"
-                            srcset="/booksy/img/events/midnight-desk-1x.jpg 1x, /booksy/img/events/midnight-desk-2x.jpg 2x" />
+    <div class="ev-swiper">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <picture class="ev-photo">
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/events/midnight-desk-1x.jpg 1x, /booksy/img/events/midnight-desk-2x.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/events/midnight-tabl-1x.jpg 1x, /booksy/img/events/midnight-tabl-2x.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/events/midnight-mob-1x.jpg 1x, /booksy/img/events/midnight-mob-2x.jpg 2x"
+            />
+            <img
+              src="/booksy/img/events/midnight-mob-1x.jpg"
+              width="342"
+              height="277"
+              alt="Four people sitting on a couch reading books in a cozy library setting."
+            />
+          </picture>
 
-                        <source media="(min-width: 768px)"
-                            srcset="/booksy/img/events/midnight-tabl-1x.jpg 1x, /booksy/img/events/midnight-tabl-2x.jpg 2x" />
-
-                        <source media="(max-width: 767px)"
-                            srcset="/booksy/img/events/midnight-mob-1x.jpg 1x, /booksy/img/events/midnight-mob-2x.jpg 2x" />
-                        <img src="/booksy/img/events/midnight-mob-1x.jpg" width="342" height="277"
-                            alt="The Midnight Library">
-                    </picture>
-
-                    <div class="ev-descr">
-                        <h3 class="ev-descr-title">Cozy Book Club — "The Midnight Library"</h3>
-                        <p class="ev-descr-meta">In-store | June 5, 6:30 PM</p>
-                        <p class="ev-descr-text">Join us for an evening of tea, thoughtful conversation, and shared
-                            reflections
-                            as we dive into Matt Haig`s bestseller.</p>
-
-                        <button class="ev-btn js-register" type="button" data-id="midnight"
-                            data-title="Cozy Book Club — The Midnight Library" data-date="June 5, 6:30 PM"
-                            data-format="In-store">Register
-                            <svg width="8" height="12">
-                                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
-                            </svg>
-                        </button>
-                    </div>
-                </li>
-
-                <!-- Design -->
-                <li class="ev-item">
-                    <picture class="ev-photo">
-                        <source media="(min-width: 1440px)"
-                            srcset="/booksy/img/events/design-desk-1x.jpg 1x, /booksy/img/events/design-desk-2x.jpg 2x" />
-
-                        <source media="(min-width: 768px)"
-                            srcset="/booksy/img/events/design-tabl-1x.jpg 1x, /booksy/img/events/design-tabl-2x.jpg 2x" />
-
-                        <source media="(max-width: 767px)"
-                            srcset="/booksy/img/events/design-mob-1x.jpg 1x, /booksy/img/events/design-mob-2x.jpg 2x" />
-                        <img src="/booksy/img/events/design-mob-1x.jpg" width="342" height="277"
-                            alt="The Art of Book Design">
-                    </picture>
-
-                    <div class="ev-descr">
-                        <h3 class="ev-descr-title">Book Cover Design Workshop</h3>
-                        <p class="ev-descr-meta">Online | June 12, 7:00 PM</p>
-                        <p class="ev-descr-text ev-descr-text-des">A hands-on session for aspiring designers and curious readers. Learn
-                            what makes a cover stand out — from concept to
-                            print.</p>
-                        <button class="ev-btn js-register" type="button" data-id="design"
-                            data-title="The Art of Book Design" data-date="July 12, 4:00 PM"
-                            data-format="Online">Register
-                            <svg width="8" height="12">
-                                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
-                            </svg>
-                        </button>
-                    </div>
-
-                    
-                </li>
-
-                <!-- Children -->
-                <li class="ev-item">
-                    <picture class="ev-photo">
-                        <source media="(min-width: 1440px)"
-                            srcset="/booksy/img/events/childrens-desk-1x.jpg 1x, /booksy/img/events/childrens-desk-2x.jpg 2x" />
-
-                        <source media="(min-width: 768px)"
-                            srcset="/booksy/img/events/childrens-tabl-1x.jpg 1x, /booksy/img/events/childrens-tabl-2x.jpg 2x" />
-
-                        <source media="(max-width: 767px)"
-                            srcset="/booksy/img/events/childrens-mob-1x.jpg 1x, /booksy/img/events/childrens-mob-2x.jpg 2x" />
-                        <img src="/booksy/img/events/childrens-mob-1x.jpg" width="342" height="277"
-                            alt="Childrens Reading Hour">
-                    </picture>
-
-                    <div class="ev-descr">
-                        <h3 class="ev-descr-title">Children's Story Hour</h3>
-                        <p class="ev-descr-meta">In-store | June 15, 11:00 AM</p>
-                        <p class="ev-descr-text ev-descr-text-child">A magical morning of stories, games, and imagination for our youngest
-                            book lovers (ages 4-8).</p>
-                        <button class="ev-btn js-register" type="button" data-id="children"
-                            data-title="Children's Reading Hour" data-date="August 20, 11:00 AM"
-                            data-format="In-store">Register
-                            <svg width="8" height="12">
-                                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
-                            </svg>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-
-            <div class="ev-slide-wrap">
-                <ul class="ev-pagination" aria-label="Slides pagination"></ul>
-
-
-                <div class="ev-nav" aria-label="Slider navigation">
-                    <button class="ev-swipe-btn-prev" type="button" aria-label="Previous slide">
-                        <svg width="14" height="14" aria-hidden="true">
-                            <use class="ev-icon-ar" href="/booksy/img/sprite.svg#icon-arrow-left"></use>
-                        </svg>
-                    </button>
-                    <button class="ev-swipe-btn-next" type="button" aria-label="Next slide">
-                        <svg width="14" height="14" aria-hidden="true">
-                            <use class="ev-icon-ar" href="/booksy/img/sprite.svg#icon-arrow-right"></use>
-                        </svg>
-                    </button>
-                </div>
+          <div class="ev-descr">
+            <div>
+              <h3 class="ev-descr-title">
+                Cozy Book Club — "The Midnight Library"
+              </h3>
+              <p class="ev-descr-meta">In-store | June 5, 6:30 PM</p>
+              <p class="ev-descr-text">
+                Join us for an evening of tea, thoughtful conversation, and
+                shared reflections as we dive into Matt Haig`s bestseller.
+              </p>
             </div>
+            <button
+              class="ev-btn js-register"
+              type="button"
+              data-id="midnight"
+              data-title="Cozy Book Club — The Midnight Library"
+              data-date="June 5, 6:30 PM"
+              data-format="In-store"
+            >
+              Register
+              <svg width="8" height="12">
+                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
+              </svg>
+            </button>
+          </div>
+        </li>
 
+        <li class="ev-item">
+          <picture class="ev-photo">
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/events/design-desk-1x.jpg 1x, /booksy/img/events/design-desk-2x.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/events/design-tabl-1x.jpg 1x, /booksy/img/events/design-tabl-2x.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/events/design-mob-1x.jpg 1x, /booksy/img/events/design-mob-2x.jpg 2x"
+            />
+            <img
+              src="/booksy/img/events/design-mob-1x.jpg"
+              width="342"
+              height="277"
+              alt="A group of colleagues collaborating on a design project at a table."
+            />
+          </picture>
 
+          <div class="ev-descr">
+            <div>
+              <h3 class="ev-descr-title">Book Cover Design Workshop</h3>
+              <p class="ev-descr-meta">Online | June 12, 7:00 PM</p>
+              <p class="ev-descr-text">
+                A hands-on session for aspiring designers and curious readers.
+                Learn what makes a cover stand out — from concept to print.
+              </p>
+            </div>
+            <button
+              class="ev-btn js-register"
+              type="button"
+              data-id="design"
+              data-title="The Art of Book Design"
+              data-date="July 12, 4:00 PM"
+              data-format="Online"
+            >
+              Register
+              <svg width="8" height="12">
+                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
+              </svg>
+            </button>
+          </div>
+        </li>
+
+        <li class="ev-item">
+          <picture class="ev-photo">
+            <source
+              media="(min-width: 1440px)"
+              srcset="/booksy/img/events/childrens-desk-1x.jpg 1x, /booksy/img/events/childrens-desk-2x.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="/booksy/img/events/childrens-tabl-1x.jpg 1x, /booksy/img/events/childrens-tabl-2x.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="/booksy/img/events/childrens-mob-1x.jpg 1x, /booksy/img/events/childrens-mob-2x.jpg 2x"
+            />
+            <img
+              src="/booksy/img/events/childrens-mob-1x.jpg"
+              width="342"
+              height="277"
+              alt="A woman reading a story to a group of children in a library."
+            />
+          </picture>
+
+          <div class="ev-descr">
+            <div>
+              <h3 class="ev-descr-title">Children's Story Hour</h3>
+              <p class="ev-descr-meta">In-store | June 15, 11:00 AM</p>
+              <p class="ev-descr-text">
+                A magical morning of stories, games, and imagination for our
+                youngest book lovers (ages 4-8).
+              </p>
+            </div>
+            <button
+              class="ev-btn js-register"
+              type="button"
+              data-id="children"
+              data-title="Children's Reading Hour"
+              data-date="August 20, 11:00 AM"
+              data-format="In-store"
+            >
+              Register
+              <svg width="8" height="12">
+                <use class="ev-icon" href="/booksy/img/sprite.svg#icon-right"></use>
+              </svg>
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="ev-slide-wrap">
+        <ul class="ev-pagination" aria-label="Slides pagination"></ul>
+
+        <div class="ev-nav" aria-label="Slider navigation">
+          <button
+            class="ev-swipe-btn-prev"
+            type="button"
+            aria-label="Previous slide"
+          >
+            <svg width="14" height="14" aria-hidden="true">
+              <use
+                class="ev-icon-ar"
+                href="/booksy/img/sprite.svg#icon-arrow-left"
+              ></use>
+            </svg>
+          </button>
+          <button
+            class="ev-swipe-btn-next"
+            type="button"
+            aria-label="Next slide"
+          >
+            <svg width="14" height="14" aria-hidden="true">
+              <use
+                class="ev-icon-ar"
+                href="/booksy/img/sprite.svg#icon-arrow-right"
+              ></use>
+            </svg>
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </section>
+
       <div
   class="modal modal-contacts"
   role="dialog"
