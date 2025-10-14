@@ -1,8 +1,10 @@
-/* mob first */
+/* Mobile First */
 
 .events-section {
   background-color: #fceee6;
   width: 100%;
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 .ev-container {
@@ -33,6 +35,18 @@
   position: relative;
 }
 
+.ev-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ev-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 .ev-swiper .ev-list {
   display: flex;
   flex-wrap: nowrap;
@@ -64,11 +78,22 @@
   width: 100%;
   height: 277px;
   object-fit: cover;
+  margin-bottom: 24px;
 }
 
 .ev-descr {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+.ev-descr-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
   gap: 8px;
   flex: 1;
   min-height: 0;
@@ -103,6 +128,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  font: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin-top: auto;
+  align-self: flex-start;
 
   margin: 0;
   padding: 0;
@@ -135,6 +165,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 342px;
+  height: 48px;
+  margin: 56px auto 0;
   /* gap: 190px; */
   width: 100%;
   max-width: 342px;
@@ -155,6 +188,10 @@
 .ev-dot {
   width: 8px;
   height: 8px;
+  border-radius: 50%;
+  background: #999;
+  opacity: 0.5;
+  cursor: pointer;
   border-radius: 100%;
   background: #999;
   opacity: 0.5;
@@ -183,12 +220,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(11, 5, 0, 0.15);
   border-color: rgba(11, 5, 0, 0.15);
   padding: 12px;
   width: 48px;
   height: 48px;
   background: #e15d05;
   cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   transition: background-color 0.2s ease, border-color 0.2s ease,
     transform 0.2s ease;
 }
@@ -204,6 +243,37 @@
   border-color: rgba(11, 5, 0, 0.1);
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.ev-swipe-btn-prev:hover:not([disabled]),
+.ev-swipe-btn-next:hover:not([disabled]) {
+  background: #f29b38;
+}
+
+.ev-icon-ar {
+  fill: #fff;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .ev-slide-wrap {
+    max-width: 704px;
+    margin: 32px auto 0;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+  .ev-slide-wrap {
+    display: none;
+  }
+
+  .ev-title {
+    font-size: 48px;
+  }
+
+  .ev-text {
+    max-width: 560px;
   pointer-events: none;
 }
 
