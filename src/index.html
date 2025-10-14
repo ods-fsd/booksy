@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Booksy</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Booksy</title>
+  <body>
+    <load src="./partials/header.html" />
+    <main>
+      <load src="./partials/hero.html" />
+      <load src="./partials/books.html" />
+      <load src="./partials/feedbacks.html" />
+      <load src="./partials/events.html" />
+      <load src="./partials/modal-contacts.html" />
+      <load src="./partials/modal-books.html" />
+      <load src="./partials/article.html" />
+      <load src="./partials/location.html" />
+    </main>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" />
+    <load src="./partials/footer.html" />
 
-  <link rel="stylesheet" href="./css/styles.css" />
-</head>
+    <button type="button" class="btn-up" aria-label="Go to top">
+      <svg class="btn-up-icon" width="24" height="24">
+        <use href="/img/sprite.svg#icon-arrow-up"></use>
+      </svg>
+    </button>
 
-<body>
-  <load src="./partials/header.html" />
-  <main>
-    <load src="./partials/hero.html" />
-    <load src="./partials/books.html" />
-    <load src="./partials/feedbacks.html" />
-    <load src="./partials/events.html" />
-    <load src="./partials/modal-contacts.html" />
-    <load src="./partials/modal-books.html" />
-    <load src="./partials/article.html" />
-    <load src="./partials/location.html" />
-  </main>
-
-  <load src="./partials/footer.html" />
-
-  <button type="button" class="btn-up" aria-label="Go to top">
-    <svg class="btn-up-icon" width="24" height="24">
-      <use href="/img/sprite.svg#icon-arrow-up"></use>
-    </svg>
-  </button>
-
-  <script type="module" src="./main.js"></script>
-</body>
-
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
