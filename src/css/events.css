@@ -47,6 +47,7 @@
   display: flex;
   flex-direction: column;
   height: auto;
+}
 .ev-swiper .ev-list {
   display: flex;
   flex-wrap: nowrap;
@@ -274,24 +275,24 @@
 
   .ev-text {
     max-width: 560px;
-  pointer-events: none;
-}
+    pointer-events: none;
+  }
 
-.ev-swipe-btn-prev:hover:not([disabled]),
-.ev-swipe-btn-next:hover:not([disabled]),
-.ev-swipe-btn-prev:focus-visible:not([disabled]),
-.ev-swipe-btn-next:focus-visible:not([disabled]) {
-  background: #f29b38;
-  border-color: rgba(11, 5, 0, 0.25);
-  outline: none;
-}
+  .ev-swipe-btn-prev:hover:not([disabled]),
+  .ev-swipe-btn-next:hover:not([disabled]),
+  .ev-swipe-btn-prev:focus-visible:not([disabled]),
+  .ev-swipe-btn-next:focus-visible:not([disabled]) {
+    background: #f29b38;
+    border-color: rgba(11, 5, 0, 0.25);
+    outline: none;
+  }
 
-.ev-swipe-btn-prev svg,
-.ev-swipe-btn-next svg {
-  color: #fff;
-  fill: #fff;
+  .ev-swipe-btn-prev svg,
+  .ev-swipe-btn-next svg {
+    color: #fff;
+    fill: #fff;
+  }
 }
-
 @media (min-width: 768px) {
   .ev-container {
     padding: 64px 32px;
