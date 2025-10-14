@@ -162,7 +162,7 @@
   .feedbacks-controls {
     margin-top: 32px;
   }
-  /* обрізаємо “підглядання” третьої картки */
+
   .feedbacks-swiper {
     overflow: hidden;
   }
