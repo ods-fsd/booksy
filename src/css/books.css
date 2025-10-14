@@ -3,7 +3,13 @@
   background-color: #fceee6;
   width: 100%;
   box-sizing: border-box;
-  /* min-width: 320px; */
+  padding: 32px 0;
+}
+
+.div-book {
+  display: flex;
+  gap: 24px;
+  width: 100%;
 }
 
 .books-form {
@@ -14,7 +20,6 @@
 
 /* ===  Wrapper для категорій === */
 .categories-wrapper {
-  padding: 32px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -451,7 +456,6 @@
   }
 
   .categories-wrapper {
-    padding: 32px 0 0;
     width: 100%;
   }
 
@@ -496,7 +500,6 @@
 
   /* Wrapper для книг */
   .books-wrapper {
-    padding: 32px 0 0;
     width: 100%;
   }
 
@@ -545,7 +548,6 @@
 
   /* Ліва колонка з категоріями */
   .categories-wrapper {
-    padding: 32px 0 0;
     width: 308px;
     flex-shrink: 0;
   }
@@ -566,7 +568,6 @@
 
   /* Права колонка з книгами */
   .books-wrapper {
-    padding: 32px 0 0;
     width: 980px;
     flex-shrink: 0;
   }
