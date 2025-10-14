@@ -654,12 +654,7 @@
   </div>
 </div>
 
-    <div
-  class="modal modal-books"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="bookModalTitle"
->
+    <div class="modal modal-books" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
   <div class="container">
     <div class="modal-content">
       <button class="modal_close-btn" aria-label="Close book details modal">
@@ -668,54 +663,22 @@
         </svg>
       </button>
       <picture class="modal-books_picture" id="bookPicture">
-        <img
-          class="modal-books_img"
-          src="/src/img/product-1.jpg"
-          alt="not empty need"
-          width="316"
-          height="467"
-        />
+        <img class="modal-books_img" src="#" alt="not empty need" />
       </picture>
-      <div
-        class="modal-books_data"
-        data-book-id=""
-        data-book-price=""
-        data-book-title=""
-      >
+      <div class="modal-books_data" data-book-id="" data-book-price="" data-book-title="">
         <p class="modal-books_title" id="bookModalTitle"></p>
         <p class="modal-books_author"></p>
         <p class="modal-books_price"></p>
 
         <form class="book-action-form" id="bookModalActionForm">
-          <div
-            class="modal-books_quantity-container"
-            data-min-quantity="1"
-            data-max-quantity="999"
-            data-step="1"
-          >
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-action="decrease"
-            >
+          <div class="modal-books_quantity-container" data-min-quantity="1" data-max-quantity="999" data-step="1">
+            <button class="btn btn-secondary" type="button" data-action="decrease">
               -
             </button>
-            <label for="bookQuantity" class="visually-hidden"
-              >Book quantity</label
-            >
+            <label for="bookQuantity" class="visually-hidden">Book quantity</label>
 
-            <input
-              class="quantity-input no-arrows"
-              id="bookQuantity"
-              value=""
-              min="1"
-              type="number"
-            />
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-action="increase"
-            >
+            <input class="quantity-input no-arrows" id="bookQuantity" value="" min="1" type="number" />
+            <button class="btn btn-secondary" type="button" data-action="increase">
               +
             </button>
           </div>
@@ -724,11 +687,7 @@
             <button class="btn" type="button" data-action="add-to-cart">
               Add To Cart
             </button>
-            <button
-              type="submit"
-              class="btn btn-secondary"
-              data-action="buy-now"
-            >
+            <button type="submit" class="btn btn-secondary" data-action="buy-now">
               Buy Now
             </button>
           </div>
@@ -779,7 +738,6 @@
     </div>
   </div>
 </div>
-
     <section class="article-section" id="article">
     <div class="container article-container">
         <div class="article-desc">
