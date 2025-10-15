@@ -34,6 +34,7 @@
   justify-content: space-between;
   width: 100%;
   gap: 8px;
+  row-gap: 24px;
 }
 
 .subtitle {
@@ -52,6 +53,10 @@
   line-height: 150%;
   color: #0b0500;
   white-space: nowrap;
+}
+
+.counter-group {
+  display: contents;
 }
 
 /* ===  Список категорій (desktop only) === */
@@ -477,11 +482,16 @@
     flex-shrink: 0;
   }
 
+  .counter-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
   /* Селект справа */
   .select-wrapper {
     width: 249px;
     flex-shrink: 0;
-    margin-left: auto;
     order: 0;
   }
 
@@ -532,6 +542,10 @@
   .btn-show-more:focus {
     background: transparent;
     color: #e15d05;
+  }
+
+  .div-book {
+    gap: 32px;
   }
 }
 
