@@ -8,7 +8,7 @@
     <script type="module" crossorigin src="/booksy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/booksy/assets/vendor-BHxofFQz.js">
     <link rel="stylesheet" crossorigin href="/booksy/assets/vendor-kr3g72Yb.css">
-    <link rel="stylesheet" crossorigin href="/booksy/assets/index-CGC0Bqa4.css">
+    <link rel="stylesheet" crossorigin href="/booksy/assets/index-J8lvu_kl.css">
   </head>
 
   <body>
@@ -274,22 +274,39 @@
         <!-- Верхній ряд: Books + Showing + Categories в одну лінію -->
         <div class="books-counter">
           <h3 class="subtitle">Books</h3>
-          <p class="counter-books">
-            Showing <span class="visible-books"></span> of
-            <span class="total-books"></span>
-          </p>
-          <!-- Селект тепер всередині books-counter -->
-          <div class="select-wrapper">
-            <button type="button" class="category-select-btn" id="category-select-btn">
-              <span class="category-select-text">Categories</span>
-              <svg class="categories-arrow" width="12" height="12" aria-hidden="true" focusable="false">
-                <use href="./img/sprite.svg#icon-arrow-down" />
-              </svg>
-            </button>
-            <ul class="category-dropdown hidden" id="category-dropdown"></ul>
+          <div class="counter-group">
+            <p class="counter-books">
+              Showing <span class="visible-books"></span> of
+              <span class="total-books"></span>
+            </p>
+            <!-- Селект тепер всередині books-counter -->
+            <div class="select-wrapper">
+              <button
+                type="button"
+                class="category-select-btn"
+                id="category-select-btn"
+              >
+                <span class="category-select-text">Categories</span>
+                <svg
+                  class="categories-arrow"
+                  width="12"
+                  height="12"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use href="./img/sprite.svg#icon-arrow-down" />
+                </svg>
+              </button>
+              <ul class="category-dropdown hidden" id="category-dropdown"></ul>
 
-            <!-- Прихований select для accessibility -->
-            <select id="category-select" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
+              <!-- Прихований select для accessibility -->
+              <select
+                id="category-select"
+                class="visually-hidden"
+                aria-hidden="true"
+                tabindex="-1"
+              ></select>
+            </div>
           </div>
         </div>
 
@@ -301,14 +318,25 @@
       </div>
     </form>
     <div class="books-wrapper">
-      <div id="loader" class="loader hidden" role="status" aria-live="polite" aria-label="Loading books"></div>
+      <div
+        id="loader"
+        class="loader hidden"
+        role="status"
+        aria-live="polite"
+        aria-label="Loading books"
+      ></div>
       <ul class="gallery" aria-live="polite" aria-label="Book list"></ul>
-      <button type="button" class="btn btn-show-more btn-show-more-hidden" aria-label="Show more books">
+      <button
+        type="button"
+        class="btn btn-show-more btn-show-more-hidden"
+        aria-label="Show more books"
+      >
         Show more
       </button>
     </div>
   </div>
 </section>
+
       <section
   id="feedbacks"
   class="feedbacks-section"
