@@ -251,7 +251,7 @@
 .gallery {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 40px;
   justify-items: center;
   width: 100%;
   padding: 0;
@@ -435,6 +435,11 @@
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     /* Картки по центру */
+  }
+
+  .gallery {
+    row-gap: 40px;
+    column-gap: 24px;
   }
 
   .book-card {

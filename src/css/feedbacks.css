@@ -159,6 +159,10 @@
   pointer-events: none;
 }
 
+.feedbacks-pagination .swiper-pagination-bullet:nth-child(n + 6) {
+  display: none;
+}
+
 /* ===== Tablet ===== */
 @media (min-width: 768px) {
   .feedbacks-controls {
@@ -171,6 +175,10 @@
 
   .swiper-slide.feedbacks-item {
     padding: 32px;
+  }
+
+  .feedbacks-pagination .swiper-pagination-bullet:nth-child(n + 6) {
+    display: block;
   }
 }
 
@@ -188,7 +196,6 @@
   }
 }
 
-/* Переписуємо з більш точною специфічністю */
 .feedbacks-controls .feedbacks-pagination {
   position: static;
   inset: auto;
